@@ -27,8 +27,7 @@ function LibraryItemCard({ title, desc, index }: { title: string; desc: string; 
     <svg key={2} width="44" height="44" viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="18" stroke="rgba(86,86,216,0.2)" strokeWidth="3.5"/>
       <path d="M22 4 A18 18 0 0 1 40 22 A18 18 0 0 1 30 37.6" stroke="rgba(65,211,126,0.72)" strokeWidth="3.5" strokeLinecap="round"/>
-      <text x="22" y="26" textAnchor="middle" fill="rgba(65,211,126,0.85)" fontSize="12" fontWeight="800" fontFamily="monospace">75</text>
-      <text x="22" y="35" textAnchor="middle" fill="rgba(244,251,255,0.25)" fontSize="7" fontFamily="monospace">%</text>
+      <circle cx="22" cy="22" r="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
     </svg>,
     /* 3 نصوص - T in editable frame */
     <svg key={3} width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -102,7 +101,7 @@ export default function LibraryPage() {
             ))}
 
             {/* Summary card */}
-            <div className="glass" style={{
+            <div className="glass-card" style={{
               borderRadius: 22, padding: 28,
               background: 'linear-gradient(135deg, rgba(65,211,126,0.08) 0%, rgba(14,94,142,0.12) 100%)',
               borderColor: 'rgba(65,211,126,0.2)',
@@ -136,24 +135,46 @@ export default function LibraryPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14, position: 'relative' }}>
-            {library.howItWorks.map((step, i) => (
-              <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 32 }}>
-                <div className="card-visual">
-                  <div style={{
-                    fontSize: 32, fontWeight: 900, color: 'var(--brand-cyan)', opacity: 0.35,
-                    lineHeight: 1, marginBottom: 20, letterSpacing: '-0.04em',
-                  }}>
-                    {step.num}
+            {library.howItWorks.map((step, i) => {
+              const stepIcons = [
+                <svg key={0} width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <rect x="2" y="2" width="18" height="18" rx="5" stroke="rgba(86,86,216,0.45)" strokeWidth="1.5"/>
+                  <path d="M11 6 L11 13 M8 11 L11 14 L14 11" stroke="rgba(86,86,216,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>,
+                <svg key={1} width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <circle cx="11" cy="11" r="9" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
+                  <circle cx="11" cy="11" r="3.5" fill="rgba(65,211,126,0.2)" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5"/>
+                  <line x1="11" y1="2" x2="11" y2="20" stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="2 2"/>
+                  <line x1="2" y1="11" x2="20" y2="11" stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="2 2"/>
+                </svg>,
+                <svg key={2} width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <circle cx="11" cy="11" r="9" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
+                  <path d="M7 11 L9.5 13.5 L15 8" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>,
+              ]
+              return (
+                <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 32 }}>
+                  <div className="card-visual">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+                      {stepIcons[i] ?? stepIcons[0]}
+                      <div style={{
+                        fontSize: 28, fontWeight: 900, color: 'var(--brand-cyan)', opacity: 0.4,
+                        lineHeight: 1, letterSpacing: '-0.04em',
+                      }}>
+                        {step.num}
+                      </div>
+                      <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, rgba(86,86,216,0.18), transparent)' }} />
+                    </div>
+                    <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 10 }}>
+                      {step.title}
+                    </h3>
+                    <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                      {step.desc}
+                    </p>
                   </div>
-                  <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 10 }}>
-                    {step.title}
-                  </h3>
-                  <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                    {step.desc}
-                  </p>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

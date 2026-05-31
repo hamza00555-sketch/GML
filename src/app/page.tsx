@@ -450,12 +450,9 @@ export default function Home() {
               <VisualGAB />
             </div>
             <div style={{ marginTop: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-                  {home.navCards[3].title}
-                </h3>
-                <span className="chip chip-next">قريبًا</span>
-              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em', marginBottom: 8 }}>
+                {home.navCards[3].title}
+              </h3>
               <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
                 {home.navCards[3].desc}
               </p>
