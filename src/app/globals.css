@@ -11,14 +11,14 @@
   --bg-gradient: #2020A8;
   --accent-green: #41D37E;
 
-  /* Legacy aliases — keeps all existing var() references working */
-  --bg-900: #00004E;
-  --bg-800: #0A0A72;
-  --bg-700: #1616A0;
+  /* Color system */
+  --bg-900: #000039;
+  --bg-800: #00004E;
+  --bg-700: #0A0A72;
   --brand-blue: #2020A8;
+  --brand-cyan: #5656D8;
   --brand-green: #41D37E;
   --brand-green-soft: rgba(65, 211, 126, 0.15);
-  --brand-cyan: #41D37E;
 
   --text-main: #F4FBFF;
   --text-muted: rgba(244, 251, 255, 0.70);
@@ -218,9 +218,9 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-green);
-  background: rgba(65, 211, 126, 0.1);
-  border: 1px solid rgba(65, 211, 126, 0.22);
+  color: var(--brand-cyan);
+  background: rgba(86, 86, 216, 0.12);
+  border: 1px solid rgba(86, 86, 216, 0.28);
   padding: 5px 14px;
   border-radius: 100px;
 }
@@ -264,9 +264,9 @@ body {
 .num-badge {
   font-size: 11px;
   font-weight: 800;
-  color: var(--brand-green);
-  background: rgba(65, 211, 126, 0.1);
-  border: 1px solid rgba(65, 211, 126, 0.2);
+  color: var(--brand-cyan);
+  background: rgba(86, 86, 216, 0.12);
+  border: 1px solid rgba(86, 86, 216, 0.22);
   width: 28px;
   height: 28px;
   border-radius: 8px;
