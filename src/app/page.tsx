@@ -11,16 +11,16 @@ function VisualSlowProduction() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 16 }}>
         {[78, 48, 22].map((w, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: `rgba(39,184,212,${0.25 + i * 0.1})`, flexShrink: 0 }} />
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: `rgba(32,32,168,${0.25 + i * 0.1})`, flexShrink: 0 }} />
             <div style={{ flex: 1, height: 7, borderRadius: 4, background: 'rgba(255,255,255,0.05)' }}>
-              <div style={{ height: '100%', width: `${w}%`, borderRadius: 4, background: `rgba(39,184,212,${0.18 + i * 0.06})` }} />
+              <div style={{ height: '100%', width: `${w}%`, borderRadius: 4, background: `rgba(32,32,168,${0.18 + i * 0.06})` }} />
             </div>
           </div>
         ))}
       </div>
       <div style={{ display: 'flex', gap: 5 }}>
         {[1, 1, 0, 0, 0].map((active, i) => (
-          <div key={i} style={{ flex: 1, height: 24, borderRadius: 6, background: active ? 'rgba(39,184,212,0.18)' : 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,${active ? 0.1 : 0.04})` }} />
+          <div key={i} style={{ flex: 1, height: 24, borderRadius: 6, background: active ? 'rgba(32,32,168,0.18)' : 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,${active ? 0.1 : 0.04})` }} />
         ))}
       </div>
     </div>
@@ -32,7 +32,7 @@ function VisualInconsistentQuality() {
   return (
     <div className="card-visual" style={{ display: 'flex', alignItems: 'flex-end', gap: 7, paddingBottom: 2 }}>
       {heights.map((h, i) => (
-        <div key={i} style={{ flex: 1, borderRadius: '5px 5px 0 0', height: `${h * 0.85}px`, background: i === 1 || i === 5 ? 'rgba(65,211,126,0.22)' : 'rgba(39,184,212,0.1)', border: `1px solid rgba(255,255,255,${i === 1 || i === 5 ? 0.12 : 0.05})`, minHeight: 8 }} />
+        <div key={i} style={{ flex: 1, borderRadius: '5px 5px 0 0', height: `${h * 0.85}px`, background: i === 1 || i === 5 ? 'rgba(65,211,126,0.22)' : 'rgba(32,32,168,0.18)', border: `1px solid rgba(255,255,255,${i === 1 || i === 5 ? 0.12 : 0.05})`, minHeight: 8 }} />
       ))}
     </div>
   )
@@ -137,11 +137,11 @@ function VisualGAB() {
       {['G', 'A', 'B'].map((letter, i) => (
         <div key={i} style={{
           width: 36, height: 36, borderRadius: 10,
-          background: 'rgba(39,184,212,0.1)',
-          border: '1px solid rgba(39,184,212,0.2)',
+          background: 'rgba(32,32,168,0.1)',
+          border: '1px solid rgba(32,32,168,0.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 14, fontWeight: 900,
-          color: `rgba(39,184,212,${0.45 + i * 0.1})`,
+          color: `rgba(32,32,168,${0.45 + i * 0.1})`,
           fontFamily: 'monospace',
           letterSpacing: '-0.02em',
         }}>
@@ -166,6 +166,75 @@ function VisualNextStep() {
   )
 }
 
+function HeroVisual() {
+  return (
+    <div className="glass-card" style={{
+      borderRadius: 28,
+      padding: 32,
+      minHeight: 380,
+      position: 'relative',
+      overflow: 'hidden',
+      background: 'linear-gradient(145deg, rgba(32,32,168,0.22) 0%, rgba(0,0,78,0.4) 100%)',
+      borderColor: 'rgba(65,211,126,0.18)',
+    }}>
+      {/* Grid overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px',
+      }} />
+      {/* Blue glow top right */}
+      <div style={{ position: 'absolute', top: -60, right: -60, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(32,32,168,0.55) 0%, transparent 65%)', pointerEvents: 'none' }} />
+      {/* Green glow bottom left */}
+      <div style={{ position: 'absolute', bottom: -40, left: -40, width: 180, height: 180, borderRadius: '50%', background: 'radial-gradient(circle, rgba(65,211,126,0.14) 0%, transparent 65%)', pointerEvents: 'none' }} />
+
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        {/* GML wordmark */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 38, height: 38, borderRadius: 10, background: 'var(--brand-green)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+              <path d="M2 11.5L5 7.5L8 9.5L11 5.5L14 3" stroke="#00004E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="14" cy="3" r="1.5" fill="#00004E"/>
+            </svg>
+          </div>
+          <div>
+            <div style={{ fontWeight: 900, fontSize: 17, color: 'var(--text-main)', lineHeight: 1.1 }}>جمل</div>
+            <div style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.14em', opacity: 0.8 }}>GML</div>
+          </div>
+        </div>
+
+        {/* Library element tiles */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, margin: '28px 0' }}>
+          {[
+            { label: 'خلفيات', bg: 'rgba(32,32,168,0.38)', border: 'rgba(32,32,168,0.5)' },
+            { label: 'انتقالات', bg: 'rgba(65,211,126,0.14)', border: 'rgba(65,211,126,0.25)' },
+            { label: 'عدادات', bg: 'rgba(32,32,168,0.28)', border: 'rgba(32,32,168,0.4)' },
+            { label: 'نصوص', bg: 'rgba(65,211,126,0.1)', border: 'rgba(65,211,126,0.2)' },
+            { label: 'رسوم', bg: 'rgba(32,32,168,0.22)', border: 'rgba(32,32,168,0.35)' },
+            { label: 'موشن', bg: 'rgba(65,211,126,0.08)', border: 'rgba(65,211,126,0.16)' },
+          ].map((tile, i) => (
+            <div key={i} style={{
+              borderRadius: 12, padding: '14px 8px', textAlign: 'center',
+              background: tile.bg, border: `1px solid ${tile.border}`,
+            }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '-0.01em' }}>
+                {tile.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom tag */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span className="dot-live" />
+          <span style={{ fontSize: 11, color: 'rgba(65,211,126,0.75)', fontWeight: 600, letterSpacing: '0.04em' }}>نظام إنتاج بصري</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ── Main ──────────────────────────────────────────── */
 export default function Home() {
   const { content } = useContent()
@@ -175,27 +244,35 @@ export default function Home() {
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
 
-      {/* ── Hero ─────────────────────────────────── */}
+      {/* ── Hero ─────────────────────────────────────────── */}
       <section style={{ paddingTop: 128, paddingBottom: 80 }}>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
-          <div style={{ marginBottom: 20 }}>
-            <span className="label-tag">
-              <span className="dot-live" />
-              نسخة العرض التجريبية
-            </span>
-          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 48, alignItems: 'center' }}>
+            {/* Text */}
+            <div>
+              <div style={{ marginBottom: 20 }}>
+                <span className="label-tag">
+                  <span className="dot-live" />
+                  نسخة العرض التجريبية
+                </span>
+              </div>
 
-          <h1 className="section-title" style={{ maxWidth: 700, marginBottom: 20, marginTop: 8 }}>
-            {home.hero.title}
-          </h1>
+              <h1 className="section-title" style={{ maxWidth: 640, marginBottom: 20, marginTop: 8 }}>
+                {home.hero.title}
+              </h1>
 
-          <p className="section-subtitle" style={{ maxWidth: 580, marginBottom: 40 }}>
-            {home.hero.subtitle}
-          </p>
+              <p className="section-subtitle" style={{ maxWidth: 520, marginBottom: 40 }}>
+                {home.hero.subtitle}
+              </p>
 
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link href="/library" className="btn-primary">{home.hero.primaryCTA}</Link>
-            <Link href="/experiment" className="btn-secondary">{home.hero.secondaryCTA}</Link>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Link href="/library" className="btn-primary">{home.hero.primaryCTA}</Link>
+                <Link href="/experiment" className="btn-secondary">{home.hero.secondaryCTA}</Link>
+              </div>
+            </div>
+
+            {/* Visual panel */}
+            <HeroVisual />
           </div>
         </div>
       </section>

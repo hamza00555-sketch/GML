@@ -133,10 +133,10 @@ export default function RoadmapPage() {
       {/* ── Vision ── */}
       <section style={{ padding: '0 24px 96px' }}>
         <div className="container">
-          <div className="glass" style={{
+          <div className="glass-card" style={{
             borderRadius: 24, padding: '48px 48px',
-            background: 'linear-gradient(135deg, rgba(14,94,142,0.14) 0%, rgba(6,26,43,0.7) 100%)',
-            borderColor: 'rgba(14,94,142,0.3)',
+            background: 'linear-gradient(135deg, rgba(32,32,168,0.16) 0%, rgba(0,0,78,0.5) 100%)',
+            borderColor: 'rgba(32,32,168,0.35)',
             maxWidth: 720,
           }}>
             <div className="divider" style={{ marginBottom: 24 }} />

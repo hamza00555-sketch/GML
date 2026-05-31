@@ -53,7 +53,7 @@ export default function GabPage() {
           </span>
 
           <h1 style={{
-            fontSize: 'clamp(56px, 9vw, 96px)',
+            fontSize: 'clamp(28px, 4.5vw, 56px)',
             fontWeight: 900,
             color: 'var(--text-main)',
             letterSpacing: '-0.04em',
@@ -68,20 +68,6 @@ export default function GabPage() {
             {gab.subtitle}
           </p>
 
-          {/* G·A·B spelled out */}
-          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 32 }}>
-            {[
-              { letter: 'G', label: 'Generate', color: 'var(--brand-cyan)' },
-              { letter: 'A', label: 'Animate', color: 'var(--brand-green)' },
-              { letter: 'B', label: 'Build', color: 'var(--brand-cyan)' },
-            ].map(item => (
-              <div key={item.letter} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontWeight: 900, fontSize: 15, color: item.color, fontFamily: 'monospace' }}>{item.letter}</span>
-                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{item.label}</span>
-                <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--glass-border)' }} />
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -93,8 +79,8 @@ export default function GabPage() {
               letter="G"
               title="Generate"
               desc={gab.generateDesc}
-              color="var(--brand-cyan)"
-              borderColor="rgba(39,184,212,0.2)"
+              color="var(--brand-green)"
+              borderColor="rgba(65,211,126,0.2)"
             />
             <CapabilityCard
               letter="A"
@@ -107,8 +93,8 @@ export default function GabPage() {
               letter="B"
               title="Build"
               desc={gab.buildDesc}
-              color="rgba(39,184,212,0.8)"
-              borderColor="rgba(14,94,142,0.35)"
+              color="rgba(65,211,126,0.75)"
+              borderColor="rgba(65,211,126,0.15)"
             />
           </div>
         </div>
@@ -117,20 +103,38 @@ export default function GabPage() {
       {/* ── Coming soon banner ── */}
       <section style={{ padding: '0 24px 96px' }}>
         <div className="container">
-          <div className="glass" style={{
+          <div className="glass-card" style={{
             borderRadius: 24, padding: '40px 40px',
-            background: 'linear-gradient(135deg, rgba(14,94,142,0.12) 0%, rgba(6,26,43,0.5) 100%)',
-            borderColor: 'rgba(14,94,142,0.3)',
+            background: 'linear-gradient(135deg, rgba(32,32,168,0.14) 0%, rgba(0,0,78,0.4) 100%)',
+            borderColor: 'rgba(32,32,168,0.35)',
             maxWidth: 680,
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <span className="dot-live" />
               <span style={{ fontSize: 12, color: 'var(--brand-green)', fontWeight: 700, letterSpacing: '0.06em' }}>
-                COMING SOON
+                فرصة مستقبلية
               </span>
             </div>
             <p style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.85 }}>
-              GAB هو الرؤية القادمة لـ GML — نظام يقلّص المسافة بين الفكرة والمنتج البصري من ساعات إلى ثوانٍ.
+              GAB هو الاتجاه القادم لـ GML — نموذج أولي قابل للاختبار بعد اعتماد المكتبة وإثبات قيمتها.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Safety line ── */}
+      <section style={{ padding: '0 24px 32px' }}>
+        <div className="container">
+          <div className="glass-card" style={{
+            borderRadius: 20,
+            padding: '28px 32px',
+            borderColor: 'rgba(65,211,126,0.18)',
+            maxWidth: 760,
+            background: 'linear-gradient(135deg, rgba(32,32,168,0.1) 0%, rgba(0,0,78,0.3) 100%)',
+          }}>
+            <div className="divider" style={{ marginBottom: 18 }} />
+            <p style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.9, fontStyle: 'italic' }}>
+              {(gab as typeof gab & { safetyLine?: string }).safetyLine ?? ''}
             </p>
           </div>
         </div>

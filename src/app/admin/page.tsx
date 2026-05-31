@@ -231,6 +231,7 @@ export default function AdminPage() {
           <Field label="Generate — الوصف" value={s.gab.generateDesc} onChange={v => update(['gab','generateDesc'], v)} multiline />
           <Field label="Animate — الوصف" value={s.gab.animateDesc} onChange={v => update(['gab','animateDesc'], v)} multiline />
           <Field label="Build — الوصف" value={s.gab.buildDesc} onChange={v => update(['gab','buildDesc'], v)} multiline />
+          <Field label="الجملة التحذيرية (Safety Line)" value={(s.gab as typeof s.gab & { safetyLine?: string }).safetyLine ?? ''} onChange={v => update(['gab','safetyLine'], v)} multiline />
         </SectionBox>
       </>
     ),
@@ -239,6 +240,7 @@ export default function AdminPage() {
         <SectionBox title="Hero الخطوة القادمة">
           <Field label="العنوان" value={s.nextStep.title} onChange={v => update(['nextStep','title'], v)} />
           <Field label="النص الفرعي" value={s.nextStep.subtitle} onChange={v => update(['nextStep','subtitle'], v)} multiline />
+          <Field label="الجملة الختامية" value={(s.nextStep as typeof s.nextStep & { closingText?: string }).closingText ?? ''} onChange={v => update(['nextStep','closingText'], v)} multiline />
         </SectionBox>
         <SectionBox title="بطاقات الدعم">
           {s.nextStep.items.map((item, i) => (
@@ -255,7 +257,7 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--bg-900) 0%, var(--bg-800) 60%, var(--bg-900) 100%)', fontFamily: 'Cairo, sans-serif', direction: 'rtl', color: 'var(--text-main)' }}>
       {/* Header */}
-      <div style={{ borderBottom: '1px solid var(--glass-border)', padding: '16px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,57,0.9)', backdropFilter: 'blur(20px)', position: 'sticky', top: 0, zIndex: 50 }}>
+      <div style={{ borderBottom: '1px solid var(--glass-border)', padding: '16px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,78,0.92)', backdropFilter: 'blur(20px)', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--brand-green)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ color: '#00004E', fontWeight: 900, fontSize: 11 }}>GML</span>
@@ -264,7 +266,7 @@ export default function AdminPage() {
           <span style={{ fontSize: 11, color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)', padding: '2px 8px', borderRadius: 20 }}>للعرض التجريبي فقط</span>
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <Link href="/" target="_blank" style={{ fontSize: 12, color: 'var(--brand-cyan)', textDecoration: 'none', padding: '6px 14px', border: '1px solid rgba(39,184,212,0.3)', borderRadius: 8, transition: 'all 0.2s' }}>
+          <Link href="/" target="_blank" style={{ fontSize: 12, color: 'var(--brand-green)', textDecoration: 'none', padding: '6px 14px', border: '1px solid rgba(65,211,126,0.28)', borderRadius: 8, transition: 'all 0.2s' }}>
             معاينة الموقع
           </Link>
         </div>
@@ -293,11 +295,11 @@ export default function AdminPage() {
         {/* Action bar */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 12 }}>
           <button onClick={handleSave}
-            style={{ background: saved ? 'rgba(65,211,126,0.3)' : 'var(--brand-green)', color: saved ? 'var(--brand-green)' : '#061A2B', border: saved ? '1px solid var(--brand-green)' : 'none', padding: '10px 24px', borderRadius: 10, fontWeight: 700, fontSize: 14, fontFamily: 'Cairo, sans-serif', cursor: 'pointer', transition: 'all 0.3s' }}>
+            style={{ background: saved ? 'rgba(65,211,126,0.3)' : 'var(--brand-green)', color: saved ? 'var(--brand-green)' : '#00004E', border: saved ? '1px solid var(--brand-green)' : 'none', padding: '10px 24px', borderRadius: 10, fontWeight: 700, fontSize: 14, fontFamily: 'Cairo, sans-serif', cursor: 'pointer', transition: 'all 0.3s' }}>
             {saved ? 'تم الحفظ' : 'حفظ التغييرات'}
           </button>
           <button onClick={() => setShowExport(!showExport)}
-            style={{ background: 'transparent', color: 'var(--brand-cyan)', border: '1px solid rgba(39,184,212,0.3)', padding: '10px 24px', borderRadius: 10, fontWeight: 700, fontSize: 14, fontFamily: 'Cairo, sans-serif', cursor: 'pointer' }}>
+            style={{ background: 'transparent', color: 'var(--brand-green)', border: '1px solid rgba(65,211,126,0.28)', padding: '10px 24px', borderRadius: 10, fontWeight: 700, fontSize: 14, fontFamily: 'Cairo, sans-serif', cursor: 'pointer' }}>
             {showExport ? 'إخفاء JSON' : 'تصدير JSON'}
           </button>
           <button onClick={handleReset}
@@ -312,7 +314,7 @@ export default function AdminPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
               <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 600 }}>JSON الحالي</span>
               <button onClick={() => navigator.clipboard.writeText(JSON.stringify(local, null, 2))}
-                style={{ fontSize: 11, color: 'var(--brand-cyan)', background: 'transparent', border: '1px solid rgba(39,184,212,0.3)', borderRadius: 6, padding: '4px 10px', cursor: 'pointer', fontFamily: 'Cairo, sans-serif' }}>
+                style={{ fontSize: 11, color: 'var(--brand-green)', background: 'transparent', border: '1px solid rgba(65,211,126,0.25)', borderRadius: 6, padding: '4px 10px', cursor: 'pointer', fontFamily: 'Cairo, sans-serif' }}>
                 نسخ
               </button>
             </div>
@@ -330,7 +332,7 @@ export default function AdminPage() {
             placeholder='{"home": {...}, "library": {...}, ...}'
             style={{ width: '100%', height: 100, background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: 'rgba(255,255,255,0.6)', fontSize: 11, fontFamily: 'monospace', padding: 12, resize: 'vertical', outline: 'none', direction: 'ltr', marginBottom: 10 }} />
           <button onClick={handleImport} disabled={!importText}
-            style={{ background: importText ? 'rgba(39,184,212,0.15)' : 'rgba(255,255,255,0.05)', color: importText ? 'var(--brand-cyan)' : 'var(--text-muted)', border: `1px solid ${importText ? 'rgba(39,184,212,0.3)' : 'transparent'}`, padding: '8px 18px', borderRadius: 8, fontWeight: 700, fontSize: 13, fontFamily: 'Cairo, sans-serif', cursor: importText ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
+            style={{ background: importText ? 'rgba(65,211,126,0.12)' : 'rgba(255,255,255,0.05)', color: importText ? 'var(--brand-green)' : 'var(--text-muted)', border: `1px solid ${importText ? 'rgba(65,211,126,0.28)' : 'transparent'}`, padding: '8px 18px', borderRadius: 8, fontWeight: 700, fontSize: 13, fontFamily: 'Cairo, sans-serif', cursor: importText ? 'pointer' : 'not-allowed', transition: 'all 0.2s' }}>
             تطبيق الاستيراد
           </button>
         </div>

@@ -6,24 +6,35 @@
 
 /* ─── Design Tokens ─────────────────────────────────── */
 :root {
-  --bg-900: #061A2B;
-  --bg-800: #0A2740;
-  --bg-700: #0D3555;
-  --brand-blue: #0E5E8E;
-  --brand-cyan: #27B8D4;
+  /* Canonical palette */
+  --bg-primary: #00004E;
+  --bg-gradient: #2020A8;
+  --accent-green: #41D37E;
+
+  /* Legacy aliases — keeps all existing var() references working */
+  --bg-900: #00004E;
+  --bg-800: #0A0A72;
+  --bg-700: #1616A0;
+  --brand-blue: #2020A8;
   --brand-green: #41D37E;
-  --brand-green-soft: rgba(65, 211, 126, 0.16);
+  --brand-green-soft: rgba(65, 211, 126, 0.15);
+  --brand-cyan: #41D37E;
+
   --text-main: #F4FBFF;
-  --text-muted: rgba(244, 251, 255, 0.68);
+  --text-muted: rgba(244, 251, 255, 0.70);
+
   --glass-bg: rgba(255, 255, 255, 0.075);
   --glass-bg-hover: rgba(255, 255, 255, 0.105);
+
   --glass-border: rgba(255, 255, 255, 0.16);
-  --glass-border-strong: rgba(65, 211, 126, 0.44);
+  --glass-border-strong: rgba(65, 211, 126, 0.42);
+
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 18px;
-  --shadow-glass: 0 24px 80px rgba(0, 0, 0, 0.28);
-  --shadow-green: 0 0 42px rgba(65, 211, 126, 0.16);
+
+  --shadow-glass: 0 24px 80px rgba(0, 0, 0, 0.32);
+  --shadow-green: 0 0 32px rgba(65, 211, 126, 0.22);
 }
 
 /* ─── Reset ─────────────────────────────────────────── */
@@ -36,9 +47,9 @@ body {
   direction: rtl;
   color: var(--text-main);
   background:
-    radial-gradient(circle at 20% 10%, rgba(39, 184, 212, 0.22), transparent 32%),
-    radial-gradient(circle at 80% 20%, rgba(65, 211, 126, 0.16), transparent 28%),
-    linear-gradient(135deg, var(--bg-900), var(--bg-800) 48%, var(--bg-700));
+    radial-gradient(circle at 18% 12%, rgba(32, 32, 168, 0.62), transparent 36%),
+    radial-gradient(circle at 84% 18%, rgba(65, 211, 126, 0.14), transparent 34%),
+    linear-gradient(135deg, #00004E 0%, #10107A 48%, #2020A8 100%);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -193,8 +204,8 @@ body {
 }
 
 .btn-secondary:hover {
-  border-color: var(--brand-cyan);
-  background: rgba(39, 184, 212, 0.08);
+  border-color: var(--brand-green);
+  background: rgba(65, 211, 126, 0.08);
   transform: translateY(-2px);
 }
 
@@ -207,9 +218,9 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-cyan);
-  background: rgba(39, 184, 212, 0.1);
-  border: 1px solid rgba(39, 184, 212, 0.22);
+  color: var(--brand-green);
+  background: rgba(65, 211, 126, 0.1);
+  border: 1px solid rgba(65, 211, 126, 0.22);
   padding: 5px 14px;
   border-radius: 100px;
 }
@@ -253,9 +264,9 @@ body {
 .num-badge {
   font-size: 11px;
   font-weight: 800;
-  color: var(--brand-cyan);
-  background: rgba(39, 184, 212, 0.1);
-  border: 1px solid rgba(39, 184, 212, 0.2);
+  color: var(--brand-green);
+  background: rgba(65, 211, 126, 0.1);
+  border: 1px solid rgba(65, 211, 126, 0.2);
   width: 28px;
   height: 28px;
   border-radius: 8px;
