@@ -13,7 +13,7 @@ const NAV = [
 
 function LogoMark() {
   return (
-    <img src="/logo-camel.png" alt="GML camel logo" width={40} height={40} style={{ flexShrink: 0, objectFit: 'contain' }} />
+    <img src="/logo-camel.png" alt="" width={46} height={46} style={{ flexShrink: 0, objectFit: 'contain', display: 'block' }} />
   )
 }
 
@@ -23,10 +23,14 @@ export default function Navbar() {
   return (
     <header className="top-bar">
       {/* Logo */}
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0 }}>
+      <Link href="/" style={{
+        display: 'flex', alignItems: 'center',
+        direction: 'ltr', gap: 6,
+        textDecoration: 'none', flexShrink: 0,
+      }}>
+        <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.12em', opacity: 0.85, lineHeight: 1 }}>GML</span>
+        <span style={{ fontWeight: 900, fontSize: 15, color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: 1 }}>جمل</span>
         <LogoMark />
-        <span style={{ fontWeight: 900, fontSize: 15, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>جمل</span>
-        <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.14em', opacity: 0.8 }}>GML</span>
       </Link>
 
       {/* Nav */}
