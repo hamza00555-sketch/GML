@@ -358,3 +358,15 @@ body::after {
 /* ─── Page section spacing ───────────────────────────── */
 .section { padding: 88px 0; }
 .section-sm { padding: 56px 0; }
+
+/* ─── Roadmap Carousel ───────────────────────────────── */
+@keyframes carouselEnterNext {
+  from { opacity: 0; transform: translateX(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0)    scale(1);    }
+}
+@keyframes carouselEnterPrev {
+  from { opacity: 0; transform: translateX(-40px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0)     scale(1);    }
+}
+.carousel-enter-next { animation: carouselEnterNext 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.carousel-enter-prev { animation: carouselEnterPrev 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
