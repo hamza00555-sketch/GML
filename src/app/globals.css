@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #020C1B;
+  --color-card: #071327;
+  --color-green: #00D26A;
+  --color-blue: #1A4DFF;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #ffffff;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+
+@layer components {
+  .gml-card {
+    @apply bg-[#071327] border border-white/[0.08] rounded-2xl transition-all duration-300;
+  }
+
+  .gml-card:hover {
+    @apply border-white/20 bg-[#0B1E3D];
+  }
+
+  .btn-green {
+    @apply bg-[#00D26A] text-[#020C1B] font-bold px-8 py-3.5 rounded-xl hover:bg-[#00B85E] transition-all duration-200 inline-block;
+  }
+
+  .btn-outline {
+    @apply border border-white/20 text-white px-8 py-3.5 rounded-xl hover:bg-white/5 transition-all duration-200 inline-block;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-black text-white;
+  }
+
+  .section-subtitle {
+    @apply text-white/50 text-lg leading-relaxed;
+  }
+
+  .glow-green {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 210, 106, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .glow-blue {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(26, 77, 255, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020C1B;
+}
+::-webkit-scrollbar-thumb {
+  background: #071327;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0B1E3D;
+}
+
+/* Progress bar animation */
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+.progress-bar {
+  animation: fillBar 1.2s ease-out forwards;
+}
+
+/* Float animation for hero badge */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-badge {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.pulse-dot {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
