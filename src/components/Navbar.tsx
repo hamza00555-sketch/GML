@@ -13,7 +13,7 @@ const NAV = [
 
 function LogoMark() {
   return (
-    <img src="/logo-camel.png" alt="" width={46} height={46} style={{ flexShrink: 0, objectFit: 'contain', display: 'block' }} />
+    <img src="/logo-camel.png" alt="" width={58} height={58} style={{ flexShrink: 0, objectFit: 'contain', display: 'block' }} />
   )
 }
 
@@ -28,8 +28,8 @@ export default function Navbar() {
         direction: 'ltr', gap: 6,
         textDecoration: 'none', flexShrink: 0,
       }}>
-        <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.12em', opacity: 0.85, lineHeight: 1 }}>GML</span>
-        <span style={{ fontWeight: 900, fontSize: 15, color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: 1 }}>جمل</span>
+        <span style={{ fontWeight: 700, fontSize: 10, color: 'var(--brand-green)', letterSpacing: '0.12em', opacity: 0.85, lineHeight: 1 }}>GML</span>
+        <span style={{ fontWeight: 900, fontSize: 17, color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: 1 }}>جمل</span>
         <LogoMark />
       </Link>
 
