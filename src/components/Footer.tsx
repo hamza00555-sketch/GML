@@ -1,45 +1,46 @@
 import Link from 'next/link'
 
-function GMLLogoSmall() {
-  return (
-    <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="36" height="36" rx="10" fill="#00D26A" />
-      <path d="M8 24 L13 17 L17 20.5 L22 13 L28 9" stroke="#020C1B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="28" cy="9" r="2.5" fill="#020C1B" />
-    </svg>
-  )
-}
-
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-12 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <Link href="/" className="flex items-center gap-2">
-            <GMLLogoSmall />
-            <span className="font-black text-lg text-white">جمل</span>
-            <span className="text-[#00D26A] text-xs font-bold tracking-widest opacity-70">GML</span>
-          </Link>
-
-          <div className="flex items-center gap-6">
-            {[
-              { label: 'المكتبة', href: '/library' },
-              { label: 'التجربة', href: '/experiment' },
-              { label: 'خارطة الطريق', href: '/roadmap' },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-white/40 hover:text-white/70 transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+    <footer style={{
+      borderTop: '1px solid var(--glass-border)',
+      padding: '40px 24px',
+      background: 'rgba(6,26,43,0.6)',
+      backdropFilter: 'blur(12px)',
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 28, height: 28, borderRadius: 7, background: 'var(--brand-green)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+              <path d="M3 13 L6 8 L9 10.5 L12 6 L15 3" stroke="#061A2B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
+          <span style={{ fontWeight: 800, fontSize: 15, color: 'var(--text-main)' }}>جمل</span>
+          <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.1em', opacity: 0.7 }}>GML</span>
+        </div>
 
-          <p className="text-white/25 text-sm">
-            © 2025 جمل GML. جميع الحقوق محفوظة.
-          </p>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {[
+            { label: 'المكتبة', href: '/library' },
+            { label: 'التجربة', href: '/experiment' },
+            { label: 'خارطة الطريق', href: '/roadmap' },
+            { label: 'GAB', href: '/gab' },
+          ].map(item => (
+            <Link key={item.href} href={item.href}
+              style={{ fontSize: 12, color: 'var(--text-muted)', textDecoration: 'none', padding: '5px 10px', borderRadius: 6, transition: 'color 0.15s' }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 11, color: 'rgba(244,251,255,0.25)' }}>نسخة العرض التجريبية</span>
+          <Link href="/admin"
+            style={{ fontSize: 11, color: 'rgba(39,184,212,0.5)', textDecoration: 'none', padding: '3px 8px', border: '1px solid rgba(39,184,212,0.15)', borderRadius: 5, transition: 'all 0.15s' }}
+          >
+            الإدارة
+          </Link>
         </div>
       </div>
     </footer>

@@ -2,22 +2,33 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const navItems = [
+const NAV = [
   { label: 'الرئيسية', href: '/' },
   { label: 'المكتبة', href: '/library' },
   { label: 'التجربة', href: '/experiment' },
   { label: 'خارطة الطريق', href: '/roadmap' },
-  { label: 'الصفحة القادمة', href: '/coming-soon', badge: true },
+  { label: 'GAB', href: '/gab' },
+  { label: 'الخطوة القادمة', href: '/next-step' },
 ]
 
-function GMLLogo() {
+function Logo() {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="36" height="36" rx="10" fill="#00D26A" />
-      <path d="M8 24 L13 17 L17 20.5 L22 13 L28 9" stroke="#020C1B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="28" cy="9" r="2.5" fill="#020C1B" />
-      <path d="M11 27 C11 27 16 23 18 25 C20 27 21 24 24 22" stroke="#020C1B" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
-    </svg>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{
+        width: 34, height: 34, borderRadius: 9,
+        background: 'linear-gradient(135deg, var(--brand-green) 0%, rgba(65,211,126,0.6) 100%)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+      }}>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 13 L6 8 L9 10.5 L12 6 L15 3" stroke="#061A2B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="15" cy="3" r="2" fill="#061A2B" />
+        </svg>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+        <span style={{ fontWeight: 900, fontSize: 17, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>جمل</span>
+        <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.12em', opacity: 0.8 }}>GML</span>
+      </div>
+    </div>
   )
 }
 
@@ -25,52 +36,53 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#020C1B]/80 border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <GMLLogo />
-          <span className="font-black text-xl text-white tracking-tight">جمل</span>
-          <span className="text-[#00D26A] text-xs font-bold tracking-widest opacity-70">GML</span>
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+      background: 'rgba(6, 26, 43, 0.82)',
+      backdropFilter: 'blur(28px) saturate(160%)',
+      WebkitBackdropFilter: 'blur(28px) saturate(160%)',
+      borderBottom: '1px solid var(--glass-border)',
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <Logo />
         </Link>
 
         {/* Nav links */}
-        <div className="hidden md:flex items-center gap-1">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href
+        <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          {NAV.map(item => {
+            const active = pathname === item.href
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/55 hover:text-white hover:bg-white/5'
-                }`}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: 9,
+                  fontSize: 13,
+                  fontWeight: active ? 700 : 500,
+                  color: active ? 'var(--text-main)' : 'var(--text-muted)',
+                  background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s',
+                  letterSpacing: '-0.01em',
+                  position: 'relative',
+                }}
               >
                 {item.label}
-                {item.badge && (
-                  <span className="bg-[#00D26A] text-[#020C1B] text-[10px] font-black px-1.5 py-0.5 rounded-full">
-                    قريبًا
-                  </span>
-                )}
-                {isActive && (
-                  <span className="absolute bottom-0 right-1/2 translate-x-1/2 w-1 h-1 bg-[#00D26A] rounded-full" />
+                {active && (
+                  <span style={{
+                    position: 'absolute', bottom: 5, left: '50%', transform: 'translateX(-50%)',
+                    width: 4, height: 4, borderRadius: '50%', background: 'var(--brand-green)',
+                  }} />
                 )}
               </Link>
             )
           })}
         </div>
 
-        {/* CTA */}
-        <Link
-          href="/library"
-          className="hidden md:inline-flex items-center gap-2 bg-[#00D26A] text-[#020C1B] font-bold px-5 py-2.5 rounded-xl hover:bg-[#00B85E] transition-all duration-200 text-sm"
-        >
-          ابدأ الآن
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M10 7H4M7 4L4 7L7 10" stroke="#020C1B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        <Link href="/library" className="btn-primary" style={{ fontSize: 13, padding: '9px 20px' }}>
+          استكشف المكتبة
         </Link>
       </div>
     </nav>
