@@ -55,6 +55,39 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Background accent ──────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(65, 211, 126, 0.055) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(65, 211, 126, 0.018) 38px,
+      rgba(65, 211, 126, 0.018) 39px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ─── Scrollbar ─────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg-900); }

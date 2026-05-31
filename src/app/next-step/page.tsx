@@ -154,14 +154,44 @@ function SupportCard({
 }: {
   num: string; title: string; desc: string; accentColor?: string
 }) {
+  const icons: Record<string, React.ReactNode> = {
+    '01': (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="1" y="1" width="20" height="20" rx="5" stroke={accentColor} strokeWidth="1.5" strokeOpacity="0.5"/>
+        <rect x="4" y="7" width="14" height="2" rx="1" fill={accentColor} fillOpacity="0.5"/>
+        <rect x="4" y="11" width="10" height="2" rx="1" fill={accentColor} fillOpacity="0.35"/>
+        <rect x="4" y="15" width="12" height="2" rx="1" fill={accentColor} fillOpacity="0.25"/>
+        <path d="M14 4 L18 4 L18 8" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7"/>
+      </svg>
+    ),
+    '02': (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke={accentColor} strokeWidth="1.5" strokeOpacity="0.5"/>
+        <path d="M11 6 L11 11 L15 13" stroke={accentColor} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.75"/>
+      </svg>
+    ),
+    '03': (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M11 2 L13 8 L19 8 L14 12 L16 18 L11 14 L6 18 L8 12 L3 8 L9 8 Z" stroke={accentColor} strokeWidth="1.5" strokeLinejoin="round" strokeOpacity="0.6" fill="none"/>
+      </svg>
+    ),
+    '04': (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 12 C4 8 7 5 11 5 C15 5 18 8 18 12" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.5"/>
+        <circle cx="11" cy="15" r="4" stroke={accentColor} strokeWidth="1.5" strokeOpacity="0.65"/>
+        <path d="M9 15 L11 17 L14 13" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.85"/>
+      </svg>
+    ),
+  }
+
   return (
     <div
       className="glass-card"
       style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}
     >
       <div className="card-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {/* Number + accent bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
+        {/* Number + icon + accent bar */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
           <div style={{
             fontSize: 11, fontWeight: 800, letterSpacing: '0.06em',
             color: accentColor,
@@ -173,30 +203,22 @@ function SupportCard({
           }}>
             {num}
           </div>
+          <div style={{ flexShrink: 0 }}>{icons[num]}</div>
           <div style={{
             flex: 1, height: 1,
-            background: `linear-gradient(90deg, ${accentColor}30, transparent)`,
+            background: `linear-gradient(90deg, ${accentColor}28, transparent)`,
           }} />
         </div>
 
-        {/* Title */}
         <h3 style={{
-          fontSize: 18,
-          fontWeight: 800,
-          color: 'var(--text-main)',
-          marginBottom: 14,
-          lineHeight: 1.35,
-          letterSpacing: '-0.02em',
+          fontSize: 18, fontWeight: 800, color: 'var(--text-main)',
+          marginBottom: 14, lineHeight: 1.35, letterSpacing: '-0.02em',
         }}>
           {title}
         </h3>
 
-        {/* Description */}
         <p style={{
-          fontSize: 14,
-          color: 'var(--text-muted)',
-          lineHeight: 1.85,
-          flex: 1,
+          fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.85, flex: 1,
         }}>
           {desc}
         </p>

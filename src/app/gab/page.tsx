@@ -9,22 +9,45 @@ function CapabilityCard({
 }: {
   letter: string; title: string; desc: string; color: string; borderColor: string
 }) {
+  const visual = letter === 'G' ? (
+    /* Generate: document/asset creation */
+    <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
+      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
+      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"/>
+      <line x1="16" y1="10" x2="36" y2="10" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="16" y1="16" x2="30" y2="16" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="16" y1="22" x2="34" y2="22" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ) : letter === 'A' ? (
+    /* Animate: timeline with playhead */
+    <svg width="52" height="36" viewBox="0 0 52 36" fill="none">
+      <rect x="2" y="14" width="48" height="3" rx="1.5" fill="rgba(65,211,126,0.15)"/>
+      {[8,16,24,32,40].map((x,i) => <rect key={i} x={x} y="12" width="1.5" height="7" rx="0.75" fill="rgba(65,211,126,0.3)"/>)}
+      {/* Segments */}
+      <rect x="4" y="20" width="12" height="8" rx="3" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
+      <rect x="20" y="20" width="18" height="8" rx="3" fill="rgba(65,211,126,0.3)" stroke="rgba(65,211,126,0.5)" strokeWidth="1"/>
+      <rect x="42" y="20" width="8" height="8" rx="3" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
+      {/* Playhead */}
+      <line x1="26" y1="6" x2="26" y2="30" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M23 6 L29 6 L26 10 Z" fill="rgba(65,211,126,0.8)"/>
+    </svg>
+  ) : (
+    /* Build: stacking blocks */
+    <svg width="48" height="44" viewBox="0 0 48 44" fill="none">
+      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
+      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.38)" strokeWidth="1.5"/>
+      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5"/>
+      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeDasharray="3 2"/>
+    </svg>
+  )
+
   return (
     <div className="glass-card" style={{ borderRadius: 22, padding: 32, borderColor }}>
       <div className="card-visual">
-        {/* Letter badge */}
-        <div style={{
-          width: 52, height: 52, borderRadius: 14,
-          background: `${color}18`,
-          border: `1px solid ${color}30`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: 22,
-        }}>
-          <span style={{ fontSize: 22, fontWeight: 900, color, letterSpacing: '-0.03em', fontFamily: 'monospace' }}>
-            {letter}
-          </span>
+        <div style={{ marginBottom: 22, height: 52, display: 'flex', alignItems: 'center' }}>
+          {visual}
         </div>
-
         <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-main)', marginBottom: 12, letterSpacing: '-0.02em' }}>
           {title}
         </h3>

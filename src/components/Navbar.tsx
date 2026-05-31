@@ -13,16 +13,19 @@ const NAV = [
 
 function LogoMark() {
   return (
-    <div style={{
-      width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-      background: 'linear-gradient(135deg, var(--brand-green) 0%, rgba(65,211,126,0.7) 100%)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    }}>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 11.5L5 7.5L8 9.5L11 5.5L14 3" stroke="var(--bg-900)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="14" cy="3" r="1.5" fill="var(--bg-900)"/>
-      </svg>
-    </div>
+    <svg width="36" height="30" viewBox="0 0 36 28" fill="none" style={{ flexShrink: 0 }}>
+      {/* Camel body, neck, head, hump — single filled path */}
+      <path
+        fill="var(--brand-green)"
+        d="M3 10 C2 8 3 5 5 4 C7 3 9 4 10 6 C11 8 13 9 15 8 C17 7 18 4 21 3 C23 2 25 4 26 7 C27 9 27 11 26 13 C26 14 25 15 24 15 L8 15 C6 15 4 14 3 12 Z"
+      />
+      {/* Front legs */}
+      <rect x="7" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+      <rect x="12" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+      {/* Back legs */}
+      <rect x="18" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+      <rect x="23" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+    </svg>
   )
 }
 

@@ -41,12 +41,41 @@ function VideoEmbed({ url, title }: { url: string; title: string }) {
   )
 }
 
-function ComparisonCard({ title, text, color }: { title: string; text: string; color: string }) {
+function ComparisonCard({ title, text, color, type }: { title: string; text: string; color: string; type: 'time' | 'quality' }) {
   return (
     <div className="glass-card" style={{ borderRadius: 20, padding: 28 }}>
       <div className="card-visual">
-        <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}1A`, border: `1px solid ${color}33`, marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: 12, height: 12, borderRadius: '50%', background: color, opacity: 0.8 }} />
+        {/* Visual */}
+        <div style={{ marginBottom: 20 }}>
+          {type === 'time' ? (
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
+              {/* Before bar - tall */}
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, color: 'rgba(244,251,255,0.3)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 6 }}>قبل</div>
+                <div style={{ height: 52, borderRadius: '6px 6px 0 0', background: 'rgba(86,86,216,0.3)', border: '1px solid rgba(86,86,216,0.4)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: 6 }}>
+                  <span style={{ fontSize: 10, color: 'rgba(86,86,216,0.7)', fontWeight: 700 }}>↑</span>
+                </div>
+              </div>
+              {/* After bar - short */}
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, color: 'rgba(65,211,126,0.6)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 6 }}>بعد</div>
+                <div style={{ height: 24, borderRadius: '6px 6px 0 0', background: 'rgba(65,211,126,0.2)', border: '1px solid rgba(65,211,126,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: 10, color: 'rgba(65,211,126,0.8)', fontWeight: 700 }}>↓</span>
+                </div>
+              </div>
+              <div style={{ width: 1, height: 52, background: 'rgba(255,255,255,0.08)', alignSelf: 'flex-end' }} />
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 5 }}>
+              {Array.from({ length: 8 }, (_, i) => (
+                <div key={i} style={{ height: 20, borderRadius: 5, background: i % 3 !== 0 ? 'rgba(65,211,126,0.2)' : 'rgba(86,86,216,0.2)', border: `1px solid ${i % 3 !== 0 ? 'rgba(65,211,126,0.38)' : 'rgba(86,86,216,0.3)'}` }} />
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Accent dot */}
+        <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}1A`, border: `1px solid ${color}33`, marginBottom: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: color, opacity: 0.8 }} />
         </div>
         <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--brand-cyan)', marginBottom: 10, letterSpacing: '-0.01em' }}>
           {title}
@@ -83,7 +112,7 @@ export default function ExperimentPage() {
       {/* ── Timelapse video ── */}
       <section style={{ padding: '0 24px 64px' }}>
         <div className="container">
-          <div className="glass" style={{ borderRadius: 24, padding: 24, borderColor: 'rgba(39,184,212,0.2)' }}>
+          <div className="glass-card" style={{ borderRadius: 24, padding: 28, borderColor: 'rgba(65,211,126,0.2)', background: 'linear-gradient(145deg, rgba(32,32,168,0.18) 0%, rgba(0,0,57,0.5) 100%)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF4444', opacity: 0.8 }} />
               <span style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.06em' }}>
@@ -159,16 +188,8 @@ export default function ExperimentPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 14 }}>
-            <ComparisonCard
-              title="مقارنة الوقت"
-              text={experiment.timeComparisonText}
-              color="var(--brand-cyan)"
-            />
-            <ComparisonCard
-              title="مقارنة الجودة"
-              text={experiment.qualityComparisonText}
-              color="var(--brand-green)"
-            />
+            <ComparisonCard title="مقارنة الوقت" text={experiment.timeComparisonText} color="var(--brand-cyan)" type="time" />
+            <ComparisonCard title="مقارنة الجودة" text={experiment.qualityComparisonText} color="var(--brand-green)" type="quality" />
           </div>
         </div>
       </section>

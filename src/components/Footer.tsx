@@ -10,11 +10,16 @@ export default function Footer() {
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 7, background: 'var(--brand-green)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-              <path d="M3 13 L6 8 L9 10.5 L12 6 L15 3" stroke="#061A2B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
+          <svg width="28" height="22" viewBox="0 0 36 28" fill="none">
+            <path
+              fill="var(--brand-green)"
+              d="M3 10 C2 8 3 5 5 4 C7 3 9 4 10 6 C11 8 13 9 15 8 C17 7 18 4 21 3 C23 2 25 4 26 7 C27 9 27 11 26 13 C26 14 25 15 24 15 L8 15 C6 15 4 14 3 12 Z"
+            />
+            <rect x="7" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+            <rect x="12" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+            <rect x="18" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+            <rect x="23" y="15" width="3" height="10" rx="1.5" fill="var(--brand-green)"/>
+          </svg>
           <span style={{ fontWeight: 800, fontSize: 15, color: 'var(--text-main)' }}>جمل</span>
           <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.1em', opacity: 0.7 }}>GML</span>
         </div>
@@ -37,7 +42,7 @@ export default function Footer() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 11, color: 'rgba(244,251,255,0.25)' }}>نسخة العرض التجريبية</span>
           <Link href="/admin"
-            style={{ fontSize: 11, color: 'rgba(39,184,212,0.5)', textDecoration: 'none', padding: '3px 8px', border: '1px solid rgba(39,184,212,0.15)', borderRadius: 5, transition: 'all 0.15s' }}
+            style={{ fontSize: 11, color: 'rgba(65,211,126,0.5)', textDecoration: 'none', padding: '3px 8px', border: '1px solid rgba(65,211,126,0.15)', borderRadius: 5, transition: 'all 0.15s' }}
           >
             الإدارة
           </Link>

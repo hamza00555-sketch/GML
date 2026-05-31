@@ -5,33 +5,58 @@ import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
 
 function LibraryItemCard({ title, desc, index }: { title: string; desc: string; index: number }) {
-  const colors = [
-    'rgba(39,184,212,0.18)',
-    'rgba(65,211,126,0.15)',
-    'rgba(14,94,142,0.22)',
-    'rgba(39,184,212,0.12)',
-    'rgba(65,211,126,0.1)',
+  const visuals = [
+    /* 0 خلفيات - layered panels */
+    <svg key={0} width="44" height="36" viewBox="0 0 44 36" fill="none">
+      <rect x="0" y="8" width="34" height="24" rx="5" fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
+      <rect x="4" y="4" width="34" height="24" rx="5" fill="rgba(86,86,216,0.18)" stroke="rgba(86,86,216,0.36)" strokeWidth="1"/>
+      <rect x="8" y="0" width="34" height="24" rx="5" fill="rgba(86,86,216,0.24)" stroke="rgba(86,86,216,0.45)" strokeWidth="1"/>
+      <circle cx="16" cy="8" r="3" fill="rgba(86,86,216,0.45)"/>
+      <path d="M8 20 L14 13 L19 17 L25 11 L40 18" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>,
+    /* 1 انتقالات - arrow between panels */
+    <svg key={1} width="52" height="32" viewBox="0 0 52 32" fill="none">
+      <rect x="0" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.3)" strokeWidth="1"/>
+      <line x1="3" y1="10" x2="17" y2="10" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="3" y1="16" x2="17" y2="16" stroke="rgba(65,211,126,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="3" y1="22" x2="12" y2="22" stroke="rgba(65,211,126,0.18)" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M23 16 H29 M26 12 L30 16 L26 20" stroke="rgba(65,211,126,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <rect x="32" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.42)" strokeWidth="1"/>
+    </svg>,
+    /* 2 عدادات - circular progress */
+    <svg key={2} width="44" height="44" viewBox="0 0 44 44" fill="none">
+      <circle cx="22" cy="22" r="18" stroke="rgba(86,86,216,0.2)" strokeWidth="3.5"/>
+      <path d="M22 4 A18 18 0 0 1 40 22 A18 18 0 0 1 30 37.6" stroke="rgba(65,211,126,0.72)" strokeWidth="3.5" strokeLinecap="round"/>
+      <text x="22" y="26" textAnchor="middle" fill="rgba(65,211,126,0.85)" fontSize="12" fontWeight="800" fontFamily="monospace">75</text>
+      <text x="22" y="35" textAnchor="middle" fill="rgba(244,251,255,0.25)" fontSize="7" fontFamily="monospace">%</text>
+    </svg>,
+    /* 3 نصوص - T in editable frame */
+    <svg key={3} width="44" height="44" viewBox="0 0 44 44" fill="none">
+      <rect x="2" y="2" width="40" height="40" rx="6" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5" strokeDasharray="4 3"/>
+      <text x="22" y="30" textAnchor="middle" fill="rgba(86,86,216,0.9)" fontSize="26" fontWeight="900" fontFamily="Georgia,serif">T</text>
+      <line x1="8" y1="36" x2="36" y2="36" stroke="rgba(65,211,126,0.4)" strokeWidth="1.5" strokeDasharray="3 2"/>
+    </svg>,
+    /* 4 رسوم متحركة - starburst */
+    <svg key={4} width="44" height="44" viewBox="0 0 44 44" fill="none">
+      {[0,45,90,135,22,67,112,157].map((deg, i) => {
+        const rad = (deg * Math.PI) / 180
+        const inner = i < 4 ? 8 : 10
+        const outer = i < 4 ? 18 : 14
+        return <line key={i} x1={22 + inner * Math.cos(rad)} y1={22 + inner * Math.sin(rad)} x2={22 + outer * Math.cos(rad)} y2={22 + outer * Math.sin(rad)} stroke={i < 4 ? 'rgba(65,211,126,0.6)' : 'rgba(86,86,216,0.4)'} strokeWidth={i < 4 ? 2 : 1.5} strokeLinecap="round"/>
+      })}
+      <circle cx="22" cy="22" r="7" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.6)" strokeWidth="1.5"/>
+      <path d="M32 12 C36 16 36 24 32 28" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
+    </svg>,
   ]
-  const lineColors = ['var(--brand-cyan)', 'var(--brand-green)', 'rgba(39,184,212,0.7)', 'var(--brand-cyan)', 'var(--brand-green)']
+
+  const visual = visuals[index % visuals.length]
 
   return (
-    <div className="glass-card" style={{ borderRadius: 22, padding: 28, height: '100%' }}>
-      {/* Abstract visual */}
+    <div className="glass-card" style={{ borderRadius: 22, padding: 28, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div className="card-visual" style={{ marginBottom: 20 }}>
-        <div style={{
-          width: 52, height: 52, borderRadius: 14,
-          background: colors[index % colors.length],
-          border: `1px solid ${lineColors[index % lineColors.length]}33`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: 20,
-        }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'flex-end' }}>
-            {[1, 0.6, 0.85, 0.4].slice(0, 3).map((o, i) => (
-              <div key={i} style={{ height: 2, borderRadius: 2, background: lineColors[index % lineColors.length], opacity: o, width: `${[22, 14, 18][i]}px` }} />
-            ))}
-          </div>
+        <div style={{ marginBottom: 20, height: 52, display: 'flex', alignItems: 'center' }}>
+          {visual}
         </div>
-
         <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.01em' }}>
           {title}
         </h3>
@@ -115,7 +140,7 @@ export default function LibraryPage() {
               <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 32 }}>
                 <div className="card-visual">
                   <div style={{
-                    fontSize: 32, fontWeight: 900, color: 'var(--brand-cyan)', opacity: 0.18,
+                    fontSize: 32, fontWeight: 900, color: 'var(--brand-cyan)', opacity: 0.35,
                     lineHeight: 1, marginBottom: 20, letterSpacing: '-0.04em',
                   }}>
                     {step.num}
