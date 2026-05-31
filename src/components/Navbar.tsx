@@ -13,20 +13,7 @@ const NAV = [
 
 function LogoMark() {
   return (
-    <svg width="48" height="33" viewBox="0 0 64 44" fill="none" style={{ flexShrink: 0 }}>
-      {/* Body + hump + neck + head */}
-      <path fill="var(--brand-green)"
-        d="M6 28 C4 24 4 19 8 17 C12 14 15 15 19 13 C23 11 27 7 33 5 C39 3 43 6 47 10 C49 11 51 10 53 8 C55 6 57 4 60 4 C62 4 64 6 63 9 C62 12 60 14 58 15 C55 16 52 18 50 20 L51 28 L8 28 Z"
-      />
-      {/* Tail */}
-      <path fill="var(--brand-green)" d="M6 24 C2 22 1 26 3 29 C4 30 5 28 6 28 Z"/>
-      {/* Back legs */}
-      <rect x="10" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-      <rect x="17" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-      {/* Front legs */}
-      <rect x="37" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-      <rect x="44" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-    </svg>
+    <img src="/logo-camel.png" alt="GML camel logo" width={40} height={40} style={{ flexShrink: 0, objectFit: 'contain' }} />
   )
 }
 

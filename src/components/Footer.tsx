@@ -10,16 +10,7 @@ export default function Footer() {
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <svg width="36" height="25" viewBox="0 0 64 44" fill="none">
-            <path fill="var(--brand-green)"
-              d="M6 28 C4 24 4 19 8 17 C12 14 15 15 19 13 C23 11 27 7 33 5 C39 3 43 6 47 10 C49 11 51 10 53 8 C55 6 57 4 60 4 C62 4 64 6 63 9 C62 12 60 14 58 15 C55 16 52 18 50 20 L51 28 L8 28 Z"
-            />
-            <path fill="var(--brand-green)" d="M6 24 C2 22 1 26 3 29 C4 30 5 28 6 28 Z"/>
-            <rect x="10" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-            <rect x="17" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-            <rect x="37" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-            <rect x="44" y="28" width="4" height="16" rx="2" fill="var(--brand-green)"/>
-          </svg>
+          <img src="/logo-camel.png" alt="GML camel logo" width={32} height={32} style={{ objectFit: 'contain' }} />
           <span style={{ fontWeight: 800, fontSize: 15, color: 'var(--text-main)' }}>جمل</span>
           <span style={{ fontWeight: 700, fontSize: 9, color: 'var(--brand-green)', letterSpacing: '0.1em', opacity: 0.7 }}>GML</span>
         </div>
