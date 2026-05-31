@@ -255,7 +255,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--bg-900) 0%, var(--bg-800) 60%, var(--bg-900) 100%)', fontFamily: 'Cairo, sans-serif', direction: 'rtl', color: 'var(--text-main)' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #000039 0%, #00004E 60%, #0A0A72 100%)', fontFamily: 'Cairo, sans-serif', direction: 'rtl', color: 'var(--text-main)' }}>
       {/* Header */}
       <div style={{ borderBottom: '1px solid var(--glass-border)', padding: '16px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,78,0.92)', backdropFilter: 'blur(20px)', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
