@@ -154,8 +154,8 @@ export default function ExperimentPage() {
       <section style={{ padding: '0 24px 96px' }}>
         <div className="container">
           <div style={{ marginBottom: 36 }}>
-            <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>النتائج</span>
-            <h2 className="section-title" style={{ marginTop: 12 }}>ماذا أثبتت التجربة</h2>
+            <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>المقارنة</span>
+            <h2 className="section-title" style={{ marginTop: 12 }}>مقارنة الوقت والجودة</h2>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 14 }}>
