@@ -4,44 +4,169 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
 
-/* ── Geometric shape placeholders ─────────────────── */
-function ShapeA() {
+/* ── Challenge visuals ─────────────────────────────── */
+function VisualSlowProduction() {
   return (
-    <div style={{ width: 44, height: 44, position: 'relative', flexShrink: 0 }}>
-      <div style={{ position: 'absolute', inset: 0, borderRadius: 12, background: 'linear-gradient(135deg, rgba(39,184,212,0.25) 0%, rgba(14,94,142,0.1) 100%)', border: '1px solid rgba(39,184,212,0.2)' }} />
-      <div style={{ position: 'absolute', top: 10, left: 10, right: 10, bottom: 10, borderRadius: 6, background: 'rgba(39,184,212,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: 2, height: 16, background: 'var(--brand-cyan)', borderRadius: 2, opacity: 0.7 }} />
+    <div className="card-visual" style={{ paddingBottom: 4 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 16 }}>
+        {[78, 48, 22].map((w, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: `rgba(39,184,212,${0.25 + i * 0.1})`, flexShrink: 0 }} />
+            <div style={{ flex: 1, height: 7, borderRadius: 4, background: 'rgba(255,255,255,0.05)' }}>
+              <div style={{ height: '100%', width: `${w}%`, borderRadius: 4, background: `rgba(39,184,212,${0.18 + i * 0.06})` }} />
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  )
-}
-
-function ShapeB() {
-  return (
-    <div style={{ width: 44, height: 44, position: 'relative', flexShrink: 0 }}>
-      <div style={{ position: 'absolute', inset: 0, borderRadius: 12, background: 'linear-gradient(135deg, rgba(65,211,126,0.2) 0%, rgba(14,94,142,0.1) 100%)', border: '1px solid rgba(65,211,126,0.2)' }} />
-      <div style={{ position: 'absolute', inset: 10, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
-        {[0.9,0.4,0.6,0.7].map((o,i) => (
-          <div key={i} style={{ borderRadius: 2, background: `rgba(65,211,126,${o * 0.5})` }} />
+      <div style={{ display: 'flex', gap: 5 }}>
+        {[1, 1, 0, 0, 0].map((active, i) => (
+          <div key={i} style={{ flex: 1, height: 24, borderRadius: 6, background: active ? 'rgba(39,184,212,0.18)' : 'rgba(255,255,255,0.04)', border: `1px solid rgba(255,255,255,${active ? 0.1 : 0.04})` }} />
         ))}
       </div>
     </div>
   )
 }
 
-function ShapeC() {
+function VisualInconsistentQuality() {
+  const heights = [55, 85, 32, 70, 44, 90, 50]
   return (
-    <div style={{ width: 44, height: 44, position: 'relative', flexShrink: 0 }}>
-      <div style={{ position: 'absolute', inset: 0, borderRadius: 12, background: 'linear-gradient(135deg, rgba(14,94,142,0.3) 0%, rgba(39,184,212,0.1) 100%)', border: '1px solid rgba(14,94,142,0.35)' }} />
-      <div style={{ position: 'absolute', inset: 10, borderRadius: '50%', border: '1.5px solid rgba(39,184,212,0.5)' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 8, height: 8, borderRadius: '50%', background: 'rgba(39,184,212,0.6)' }} />
+    <div className="card-visual" style={{ display: 'flex', alignItems: 'flex-end', gap: 7, paddingBottom: 2 }}>
+      {heights.map((h, i) => (
+        <div key={i} style={{ flex: 1, borderRadius: '5px 5px 0 0', height: `${h * 0.85}px`, background: i === 1 || i === 5 ? 'rgba(65,211,126,0.22)' : 'rgba(39,184,212,0.1)', border: `1px solid rgba(255,255,255,${i === 1 || i === 5 ? 0.12 : 0.05})`, minHeight: 8 }} />
+      ))}
+    </div>
+  )
+}
+
+function VisualRepetitiveWork() {
+  return (
+    <div className="card-visual" style={{ position: 'relative', height: 86 }}>
+      {[0, 1, 2].map(i => (
+        <div key={i} style={{
+          position: 'absolute',
+          top: i * 14,
+          right: i * 10,
+          left: 0,
+          height: 56,
+          borderRadius: 14,
+          border: '1px solid rgba(255,255,255,0.09)',
+          background: `rgba(255,255,255,${0.025 + i * 0.015})`,
+        }}>
+          {i === 2 && (
+            <div style={{ position: 'absolute', top: 10, right: 12, left: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ height: 5, background: 'rgba(39,184,212,0.2)', borderRadius: 3, width: '65%' }} />
+              <div style={{ height: 5, background: 'rgba(255,255,255,0.08)', borderRadius: 3, width: '45%' }} />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* ── Nav card visuals ──────────────────────────────── */
+function VisualLibrary() {
+  return (
+    <div className="card-visual" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 7, marginBottom: 4 }}>
+      {Array.from({ length: 8 }, (_, i) => {
+        const highlight = i === 2 || i === 5
+        return (
+          <div key={i} style={{
+            height: 40, borderRadius: 10,
+            background: highlight ? 'rgba(65,211,126,0.18)' : 'rgba(255,255,255,0.05)',
+            border: `1px solid rgba(255,255,255,${highlight ? 0.15 : 0.06})`,
+          }}>
+            {highlight && (
+              <div style={{ margin: '10px auto 0', width: 14, height: 2, background: 'rgba(65,211,126,0.6)', borderRadius: 2 }} />
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function VisualExperiment() {
+  return (
+    <div className="card-visual" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div>
+        <div style={{ fontSize: 9, color: 'rgba(244,251,255,0.3)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 8 }}>قبل</div>
+        {[88, 72, 60, 82].map((w, i) => (
+          <div key={i} style={{ height: 7, borderRadius: 4, background: 'rgba(255,255,255,0.06)', marginBottom: 6, overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${w}%`, background: 'rgba(255,255,255,0.14)' }} />
+          </div>
+        ))}
+      </div>
+      <div>
+        <div style={{ fontSize: 9, color: 'rgba(65,211,126,0.6)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 8 }}>بعد</div>
+        {[30, 24, 18, 28].map((w, i) => (
+          <div key={i} style={{ height: 7, borderRadius: 4, background: 'rgba(65,211,126,0.07)', marginBottom: 6, overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${w}%`, background: 'rgba(65,211,126,0.38)' }} />
+          </div>
+        ))}
       </div>
     </div>
   )
 }
 
-const CARD_ICONS = [ShapeA, ShapeB, ShapeC, ShapeA, ShapeB]
+function VisualRoadmap() {
+  return (
+    <div className="card-visual" style={{ display: 'flex', alignItems: 'center', gap: 0, paddingBottom: 4 }}>
+      {[1, 2, 3, 4].map((step, i) => (
+        <div key={i} style={{ display: 'flex', alignItems: 'center', flex: i < 3 ? 1 : 0 }}>
+          <div style={{
+            width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
+            border: `1.5px solid ${step === 1 ? 'rgba(65,211,126,0.6)' : 'rgba(255,255,255,0.14)'}`,
+            background: step === 1 ? 'rgba(65,211,126,0.14)' : 'rgba(255,255,255,0.04)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 10, fontWeight: 800,
+            color: step === 1 ? 'rgba(65,211,126,0.85)' : 'rgba(244,251,255,0.3)',
+          }}>
+            {step}
+          </div>
+          {i < 3 && <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.09)' }} />}
+        </div>
+      ))}
+    </div>
+  )
+}
 
+function VisualGAB() {
+  return (
+    <div className="card-visual" style={{ display: 'flex', gap: 8, paddingBottom: 4 }}>
+      {['G', 'A', 'B'].map((letter, i) => (
+        <div key={i} style={{
+          width: 36, height: 36, borderRadius: 10,
+          background: 'rgba(39,184,212,0.1)',
+          border: '1px solid rgba(39,184,212,0.2)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 14, fontWeight: 900,
+          color: `rgba(39,184,212,${0.45 + i * 0.1})`,
+          fontFamily: 'monospace',
+          letterSpacing: '-0.02em',
+        }}>
+          {letter}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function VisualNextStep() {
+  return (
+    <div className="card-visual" style={{ display: 'flex', alignItems: 'flex-end', gap: 8, paddingBottom: 2 }}>
+      {[28, 44, 60, 80].map((h, i) => (
+        <div key={i} style={{
+          flex: 1, borderRadius: '6px 6px 0 0', height: `${h}px`,
+          background: i === 3 ? 'rgba(65,211,126,0.22)' : 'rgba(65,211,126,0.07)',
+          border: `1px solid rgba(65,211,126,${0.08 + i * 0.04})`,
+        }} />
+      ))}
+    </div>
+  )
+}
+
+/* ── Main ──────────────────────────────────────────── */
 export default function Home() {
   const { content } = useContent()
   const { home } = content
@@ -50,147 +175,182 @@ export default function Home() {
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
 
-      {/* ── Hero ───────────────────────────────────────── */}
-      <section style={{ paddingTop: 160, paddingBottom: 96, paddingLeft: 24, paddingRight: 24 }}>
-        <div className="container">
-          <div style={{ maxWidth: 760 }}>
-            <div style={{ marginBottom: 24 }}>
-              <span className="label-tag">
-                <span className="dot-live" />
-                نسخة العرض التجريبية
-              </span>
-            </div>
+      {/* ── Hero ─────────────────────────────────── */}
+      <section style={{ paddingTop: 128, paddingBottom: 80 }}>
+        <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
+          <div style={{ marginBottom: 20 }}>
+            <span className="label-tag">
+              <span className="dot-live" />
+              نسخة العرض التجريبية
+            </span>
+          </div>
 
-            <h1 style={{
-              fontSize: 'clamp(36px, 5.5vw, 62px)',
-              fontWeight: 900,
-              lineHeight: 1.15,
-              color: 'var(--text-main)',
-              marginBottom: 24,
-              letterSpacing: '-0.025em',
-            }}>
-              {home.hero.title}
-            </h1>
+          <h1 className="section-title" style={{ maxWidth: 700, marginBottom: 20, marginTop: 8 }}>
+            {home.hero.title}
+          </h1>
 
-            <p style={{
-              fontSize: 18,
-              color: 'var(--text-muted)',
-              lineHeight: 1.85,
-              marginBottom: 40,
-              maxWidth: 600,
-            }}>
-              {home.hero.subtitle}
-            </p>
+          <p className="section-subtitle" style={{ maxWidth: 580, marginBottom: 40 }}>
+            {home.hero.subtitle}
+          </p>
 
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/library" className="btn-primary">{home.hero.primaryCTA}</Link>
-              <Link href="/experiment" className="btn-secondary">{home.hero.secondaryCTA}</Link>
-            </div>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Link href="/library" className="btn-primary">{home.hero.primaryCTA}</Link>
+            <Link href="/experiment" className="btn-secondary">{home.hero.secondaryCTA}</Link>
           </div>
         </div>
       </section>
 
-      {/* ── Challenge ──────────────────────────────────── */}
-      <section className="section-sm" style={{ paddingLeft: 24, paddingRight: 24 }}>
-        <div className="container">
-          <div style={{ marginBottom: 48 }}>
-            <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>المشكلة</span>
+      {/* ── Challenge bento ──────────────────────── */}
+      <section style={{ paddingBottom: 80 }}>
+        <div className="bento-grid">
+          {/* Header */}
+          <div className="bento-full" style={{ paddingBottom: 8 }}>
+            <span className="label-tag" style={{ marginBottom: 14, display: 'inline-flex' }}>المشكلة</span>
             <h2 className="section-title" style={{ marginTop: 12 }}>التحدي الحالي</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-            {home.challenges.map((card, i) => (
-              <div key={i} className="glass glass-lift" style={{ borderRadius: 20, padding: 28 }}>
-                <div className="inner-visual" style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span className="num-badge">0{i + 1}</span>
-                  <div>
-                    <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8 }}>
-                      {card.title}
-                    </h3>
-                    <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                      {card.desc}
-                    </p>
-                  </div>
-                </div>
+          {/* Card 1 */}
+          <div className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualSlowProduction />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>01</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[0].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[0].desc}
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualInconsistentQuality />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>02</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[1].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[1].desc}
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualRepetitiveWork />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>03</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[2].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[2].desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Navigation bento ─────────────────────── */}
+      <section style={{ paddingBottom: 80 }}>
+        <div className="bento-grid">
+          {/* Header */}
+          <div className="bento-full" style={{ paddingBottom: 8 }}>
+            <h2 className="section-title">استكشف أقسام المشروع</h2>
+          </div>
+
+          {/* المكتبة — large */}
+          <Link href="/library" className="bento-large glass-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <VisualLibrary />
+            </div>
+            <div style={{ marginTop: 24 }}>
+              <h3 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-main)', marginBottom: 10, letterSpacing: '-0.025em' }}>
+                {home.navCards[0].title}
+              </h3>
+              <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.75, marginBottom: 16 }}>
+                {home.navCards[0].desc}
+              </p>
+              <span style={{ fontSize: 13, color: 'var(--brand-cyan)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                استكشف المكتبة
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6H10M6 2L10 6L6 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </Link>
+
+          {/* التجربة — medium */}
+          <Link href="/experiment" className="bento-medium glass-card" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <VisualExperiment />
+            </div>
+            <div style={{ marginTop: 24 }}>
+              <h3 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-main)', marginBottom: 10, letterSpacing: '-0.025em' }}>
+                {home.navCards[1].title}
+              </h3>
+              <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.navCards[1].desc}
+              </p>
+            </div>
+          </Link>
+
+          {/* خارطة الطريق — small */}
+          <Link href="/roadmap" className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+              <VisualRoadmap />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
+                {home.navCards[2].title}
+              </h3>
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                {home.navCards[2].desc}
+              </p>
+            </div>
+          </Link>
+
+          {/* GAB — small */}
+          <Link href="/gab" className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+              <VisualGAB />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
+                  {home.navCards[3].title}
+                </h3>
+                <span className="chip chip-next">قريبًا</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                {home.navCards[3].desc}
+              </p>
+            </div>
+          </Link>
 
-      {/* ── Section divider ────────────────────────────── */}
-      <div style={{ padding: '8px 24px 40px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: 1, height: 64, background: 'linear-gradient(180deg, var(--glass-border), transparent)' }} />
-      </div>
+          {/* الخطوة القادمة — small */}
+          <Link href="/next-step" className="bento-small glass-card" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+              <VisualNextStep />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
+                {home.navCards[4].title}
+              </h3>
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                {home.navCards[4].desc}
+              </p>
+            </div>
+          </Link>
 
-      {/* ── Bento Nav Cards ────────────────────────────── */}
-      <section style={{ paddingBottom: 96, paddingLeft: 24, paddingRight: 24 }}>
-        <div className="container">
-          <div style={{ marginBottom: 48 }}>
-            <h2 className="section-title" style={{ marginBottom: 12 }}>ما الذي ستجده هنا</h2>
-            <p className="section-subtitle">
-              خمسة أقسام تأخذك من فهم المشكلة إلى رؤية الحل الكامل.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-            {home.navCards.map((card, i) => {
-              const Icon = CARD_ICONS[i] || ShapeA
-              const isLast = i === home.navCards.length - 1
-              const isSecondLast = i === home.navCards.length - 2
-              return (
-                <Link
-                  key={i}
-                  href={card.href}
-                  className="glass glass-lift"
-                  style={{
-                    borderRadius: 22,
-                    padding: '28px 28px 24px',
-                    textDecoration: 'none',
-                    display: 'block',
-                    ...(isLast ? { gridColumn: '3 / 4' } : {}),
-                    ...(isSecondLast ? { gridColumn: '1 / 3' } : {}),
-                  }}
-                >
-                  <div className="inner-visual">
-                    <Icon />
-                    <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-main)', margin: '16px 0 8px', letterSpacing: '-0.02em' }}>
-                      {card.title}
-                    </h3>
-                    <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: 20 }}>
-                      {card.desc}
-                    </p>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--brand-cyan)', fontSize: 12, fontWeight: 600 }}>
-                      <span>استكشف</span>
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M2 6H10M6 2L10 6L6 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Closing ────────────────────────────────────── */}
-      <section style={{ padding: '0 24px 96px' }}>
-        <div className="container">
-          <div className="glass" style={{
-            borderRadius: 24,
-            padding: '48px 48px',
-            textAlign: 'center',
-            background: 'linear-gradient(135deg, rgba(14,94,142,0.12) 0%, rgba(6,26,43,0.6) 100%)',
-            borderColor: 'rgba(14,94,142,0.3)',
-          }}>
-            <div className="divider" style={{ margin: '0 auto 24px', width: 32 }} />
-            <p style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: 600, margin: '0 auto 28px', fontWeight: 500 }}>
+          {/* Closing statement */}
+          <div className="bento-full glass-card" style={{ padding: '48px 56px', textAlign: 'center', background: 'linear-gradient(135deg, rgba(65,211,126,0.04) 0%, rgba(14,94,142,0.1) 100%)', borderColor: 'rgba(65,211,126,0.18)' }}>
+            <div className="divider" style={{ margin: '0 auto 24px' }} />
+            <p style={{ fontSize: 'clamp(15px, 1.8vw, 20px)', color: 'var(--text-muted)', lineHeight: 1.9, maxWidth: 660, margin: '0 auto', fontWeight: 500 }}>
               {home.closingStatement}
             </p>
-            <Link href="/roadmap" className="btn-secondary" style={{ fontSize: 13 }}>
-              شاهد خارطة الطريق
-            </Link>
           </div>
         </div>
       </section>

@@ -8,7 +8,7 @@ import { useContent } from '@/components/ContentProvider'
 function HeroVisual() {
   return (
     <div
-      className="glass inner-visual"
+      className="glass-card"
       style={{
         borderRadius: 24,
         height: '100%',
@@ -156,10 +156,10 @@ function SupportCard({
 }) {
   return (
     <div
-      className="glass glass-lift"
+      className="glass-card"
       style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}
     >
-      <div className="inner-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
+      <div className="card-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
         {/* Number + accent bar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
           <div style={{

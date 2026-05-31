@@ -15,9 +15,9 @@ function LibraryItemCard({ title, desc, index }: { title: string; desc: string; 
   const lineColors = ['var(--brand-cyan)', 'var(--brand-green)', 'rgba(39,184,212,0.7)', 'var(--brand-cyan)', 'var(--brand-green)']
 
   return (
-    <div className="glass glass-lift" style={{ borderRadius: 22, padding: 28, height: '100%' }}>
+    <div className="glass-card" style={{ borderRadius: 22, padding: 28, height: '100%' }}>
       {/* Abstract visual */}
-      <div className="inner-visual" style={{ marginBottom: 20 }}>
+      <div className="card-visual" style={{ marginBottom: 20 }}>
         <div style={{
           width: 52, height: 52, borderRadius: 14,
           background: colors[index % colors.length],
@@ -112,8 +112,8 @@ export default function LibraryPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14, position: 'relative' }}>
             {library.howItWorks.map((step, i) => (
-              <div key={i} className="glass glass-lift" style={{ borderRadius: 22, padding: 32 }}>
-                <div className="inner-visual">
+              <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 32 }}>
+                <div className="card-visual">
                   <div style={{
                     fontSize: 32, fontWeight: 900, color: 'var(--brand-cyan)', opacity: 0.18,
                     lineHeight: 1, marginBottom: 20, letterSpacing: '-0.04em',

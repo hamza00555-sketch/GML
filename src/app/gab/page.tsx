@@ -10,8 +10,8 @@ function CapabilityCard({
   letter: string; title: string; desc: string; color: string; borderColor: string
 }) {
   return (
-    <div className="glass glass-lift" style={{ borderRadius: 22, padding: 32, borderColor }}>
-      <div className="inner-visual">
+    <div className="glass-card" style={{ borderRadius: 22, padding: 32, borderColor }}>
+      <div className="card-visual">
         {/* Letter badge */}
         <div style={{
           width: 52, height: 52, borderRadius: 14,

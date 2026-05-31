@@ -43,8 +43,8 @@ function VideoEmbed({ url, title }: { url: string; title: string }) {
 
 function ComparisonCard({ title, text, color }: { title: string; text: string; color: string }) {
   return (
-    <div className="glass glass-lift" style={{ borderRadius: 20, padding: 28 }}>
-      <div className="inner-visual">
+    <div className="glass-card" style={{ borderRadius: 20, padding: 28 }}>
+      <div className="card-visual">
         <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}1A`, border: `1px solid ${color}33`, marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: 12, height: 12, borderRadius: '50%', background: color, opacity: 0.8 }} />
         </div>
@@ -110,9 +110,9 @@ export default function ExperimentPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 14 }}>
             {[experiment.designer1, experiment.designer2].map((d, i) => (
-              <div key={i} className="glass glass-lift" style={{ borderRadius: 22, padding: 28 }}>
+              <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 28 }}>
                 {/* Video */}
-                <div className="inner-visual" style={{ marginBottom: 20 }}>
+                <div className="card-visual" style={{ marginBottom: 20 }}>
                   <VideoEmbed url={d.videoUrl} title={d.name} />
                 </div>
 

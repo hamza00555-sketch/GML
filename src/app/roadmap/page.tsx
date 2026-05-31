@@ -77,7 +77,7 @@ export default function RoadmapPage() {
                 </div>
 
                 {/* Card */}
-                <div className="glass glass-lift" style={{
+                <div className="glass-card" style={{
                   flex: 1,
                   borderRadius: 20,
                   padding: 28,
