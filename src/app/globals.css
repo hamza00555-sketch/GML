@@ -6,19 +6,19 @@
 
 /* ─── Color Tokens ─────────────────────────────────── */
 :root {
-  --bg-900: #061A2B;
-  --bg-800: #0A2740;
-  --bg-700: #0D3555;
-  --brand-blue: #0E5E8E;
-  --brand-cyan: #27B8D4;
+  --bg-900: #000039;
+  --bg-800: #00004E;
+  --bg-700: #0A0A72;
+  --brand-blue: #2020A8;
+  --brand-cyan: #5656D8;
   --brand-green: #41D37E;
   --brand-green-soft: rgba(65, 211, 126, 0.16);
   --text-main: #F4FBFF;
   --text-muted: rgba(244, 251, 255, 0.68);
-  --glass-bg: rgba(255, 255, 255, 0.075);
-  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.14);
   --glass-border-strong: rgba(65, 211, 126, 0.42);
-  --glass-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  --glass-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
 }
 
 /* ─── Reset ─────────────────────────────────────────── */
@@ -42,9 +42,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 900px 700px at 85% -5%, rgba(14, 94, 142, 0.32) 0%, transparent 55%),
-    radial-gradient(ellipse 700px 900px at -5% 90%, rgba(13, 53, 85, 0.36) 0%, transparent 55%),
-    radial-gradient(ellipse 600px 500px at 50% 50%, rgba(6, 26, 43, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 1000px 800px at 80% -10%, rgba(32, 32, 168, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 1000px at -10% 100%, rgba(32, 32, 168, 0.38) 0%, transparent 55%),
+    radial-gradient(ellipse 600px 600px at 50% 55%, rgba(0, 0, 78, 0.25) 0%, transparent 65%),
     var(--bg-900);
   z-index: -1;
   pointer-events: none;

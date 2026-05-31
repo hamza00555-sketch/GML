@@ -255,10 +255,10 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--bg-900) 0%, var(--bg-800) 60%, var(--bg-900) 100%)', fontFamily: 'Cairo, sans-serif', direction: 'rtl', color: 'var(--text-main)' }}>
       {/* Header */}
-      <div style={{ borderBottom: '1px solid var(--glass-border)', padding: '16px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(6,26,43,0.8)', backdropFilter: 'blur(20px)', position: 'sticky', top: 0, zIndex: 50 }}>
+      <div style={{ borderBottom: '1px solid var(--glass-border)', padding: '16px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,57,0.9)', backdropFilter: 'blur(20px)', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--brand-green)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: '#061A2B', fontWeight: 900, fontSize: 11 }}>GML</span>
+            <span style={{ color: '#00004E', fontWeight: 900, fontSize: 11 }}>GML</span>
           </div>
           <span style={{ fontWeight: 800, fontSize: 15 }}>لوحة الإدارة</span>
           <span style={{ fontSize: 11, color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)', padding: '2px 8px', borderRadius: 20 }}>للعرض التجريبي فقط</span>

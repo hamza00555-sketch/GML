@@ -5,7 +5,7 @@ export default function Footer() {
     <footer style={{
       borderTop: '1px solid var(--glass-border)',
       padding: '40px 24px',
-      background: 'rgba(6,26,43,0.6)',
+      background: 'rgba(0,0,50,0.7)',
       backdropFilter: 'blur(12px)',
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', justifyContent: 'space-between' }}>
