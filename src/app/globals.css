@@ -437,7 +437,7 @@ body::after {
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity var(--duration-page) var(--ease-premium),
+    opacity 60ms linear,
     transform var(--duration-page) var(--ease-premium);
 }
 
@@ -454,14 +454,14 @@ body::after {
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity var(--duration-page) var(--ease-premium), transform var(--duration-page) var(--ease-premium);
+  transition: opacity 60ms linear, transform var(--duration-page) var(--ease-premium);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 .reveal-scale {
   opacity: 0;
   transform: translateY(14px) scale(0.97);
-  transition: opacity var(--duration-page) var(--ease-premium), transform var(--duration-page) var(--ease-premium);
+  transition: opacity 60ms linear, transform var(--duration-page) var(--ease-premium);
 }
 .reveal-scale.is-visible { opacity: 1; transform: none; }
 
