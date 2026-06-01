@@ -409,6 +409,15 @@ function HeroVisual() {
           </div>
         </div>
       </div>
+
+      {/* Floating decorative asset */}
+      <img
+        src="/assets/gml/decorative/wave-green.png"
+        className="floating-asset floating-asset--sm floating-asset--decorative"
+        style={{ '--asset-rotate': '-6deg', bottom: '18%', left: '-20px' } as React.CSSProperties}
+        alt=""
+        aria-hidden="true"
+      />
     </div>
   )
 }
@@ -476,7 +485,15 @@ export default function Home() {
       </section>
 
       {/* ── Challenge Section — Phase 2 ──────────── */}
-      <section style={{ paddingBottom: 96 }}>
+      <section style={{ paddingBottom: 96, position: 'relative' }}>
+        {/* Floating decorative asset */}
+        <img
+          src="/assets/gml/phase-1/challenge-slow.png"
+          className="floating-asset floating-asset--sm floating-asset--decorative"
+          style={{ '--asset-rotate': '10deg', top: '4%', right: '-4px' } as React.CSSProperties}
+          alt=""
+          aria-hidden="true"
+        />
         <div className="bento-grid">
 
           {/* Section header */}
