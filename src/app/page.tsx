@@ -50,30 +50,30 @@ function VisualInconsistentQuality() {
 
 function VisualRepetitiveWork() {
   return (
-    <div className="card-visual" style={{ position: 'relative', height: 172, overflow: 'hidden' }}>
+    <div className="card-visual" style={{ position: 'relative', height: 200, overflow: 'hidden' }}>
       <div style={{
         position: 'absolute', top: 4, right: 0, width: 58, height: 46,
-        borderRadius: 12, background: 'rgba(32,32,168,0.65)',
-        border: '1px solid rgba(86,86,216,0.75)',
+        borderRadius: 12, background: 'rgba(32,32,168,0.75)',
+        border: '1px solid rgba(86,86,216,0.88)',
       }}>
-        <div style={{ position: 'absolute', top: 10, left: 10, right: 10, height: 4, background: 'rgba(86,86,216,0.78)', borderRadius: 2 }} />
-        <div style={{ position: 'absolute', top: 20, left: 10, right: 18, height: 4, background: 'rgba(86,86,216,0.62)', borderRadius: 2 }} />
-        <div style={{ position: 'absolute', top: 30, left: 10, right: 24, height: 4, background: 'rgba(86,86,216,0.50)', borderRadius: 2 }} />
+        <div style={{ position: 'absolute', top: 10, left: 10, right: 10, height: 4, background: 'rgba(86,86,216,0.90)', borderRadius: 2 }} />
+        <div style={{ position: 'absolute', top: 20, left: 10, right: 18, height: 4, background: 'rgba(86,86,216,0.78)', borderRadius: 2 }} />
+        <div style={{ position: 'absolute', top: 30, left: 10, right: 24, height: 4, background: 'rgba(86,86,216,0.65)', borderRadius: 2 }} />
       </div>
       <div style={{
         position: 'absolute', top: 2, right: -2, width: 62, height: 50,
-        borderRadius: 14, border: '1.5px dashed rgba(65,211,126,0.82)',
+        borderRadius: 14, border: '1.5px dashed rgba(65,211,126,0.92)',
       }} />
       <div style={{ position: 'absolute', bottom: 6, left: 4 }}>
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" fill="rgba(65,211,126,0.45)" stroke="rgba(65,211,126,0.80)" strokeWidth="1.5"/>
-          <line x1="16" y1="9" x2="16" y2="23" stroke="rgba(65,211,126,0.95)" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="9" y1="16" x2="23" y2="16" stroke="rgba(65,211,126,0.95)" strokeWidth="2" strokeLinecap="round"/>
+        <svg width="64" height="64" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" fill="rgba(65,211,126,0.65)" stroke="rgba(65,211,126,0.92)" strokeWidth="1.5"/>
+          <line x1="16" y1="9" x2="16" y2="23" stroke="rgba(65,211,126,1.0)" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="9" y1="16" x2="23" y2="16" stroke="rgba(65,211,126,1.0)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
       </div>
       <div style={{
         position: 'absolute', bottom: 12, left: 42,
-        fontSize: 20, color: 'rgba(86,86,216,0.78)', lineHeight: 1,
+        fontSize: 20, color: 'rgba(86,86,216,0.90)', lineHeight: 1,
         display: 'inline-block',
         animation: 'recycleNudge 4s ease-in-out infinite',
         transformOrigin: 'center',
@@ -101,12 +101,12 @@ function VisualLibrary() {
   return (
     <div className="card-visual" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 4 }}>
       {[
-        { bg: 'rgba(65,211,126,0.45)', border: 'rgba(65,211,126,0.70)', icon: 'play', delay: '0s' },
-        { bg: 'rgba(32,32,168,0.70)',  border: 'rgba(86,86,216,0.80)', icon: 'T',    delay: '-1.8s' },
-        { bg: 'rgba(32,32,168,0.62)',  border: 'rgba(86,86,216,0.72)', icon: 'wave', delay: '-3.5s' },
-        { bg: 'rgba(32,32,168,0.58)',  border: 'rgba(86,86,216,0.68)', icon: 'grid', delay: '-0.9s' },
-        { bg: 'rgba(65,211,126,0.35)', border: 'rgba(65,211,126,0.62)', icon: 'img',  delay: '-2.7s' },
-        { bg: 'rgba(32,32,168,0.65)',  border: 'rgba(86,86,216,0.76)', icon: 'bars', delay: '-4.2s' },
+        { bg: 'rgba(65,211,126,0.65)', border: 'rgba(65,211,126,0.88)', icon: 'play', delay: '0s' },
+        { bg: 'rgba(32,32,168,0.82)',  border: 'rgba(86,86,216,0.92)', icon: 'T',    delay: '-1.8s' },
+        { bg: 'rgba(32,32,168,0.75)',  border: 'rgba(86,86,216,0.86)', icon: 'wave', delay: '-3.5s' },
+        { bg: 'rgba(32,32,168,0.72)',  border: 'rgba(86,86,216,0.82)', icon: 'grid', delay: '-0.9s' },
+        { bg: 'rgba(65,211,126,0.55)', border: 'rgba(65,211,126,0.80)', icon: 'img',  delay: '-2.7s' },
+        { bg: 'rgba(32,32,168,0.78)',  border: 'rgba(86,86,216,0.90)', icon: 'bars', delay: '-4.2s' },
       ].map((tile, i) => (
         <div key={i} style={{
           height: 112, borderRadius: 12, background: tile.bg, border: `1px solid ${tile.border}`,
@@ -114,12 +114,12 @@ function VisualLibrary() {
           animation: `floatY ${5 + i * 0.4}s ease-in-out infinite`,
           animationDelay: tile.delay,
         }}>
-          {tile.icon === 'play' && <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 4L14.5 9L5 14V4Z" fill="rgba(65,211,126,0.95)"/></svg>}
+          {tile.icon === 'play' && <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 4L14.5 9L5 14V4Z" fill="rgba(65,211,126,1.0)"/></svg>}
           {tile.icon === 'T'    && <span style={{ fontFamily: 'Georgia, serif', fontWeight: 900, fontSize: 24, color: 'rgba(86,86,216,1.0)', lineHeight: 1 }}>T</span>}
-          {tile.icon === 'wave' && <svg width="38" height="18" viewBox="0 0 38 18" fill="none"><path d="M2 9 C6 2 10 16 14 9 C18 2 22 16 26 9 C30 2 34 16 36 9" stroke="rgba(86,86,216,0.92)" strokeWidth="1.5" strokeLinecap="round"/></svg>}
-          {tile.icon === 'grid' && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4 }}>{[0,1,2,3].map(j => <div key={j} style={{ width: 10, height: 10, borderRadius: 3, background: j === 0 ? 'rgba(65,211,126,0.88)' : 'rgba(86,86,216,0.78)' }} />)}</div>}
-          {tile.icon === 'img'  && <svg width="30" height="24" viewBox="0 0 30 24" fill="none"><rect x="1" y="1" width="28" height="22" rx="4" stroke="rgba(65,211,126,0.80)" strokeWidth="1.5"/><circle cx="8" cy="8" r="3" fill="rgba(65,211,126,0.65)"/><path d="M1 18 L7 11 L12 15 L18 9 L29 17" stroke="rgba(65,211,126,0.88)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-          {tile.icon === 'bars' && <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, padding: '0 2px 4px' }}>{[8,14,10,20,13].map((h, j) => <div key={j} style={{ width: 7, borderRadius: '2px 2px 0 0', height: `${h}px`, background: j === 3 ? 'rgba(65,211,126,0.88)' : 'rgba(86,86,216,0.80)' }}/>)}</div>}
+          {tile.icon === 'wave' && <svg width="38" height="18" viewBox="0 0 38 18" fill="none"><path d="M2 9 C6 2 10 16 14 9 C18 2 22 16 26 9 C30 2 34 16 36 9" stroke="rgba(86,86,216,1.0)" strokeWidth="1.5" strokeLinecap="round"/></svg>}
+          {tile.icon === 'grid' && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4 }}>{[0,1,2,3].map(j => <div key={j} style={{ width: 10, height: 10, borderRadius: 3, background: j === 0 ? 'rgba(65,211,126,1.0)' : 'rgba(86,86,216,0.92)' }} />)}</div>}
+          {tile.icon === 'img'  && <svg width="30" height="24" viewBox="0 0 30 24" fill="none"><rect x="1" y="1" width="28" height="22" rx="4" stroke="rgba(65,211,126,0.95)" strokeWidth="1.5"/><circle cx="8" cy="8" r="3" fill="rgba(65,211,126,0.85)"/><path d="M1 18 L7 11 L12 15 L18 9 L29 17" stroke="rgba(65,211,126,0.97)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          {tile.icon === 'bars' && <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, padding: '0 2px 4px' }}>{[8,14,10,20,13].map((h, j) => <div key={j} style={{ width: 7, borderRadius: '2px 2px 0 0', height: `${h}px`, background: j === 3 ? 'rgba(65,211,126,1.0)' : 'rgba(86,86,216,0.92)' }}/>)}</div>}
         </div>
       ))}
     </div>
@@ -130,21 +130,21 @@ function VisualExperiment() {
   return (
     <div className="card-visual">
       <div style={{
-        borderRadius: 14, background: 'rgba(0,0,35,0.65)',
-        border: '1px solid rgba(86,86,216,0.72)',
+        borderRadius: 14, background: 'rgba(0,0,35,0.75)',
+        border: '1px solid rgba(86,86,216,0.88)',
         aspectRatio: '16/9',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(86,86,216,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(86,86,216,0.25) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(65,211,126,0.55)', border: '1.5px solid rgba(65,211,126,0.88)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(86,86,216,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(86,86,216,0.45) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(65,211,126,0.75)', border: '1.5px solid rgba(65,211,126,0.97)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
           <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M3 2L12 8L3 14V2Z" fill="rgba(65,211,126,1.0)"/></svg>
         </div>
-        <div style={{ position: 'absolute', bottom: 8, left: 10, right: 10, height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.25)' }}>
-          <div style={{ width: '38%', height: '100%', borderRadius: 2, background: 'rgba(65,211,126,0.95)' }} />
+        <div style={{ position: 'absolute', bottom: 8, left: 10, right: 10, height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.35)' }}>
+          <div style={{ width: '38%', height: '100%', borderRadius: 2, background: 'rgba(65,211,126,1.0)' }} />
         </div>
         <div style={{ position: 'absolute', top: 8, left: 10, display: 'flex', gap: 4 }}>
-          {['rgba(255,80,80,0.90)','rgba(255,180,0,0.85)','rgba(65,211,126,0.85)'].map((c,i) => (
+          {['rgba(255,80,80,1.0)','rgba(255,180,0,1.0)','rgba(65,211,126,1.0)'].map((c,i) => (
             <div key={i} style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />
           ))}
         </div>
@@ -161,18 +161,18 @@ function VisualRoadmap() {
           <div key={i} style={{ display: 'flex', alignItems: 'center', flex: i < 3 ? 1 : 0 }}>
             <div style={{
               width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-              background: step === 1 ? 'rgba(65,211,126,0.55)' : 'rgba(255,255,255,0.25)',
-              border: `2px solid ${step === 1 ? 'rgba(65,211,126,0.95)' : 'rgba(86,86,216,0.62)'}`,
+              background: step === 1 ? 'rgba(65,211,126,0.75)' : 'rgba(255,255,255,0.35)',
+              border: `2px solid ${step === 1 ? 'rgba(65,211,126,1.0)' : 'rgba(86,86,216,0.80)'}`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 11, fontWeight: 800,
-              color: step === 1 ? 'rgba(65,211,126,1)' : 'rgba(244,251,255,0.62)',
-              boxShadow: step === 1 ? '0 0 14px rgba(65,211,126,0.55)' : 'none',
+              color: step === 1 ? 'rgba(65,211,126,1)' : 'rgba(244,251,255,0.80)',
+              boxShadow: step === 1 ? '0 0 18px rgba(65,211,126,0.75)' : 'none',
               position: 'relative', zIndex: 1,
             }}>
               {step}
             </div>
             {i < 3 && (
-              <div style={{ flex: 1, height: 2, background: step === 1 ? 'linear-gradient(90deg, rgba(65,211,126,0.88), rgba(86,86,216,0.55))' : 'rgba(86,86,216,0.45)' }} />
+              <div style={{ flex: 1, height: 2, background: step === 1 ? 'linear-gradient(90deg, rgba(65,211,126,0.95), rgba(86,86,216,0.75))' : 'rgba(86,86,216,0.65)' }} />
             )}
           </div>
         ))}
@@ -183,8 +183,8 @@ function VisualRoadmap() {
 
 function VisualGAB() {
   return (
-    <div className="card-visual" style={{ position: 'relative', height: 68, overflow: 'hidden' }}>
-      <svg width="100%" height="68" viewBox="0 0 120 68" preserveAspectRatio="xMidYMid slice" fill="none" style={{ position: 'absolute', inset: 0 }}>
+    <div className="card-visual" style={{ position: 'relative', height: 136, overflow: 'hidden' }}>
+      <svg width="100%" height="136" viewBox="0 0 120 68" preserveAspectRatio="xMidYMid slice" fill="none" style={{ position: 'absolute', inset: 0 }}>
         {Array.from({ length: 30 }, (_, i) => {
           const col = i % 6
           const row = Math.floor(i / 6)
@@ -194,16 +194,16 @@ function VisualGAB() {
           const mid = (col * 2 + row * 5) % 7 === 0
           return (
             <circle key={i} cx={cx} cy={cy} r={lit ? 4 : mid ? 3 : 2}
-              fill={lit ? 'rgba(65,211,126,0.6)' : mid ? 'rgba(86,86,216,0.45)' : 'rgba(86,86,216,0.18)'}
-              opacity={lit ? 1 : 0.8}
+              fill={lit ? 'rgba(65,211,126,0.88)' : mid ? 'rgba(86,86,216,0.72)' : 'rgba(86,86,216,0.45)'}
+              opacity={lit ? 1 : 0.9}
             />
           )
         })}
-        <line x1="10" y1="10" x2="70" y2="38" stroke="rgba(65,211,126,0.2)" strokeWidth="1"/>
-        <line x1="70" y1="10" x2="110" y2="52" stroke="rgba(65,211,126,0.15)" strokeWidth="1"/>
+        <line x1="10" y1="10" x2="70" y2="38" stroke="rgba(65,211,126,0.55)" strokeWidth="1"/>
+        <line x1="70" y1="10" x2="110" y2="52" stroke="rgba(65,211,126,0.45)" strokeWidth="1"/>
       </svg>
       <div style={{ position: 'absolute', bottom: 8, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
-        <span style={{ fontFamily: 'monospace', fontWeight: 900, fontSize: 12, letterSpacing: '0.18em', color: 'rgba(86,86,216,0.55)' }}>G·A·B</span>
+        <span style={{ fontFamily: 'monospace', fontWeight: 900, fontSize: 12, letterSpacing: '0.18em', color: 'rgba(86,86,216,0.85)' }}>G·A·B</span>
       </div>
     </div>
   )
@@ -211,12 +211,12 @@ function VisualGAB() {
 
 function VisualNextStep() {
   return (
-    <div className="card-visual" style={{ height: 68, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width="52" height="62" viewBox="0 0 52 62" fill="none">
-        <rect x="4" y="4" width="44" height="54" rx="7" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5" fill="rgba(32,32,168,0.14)"/>
-        <rect x="8" y="8" width="36" height="46" rx="5" fill="rgba(65,211,126,0.07)" stroke="rgba(65,211,126,0.22)" strokeWidth="1"/>
-        <circle cx="34" cy="31" r="3" fill="none" stroke="rgba(65,211,126,0.65)" strokeWidth="1.5"/>
-        <path d="M18 31 H30 M26 26 L31 31 L26 36" stroke="rgba(65,211,126,0.75)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <div className="card-visual" style={{ height: 136, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <svg width="104" height="124" viewBox="0 0 52 62" fill="none">
+        <rect x="4" y="4" width="44" height="54" rx="7" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5" fill="rgba(32,32,168,0.45)"/>
+        <rect x="8" y="8" width="36" height="46" rx="5" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.60)" strokeWidth="1"/>
+        <circle cx="34" cy="31" r="3" fill="none" stroke="rgba(65,211,126,0.90)" strokeWidth="1.5"/>
+        <path d="M18 31 H30 M26 26 L31 31 L26 36" stroke="rgba(65,211,126,0.95)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </div>
   )
@@ -352,34 +352,34 @@ function HeroVisual() {
               <div style={{ height: 20, display: 'flex', alignItems: 'center' }}>
                 {node.icon === 'layers' && (
                   <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
-                    <rect x="0" y="5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.42)" strokeWidth="1"/>
-                    <rect x="2" y="2.5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.15)" stroke="rgba(65,211,126,0.32)" strokeWidth="1"/>
-                    <rect x="4" y="0" width="14" height="11" rx="3" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.25)" strokeWidth="1"/>
+                    <rect x="0" y="5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.80)" strokeWidth="1"/>
+                    <rect x="2" y="2.5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.45)" stroke="rgba(65,211,126,0.70)" strokeWidth="1"/>
+                    <rect x="4" y="0" width="14" height="11" rx="3" fill="rgba(65,211,126,0.35)" stroke="rgba(65,211,126,0.62)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'arrow' && (
                   <svg width="26" height="14" viewBox="0 0 26 14" fill="none">
-                    <rect x="0" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.22)" stroke="rgba(86,86,216,0.44)" strokeWidth="1"/>
-                    <path d="M11 7H15M13 4L16 7L13 10" stroke="rgba(86,86,216,0.72)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <rect x="17" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.32)" stroke="rgba(86,86,216,0.54)" strokeWidth="1"/>
+                    <rect x="0" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.55)" stroke="rgba(86,86,216,0.80)" strokeWidth="1"/>
+                    <path d="M11 7H15M13 4L16 7L13 10" stroke="rgba(86,86,216,0.92)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="17" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.65)" stroke="rgba(86,86,216,0.88)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'circle' && (
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="8" stroke="rgba(86,86,216,0.25)" strokeWidth="2.5"/>
-                    <path d="M10 2 A8 8 0 0 1 18 10 A8 8 0 0 1 13.9 17.1" stroke="rgba(65,211,126,0.72)" strokeWidth="2.5" strokeLinecap="round"/>
-                    <circle cx="10" cy="10" r="2.5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"/>
+                    <circle cx="10" cy="10" r="8" stroke="rgba(86,86,216,0.60)" strokeWidth="2.5"/>
+                    <path d="M10 2 A8 8 0 0 1 18 10 A8 8 0 0 1 13.9 17.1" stroke="rgba(65,211,126,0.90)" strokeWidth="2.5" strokeLinecap="round"/>
+                    <circle cx="10" cy="10" r="2.5" fill="rgba(65,211,126,0.50)" stroke="rgba(65,211,126,0.80)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'text' && (
-                  <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 18, color: 'rgba(86,86,216,0.88)', lineHeight: 1 }}>T</span>
+                  <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 18, color: 'rgba(86,86,216,1.0)', lineHeight: 1 }}>T</span>
                 )}
                 {node.icon === 'star' && (
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="3.5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.2"/>
+                    <circle cx="10" cy="10" r="3.5" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.85)" strokeWidth="1.2"/>
                     {[0, 60, 120, 180, 240, 300].map((deg, j) => {
                       const r = (deg * Math.PI) / 180
-                      return <line key={j} x1={10 + 4.5 * Math.cos(r)} y1={10 + 4.5 * Math.sin(r)} x2={10 + 8 * Math.cos(r)} y2={10 + 8 * Math.sin(r)} stroke="rgba(65,211,126,0.38)" strokeWidth="1.2" strokeLinecap="round"/>
+                      return <line key={j} x1={10 + 4.5 * Math.cos(r)} y1={10 + 4.5 * Math.sin(r)} x2={10 + 8 * Math.cos(r)} y2={10 + 8 * Math.sin(r)} stroke="rgba(65,211,126,0.72)" strokeWidth="1.2" strokeLinecap="round"/>
                     })}
                   </svg>
                 )}
