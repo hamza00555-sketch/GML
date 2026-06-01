@@ -3,8 +3,11 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
-function LibraryItemCard({ title, desc, index }: { title: string; desc: string; index: number }) {
+function LibraryItemCard({ title, desc, index, groupVisible }: {
+  title: string; desc: string; index: number; groupVisible: boolean
+}) {
   const visuals = [
     /* 0 خلفيات - layered panels */
     <svg key={0} width="44" height="36" viewBox="0 0 44 36" fill="none">
@@ -14,6 +17,7 @@ function LibraryItemCard({ title, desc, index }: { title: string; desc: string; 
       <circle cx="16" cy="8" r="3" fill="rgba(86,86,216,0.45)"/>
       <path d="M8 20 L14 13 L19 17 L25 11 L40 18" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>,
+
     /* 1 انتقالات - arrow between panels */
     <svg key={1} width="52" height="32" viewBox="0 0 52 32" fill="none">
       <rect x="0" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.3)" strokeWidth="1"/>
@@ -23,19 +27,32 @@ function LibraryItemCard({ title, desc, index }: { title: string; desc: string; 
       <path d="M23 16 H29 M26 12 L30 16 L26 20" stroke="rgba(65,211,126,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       <rect x="32" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.42)" strokeWidth="1"/>
     </svg>,
-    /* 2 عدادات - circular progress */
+
+    /* 2 عدادات - circular progress arc animates on scroll reveal */
     <svg key={2} width="44" height="44" viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="18" stroke="rgba(86,86,216,0.2)" strokeWidth="3.5"/>
-      <path d="M22 4 A18 18 0 0 1 40 22 A18 18 0 0 1 30 37.6" stroke="rgba(65,211,126,0.72)" strokeWidth="3.5" strokeLinecap="round"/>
+      <path
+        d="M22 4 A18 18 0 0 1 40 22 A18 18 0 0 1 30 37.6"
+        stroke="rgba(65,211,126,0.72)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        style={{
+          strokeDasharray: 90,
+          strokeDashoffset: groupVisible ? 0 : 90,
+          transition: 'stroke-dashoffset 1000ms cubic-bezier(0.22, 1, 0.36, 1) 360ms',
+        }}
+      />
       <circle cx="22" cy="22" r="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
     </svg>,
+
     /* 3 نصوص - T in editable frame */
     <svg key={3} width="44" height="44" viewBox="0 0 44 44" fill="none">
       <rect x="2" y="2" width="40" height="40" rx="6" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5" strokeDasharray="4 3"/>
       <text x="22" y="30" textAnchor="middle" fill="rgba(86,86,216,0.9)" fontSize="26" fontWeight="900" fontFamily="Georgia,serif">T</text>
       <line x1="8" y1="36" x2="36" y2="36" stroke="rgba(65,211,126,0.4)" strokeWidth="1.5" strokeDasharray="3 2"/>
     </svg>,
-    /* 4 رسوم متحركة - starburst */
+
+    /* 4 رسوم متحركة - starburst with floating center */
     <svg key={4} width="44" height="44" viewBox="0 0 44 44" fill="none">
       {[0,45,90,135,22,67,112,157].map((deg, i) => {
         const rad = (deg * Math.PI) / 180
@@ -43,7 +60,8 @@ function LibraryItemCard({ title, desc, index }: { title: string; desc: string; 
         const outer = i < 4 ? 18 : 14
         return <line key={i} x1={22 + inner * Math.cos(rad)} y1={22 + inner * Math.sin(rad)} x2={22 + outer * Math.cos(rad)} y2={22 + outer * Math.sin(rad)} stroke={i < 4 ? 'rgba(65,211,126,0.6)' : 'rgba(86,86,216,0.4)'} strokeWidth={i < 4 ? 2 : 1.5} strokeLinecap="round"/>
       })}
-      <circle cx="22" cy="22" r="7" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.6)" strokeWidth="1.5"/>
+      <circle cx="22" cy="22" r="7" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.6)" strokeWidth="1.5"
+        style={{ animation: 'floatY 4s ease-in-out infinite' }}/>
       <path d="M32 12 C36 16 36 24 32 28" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
     </svg>,
   ]
@@ -71,6 +89,9 @@ export default function LibraryPage() {
   const { content } = useContent()
   const { library } = content
 
+  const itemsReveal = useScrollReveal(0.08)
+  const howReveal = useScrollReveal(0.1)
+
   return (
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
@@ -78,14 +99,14 @@ export default function LibraryPage() {
       {/* ── Hero ── */}
       <section style={{ paddingTop: 152, paddingBottom: 80, paddingLeft: 24, paddingRight: 24 }}>
         <div className="container">
-          <span className="label-tag" style={{ marginBottom: 20, display: 'inline-flex' }}>المكتبة</span>
-          <h1 className="section-title" style={{ marginBottom: 20, marginTop: 12, maxWidth: 680 }}>
+          <span className="label-tag hero-enter hero-enter-0" style={{ marginBottom: 20, display: 'inline-flex' }}>المكتبة</span>
+          <h1 className="section-title hero-enter hero-enter-1" style={{ marginBottom: 20, marginTop: 12, maxWidth: 680 }}>
             {library.title}
           </h1>
-          <p className="section-subtitle" style={{ marginBottom: 40 }}>
+          <p className="section-subtitle hero-enter hero-enter-2" style={{ marginBottom: 40 }}>
             {library.subtitle}
           </p>
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div className="hero-enter hero-enter-3" style={{ display: 'flex', gap: 12 }}>
             <a href="#items" className="btn-primary">استكشف العناصر</a>
             <a href="#how" className="btn-secondary">كيفية الاستخدام</a>
           </div>
@@ -95,13 +116,19 @@ export default function LibraryPage() {
       {/* ── Library Items ── */}
       <section id="items" style={{ padding: '16px 24px 80px' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 14 }}>
+          <div
+            ref={itemsReveal.ref}
+            className={`reveal-group${itemsReveal.visible ? ' is-visible' : ''}`}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 14 }}
+          >
             {library.items.map((item, i) => (
-              <LibraryItemCard key={i} title={item.title} desc={item.desc} index={i} />
+              <div key={i} className="reveal-child">
+                <LibraryItemCard title={item.title} desc={item.desc} index={i} groupVisible={itemsReveal.visible} />
+              </div>
             ))}
 
             {/* Summary card */}
-            <div className="glass-card" style={{
+            <div className="glass-card reveal-child" style={{
               borderRadius: 22, padding: 28,
               background: 'linear-gradient(135deg, rgba(65,211,126,0.08) 0%, rgba(14,94,142,0.12) 100%)',
               borderColor: 'rgba(65,211,126,0.2)',
@@ -134,7 +161,11 @@ export default function LibraryPage() {
             <h2 className="section-title" style={{ marginTop: 12 }}>كيفية الاستخدام</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14, position: 'relative' }}>
+          <div
+            ref={howReveal.ref}
+            className={`reveal-group${howReveal.visible ? ' is-visible' : ''}`}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14, position: 'relative' }}
+          >
             {library.howItWorks.map((step, i) => {
               const stepIcons = [
                 <svg key={0} width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -153,7 +184,7 @@ export default function LibraryPage() {
                 </svg>,
               ]
               return (
-                <div key={i} className="glass-card" style={{ borderRadius: 22, padding: 32 }}>
+                <div key={i} className="glass-card reveal-child" style={{ borderRadius: 22, padding: 32 }}>
                   <div className="card-visual">
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                       {stepIcons[i] ?? stepIcons[0]}

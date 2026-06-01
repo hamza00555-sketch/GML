@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 /* ── Abstract hero visual ──────────────────────────── */
 function HeroVisual() {
@@ -29,7 +30,6 @@ function HeroVisual() {
         backgroundSize: '40px 40px',
       }} />
 
-      {/* Blue radial glow — top right */}
       <div style={{
         position: 'absolute', top: -100, right: -100,
         width: 300, height: 300, borderRadius: '50%',
@@ -37,7 +37,6 @@ function HeroVisual() {
         pointerEvents: 'none',
       }} />
 
-      {/* Green radial glow — bottom left */}
       <div style={{
         position: 'absolute', bottom: -80, left: -80,
         width: 240, height: 240, borderRadius: '50%',
@@ -45,7 +44,7 @@ function HeroVisual() {
         pointerEvents: 'none',
       }} />
 
-      {/* Large outer ring */}
+      {/* Outer ring */}
       <div style={{
         position: 'absolute',
         top: '50%', left: '50%',
@@ -53,6 +52,7 @@ function HeroVisual() {
         width: 240, height: 240,
         border: '1px solid rgba(86,86,216,0.18)',
         borderRadius: '50%',
+        animation: 'floatY 9s ease-in-out infinite',
       }} />
 
       {/* Medium ring */}
@@ -63,6 +63,8 @@ function HeroVisual() {
         width: 156, height: 156,
         border: '1px solid rgba(65,211,126,0.22)',
         borderRadius: '50%',
+        animation: 'floatY 7s ease-in-out infinite',
+        animationDelay: '-3s',
       }} />
 
       {/* Inner ring */}
@@ -74,9 +76,11 @@ function HeroVisual() {
         border: '1px solid rgba(65,211,126,0.35)',
         borderRadius: '50%',
         background: 'rgba(65,211,126,0.04)',
+        animation: 'floatY 5.5s ease-in-out infinite',
+        animationDelay: '-1.5s',
       }} />
 
-      {/* Center dot */}
+      {/* Center dot with pulse */}
       <div style={{
         position: 'absolute',
         top: '50%', left: '50%',
@@ -85,15 +89,14 @@ function HeroVisual() {
         background: 'var(--brand-green)',
         opacity: 0.65,
         boxShadow: '0 0 24px rgba(65,211,126,0.45)',
+        animation: 'playBtnPulse 3s ease-in-out infinite',
       }} />
 
-      {/* Horizontal axis line */}
+      {/* Axis lines */}
       <div style={{
         position: 'absolute', top: '50%', left: 0, right: 0, height: 1,
         background: 'linear-gradient(90deg, transparent 5%, rgba(86,86,216,0.2) 40%, rgba(86,86,216,0.2) 60%, transparent 95%)',
       }} />
-
-      {/* Vertical axis line */}
       <div style={{
         position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1,
         background: 'linear-gradient(180deg, transparent 5%, rgba(65,211,126,0.12) 35%, rgba(65,211,126,0.12) 65%, transparent 95%)',
@@ -113,7 +116,7 @@ function HeroVisual() {
         }} />
       ))}
 
-      {/* Horizontal tick marks around the circle */}
+      {/* Orbit dots */}
       {[-90, 0, 90, 180].map((deg, i) => {
         const rad = (deg * Math.PI) / 180
         const r = 78
@@ -132,7 +135,6 @@ function HeroVisual() {
         )
       })}
 
-      {/* Bottom label */}
       <div style={{
         position: 'absolute', bottom: 18, right: 0, left: 0,
         textAlign: 'center',
@@ -185,12 +187,8 @@ function SupportCard({
   }
 
   return (
-    <div
-      className="glass-card"
-      style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}
-    >
+    <div className="glass-card" style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}>
       <div className="card-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {/* Number + icon + accent bar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
           <div style={{
             fontSize: 11, fontWeight: 800, letterSpacing: '0.06em',
@@ -217,9 +215,7 @@ function SupportCard({
           {title}
         </h3>
 
-        <p style={{
-          fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.85, flex: 1,
-        }}>
+        <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.85, flex: 1 }}>
           {desc}
         </p>
       </div>
@@ -245,6 +241,10 @@ export default function NextStepPage() {
     'var(--brand-green)',
   ]
 
+  const cardsReveal  = useScrollReveal(0.08)
+  const closingReveal = useScrollReveal(0.15)
+  const ctaReveal     = useScrollReveal(0.15)
+
   return (
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
@@ -260,11 +260,11 @@ export default function NextStepPage() {
           }}>
             {/* Text */}
             <div>
-              <span className="label-tag" style={{ marginBottom: 24, display: 'inline-flex' }}>
+              <span className="label-tag hero-enter hero-enter-0" style={{ marginBottom: 24, display: 'inline-flex' }}>
                 الخطوة القادمة
               </span>
 
-              <h1 style={{
+              <h1 className="hero-enter hero-enter-1" style={{
                 fontSize: 'clamp(28px, 3.8vw, 50px)',
                 fontWeight: 900,
                 color: 'var(--text-main)',
@@ -277,18 +277,15 @@ export default function NextStepPage() {
                 {nextStep.title}
               </h1>
 
-              <p style={{
-                fontSize: 16,
-                color: 'var(--text-muted)',
-                lineHeight: 1.9,
-                maxWidth: 520,
-              }}>
+              <p className="section-subtitle hero-enter hero-enter-2" style={{ maxWidth: 520 }}>
                 {nextStep.subtitle}
               </p>
             </div>
 
             {/* Abstract visual */}
-            <HeroVisual />
+            <div className="hero-enter-visual">
+              <HeroVisual />
+            </div>
           </div>
         </div>
       </section>
@@ -296,20 +293,25 @@ export default function NextStepPage() {
       {/* ── Bento cards ──────────────────────────────── */}
       <section style={{ padding: '0 24px 72px' }}>
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 14,
-            maxWidth: 900,
-          }}>
+          <div
+            ref={cardsReveal.ref}
+            className={`reveal-group${cardsReveal.visible ? ' is-visible' : ''}`}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: 14,
+              maxWidth: 900,
+            }}
+          >
             {nextStep.items.map((item, i) => (
-              <SupportCard
-                key={i}
-                num={`0${i + 1}`}
-                title={item.title}
-                desc={item.desc}
-                accentColor={cardAccents[i]}
-              />
+              <div key={i} className="reveal-child">
+                <SupportCard
+                  num={`0${i + 1}`}
+                  title={item.title}
+                  desc={item.desc}
+                  accentColor={cardAccents[i]}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -319,24 +321,23 @@ export default function NextStepPage() {
       <section style={{ padding: '0 24px 72px' }}>
         <div className="container">
           <div
-            className="glass"
+            ref={closingReveal.ref}
+            className={`reveal-scale${closingReveal.visible ? ' is-visible' : ''}`}
             style={{
               borderRadius: 28,
               padding: '52px 56px',
               textAlign: 'center',
               background: 'linear-gradient(135deg, rgba(65,211,126,0.05) 0%, rgba(32,32,168,0.1) 100%)',
-              borderColor: 'rgba(65,211,126,0.2)',
+              border: '1px solid rgba(65,211,126,0.2)',
               maxWidth: 820,
             }}
           >
-            {/* Green accent line */}
             <div style={{
               width: 36, height: 2,
               background: 'linear-gradient(90deg, var(--brand-green), transparent)',
               borderRadius: 2,
               margin: '0 auto 28px',
             }} />
-
             <p style={{
               fontSize: 'clamp(15px, 1.8vw, 20px)',
               color: 'var(--text-muted)',
@@ -352,7 +353,11 @@ export default function NextStepPage() {
 
       {/* ── CTA ──────────────────────────────────────── */}
       <section style={{ padding: '0 24px 104px' }}>
-        <div className="container" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <div
+          ref={ctaReveal.ref}
+          className={`container reveal${ctaReveal.visible ? ' is-visible' : ''}`}
+          style={{ display: 'flex', gap: 12, flexWrap: 'wrap', transitionDelay: '200ms' }}
+        >
           <Link href="/library" className="btn-primary">
             العودة إلى المكتبة
           </Link>

@@ -4,8 +4,6 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-// ─── Step data ────────────────────────────────────────────────────────────────
-
 type VisualType = 'library' | 'workshop' | '3d' | 'vr'
 type StatusType = 'current' | 'next' | 'vision'
 
@@ -63,8 +61,6 @@ const STATUS_STYLE: Record<StatusType, { bg: string; color: string; border: stri
   next:    { bg: 'rgba(86,86,216,0.12)',  color: 'var(--brand-cyan)',        border: '1px solid rgba(86,86,216,0.3)'   },
   vision:  { bg: 'rgba(32,32,168,0.18)',  color: 'rgba(140,140,255,0.9)',    border: '1px solid rgba(86,86,216,0.28)'  },
 }
-
-// ─── Visuals ──────────────────────────────────────────────────────────────────
 
 function VisualLibrary() {
   return (
@@ -159,8 +155,6 @@ function VisualVR() {
   )
 }
 
-// ─── Nav button ───────────────────────────────────────────────────────────────
-
 function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev' }) {
   return (
     <button
@@ -173,15 +167,15 @@ function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev'
         cursor: 'pointer',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'rgba(244,251,255,0.5)',
-        transition: 'all 0.22s ease',
+        transition: 'all 400ms cubic-bezier(0.22, 1, 0.36, 1)',
       }}
       onMouseEnter={e => {
         const b = e.currentTarget
-        b.style.borderColor = 'rgba(65,211,126,0.45)'
-        b.style.background = 'rgba(65,211,126,0.09)'
-        b.style.boxShadow = '0 0 22px rgba(65,211,126,0.16)'
+        b.style.borderColor = 'rgba(65,211,126,0.48)'
+        b.style.background = 'rgba(65,211,126,0.1)'
+        b.style.boxShadow = '0 0 24px rgba(65,211,126,0.18)'
         b.style.color = 'var(--brand-green)'
-        b.style.transform = 'scale(1.1)'
+        b.style.transform = 'scale(1.08)'
       }}
       onMouseLeave={e => {
         const b = e.currentTarget
@@ -191,6 +185,8 @@ function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev'
         b.style.color = 'rgba(244,251,255,0.5)'
         b.style.transform = 'scale(1)'
       }}
+      onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.96)' }}
+      onMouseUp={e => { e.currentTarget.style.transform = 'scale(1.08)' }}
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         {dir === 'next' ? (
@@ -202,8 +198,6 @@ function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev'
     </button>
   )
 }
-
-// ─── Step card ────────────────────────────────────────────────────────────────
 
 function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
   const s = STATUS_STYLE[step.statusType]
@@ -241,14 +235,13 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
         )}
       </div>
 
-      {/* Body: text + visual */}
+      {/* Body */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
         gap: isMobile ? 28 : 44,
         alignItems: 'center',
       }}>
-        {/* Text side */}
         <div>
           <h2 style={{
             fontSize: 'clamp(22px, 3vw, 36px)',
@@ -272,7 +265,6 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
           </div>
         </div>
 
-        {/* Visual side */}
         <div style={{
           width: isMobile ? '100%' : 210,
           height: isMobile ? 160 : 210,
@@ -297,13 +289,13 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
   )
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-
 export default function RoadmapPage() {
-  const [active, setActive]       = useState(0)
-  const [direction, setDirection] = useState<'next' | 'prev'>('next')
-  const [animKey, setAnimKey]     = useState(0)
-  const [isMobile, setIsMobile]   = useState(false)
+  const [active, setActive]           = useState(0)
+  const [displayIdx, setDisplayIdx]   = useState(0)
+  const [direction, setDirection]     = useState<'next' | 'prev'>('next')
+  const [overlay, setOverlay]         = useState<{ step: Step; key: number } | null>(null)
+  const [isLocked, setIsLocked]       = useState(false)
+  const [isMobile, setIsMobile]       = useState(false)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
@@ -313,17 +305,26 @@ export default function RoadmapPage() {
   }, [])
 
   const navigate = useCallback((dir: 'next' | 'prev', target?: number) => {
+    if (isLocked) return
+    const newIdx = target !== undefined
+      ? target
+      : dir === 'next'
+        ? (active + 1) % STEPS.length
+        : (active - 1 + STEPS.length) % STEPS.length
+
+    if (newIdx === active) return
+
+    setIsLocked(true)
     setDirection(dir)
-    setAnimKey(k => k + 1)
-    if (target !== undefined) {
-      setActive(target)
-    } else {
-      setActive(prev => dir === 'next'
-        ? (prev + 1) % STEPS.length
-        : (prev - 1 + STEPS.length) % STEPS.length
-      )
-    }
-  }, [])
+    setActive(newIdx)
+    setOverlay({ step: STEPS[newIdx], key: Date.now() })
+
+    setTimeout(() => {
+      setDisplayIdx(newIdx)
+      setOverlay(null)
+      setIsLocked(false)
+    }, 900)
+  }, [active, isLocked])
 
   const goToStep = useCallback((i: number) => {
     if (i === active) return
@@ -339,8 +340,6 @@ export default function RoadmapPage() {
     return () => window.removeEventListener('keydown', onKey)
   }, [navigate])
 
-  const step = STEPS[active]
-
   return (
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
@@ -348,11 +347,11 @@ export default function RoadmapPage() {
       {/* ── Hero ── */}
       <section style={{ paddingTop: 152, paddingBottom: 48, paddingLeft: 24, paddingRight: 24 }}>
         <div className="container">
-          <span className="label-tag" style={{ marginBottom: 20, display: 'inline-flex' }}>خارطة الطريق</span>
-          <h1 className="section-title" style={{ marginBottom: 16, marginTop: 12 }}>
+          <span className="label-tag hero-enter hero-enter-0" style={{ marginBottom: 20, display: 'inline-flex' }}>خارطة الطريق</span>
+          <h1 className="section-title hero-enter hero-enter-1" style={{ marginBottom: 16, marginTop: 12 }}>
             خارطة الطريق
           </h1>
-          <p className="section-subtitle" style={{ maxWidth: 580 }}>
+          <p className="section-subtitle hero-enter hero-enter-2" style={{ maxWidth: 580 }}>
             رحلة نمو مستمرة نحو بناء مكتبة أكثر شمولًا، من مكتبة الموشن إلى مكتبة 3D ثم تجارب VR / AR.
           </p>
         </div>
@@ -360,31 +359,63 @@ export default function RoadmapPage() {
 
       {/* ── Carousel ── */}
       <section style={{ padding: '0 24px 72px', position: 'relative' }}>
-
-        {/* Subtle background path glow */}
         <div style={{
           position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)',
           width: '60%', height: 2,
           background: 'linear-gradient(90deg, transparent, rgba(65,211,126,0.12), transparent)',
           pointerEvents: 'none',
+          transition: 'opacity 500ms ease',
         }}/>
 
         <div className="container">
-
-          {/* Desktop layout */}
           {!isMobile ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
               <NavButton onClick={() => navigate('prev')} dir="prev" />
-              <div key={`${animKey}`} className={`carousel-enter-${direction}`} style={{ flex: 1 }}>
-                <StepCard step={step} isMobile={false} />
+
+              {/* Dual-card carousel: base fades out, overlay enters */}
+              <div style={{ flex: 1, position: 'relative', minHeight: 500 }}>
+                {/* Base card — fades out when overlay is active */}
+                <div style={{
+                  opacity: overlay ? 0 : 1,
+                  transition: 'opacity 280ms ease',
+                  pointerEvents: overlay ? 'none' : 'auto',
+                }}>
+                  <StepCard step={STEPS[displayIdx]} isMobile={false} />
+                </div>
+
+                {/* Overlay card — animates in */}
+                {overlay && (
+                  <div
+                    key={overlay.key}
+                    className={`carousel-enter-${direction}`}
+                    style={{ position: 'absolute', inset: 0 }}
+                  >
+                    <StepCard step={overlay.step} isMobile={false} />
+                  </div>
+                )}
               </div>
+
               <NavButton onClick={() => navigate('next')} dir="next" />
             </div>
           ) : (
-            /* Mobile layout */
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              <div key={`${animKey}`} className={`carousel-enter-${direction}`}>
-                <StepCard step={step} isMobile={true} />
+              <div style={{ position: 'relative' }}>
+                <div style={{
+                  opacity: overlay ? 0 : 1,
+                  transition: 'opacity 280ms ease',
+                  pointerEvents: overlay ? 'none' : 'auto',
+                }}>
+                  <StepCard step={STEPS[displayIdx]} isMobile={true} />
+                </div>
+                {overlay && (
+                  <div
+                    key={overlay.key}
+                    className={`carousel-enter-${direction}`}
+                    style={{ position: 'absolute', inset: 0 }}
+                  >
+                    <StepCard step={overlay.step} isMobile={true} />
+                  </div>
+                )}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
                 <NavButton onClick={() => navigate('prev')} dir="prev" />
@@ -402,15 +433,15 @@ export default function RoadmapPage() {
                   width: i === active ? 28 : 8, height: 8, borderRadius: 4,
                   background: i === active ? 'var(--brand-green)' : 'rgba(255,255,255,0.18)',
                   border: 'none', cursor: 'pointer', padding: 0,
-                  transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
-                  boxShadow: i === active ? '0 0 10px rgba(65,211,126,0.4)' : 'none',
+                  transition: 'all 500ms cubic-bezier(0.22, 1, 0.36, 1)',
+                  boxShadow: i === active ? '0 0 12px rgba(65,211,126,0.45)' : 'none',
                 }}
               />
             ))}
           </div>
 
           {/* Step counter */}
-          <p style={{ textAlign: 'center', marginTop: 14, fontSize: 11, color: 'rgba(244,251,255,0.28)', fontFamily: 'monospace', letterSpacing: '0.1em' }}>
+          <p style={{ textAlign: 'center', marginTop: 14, fontSize: 11, color: 'rgba(244,251,255,0.28)', fontFamily: 'monospace', letterSpacing: '0.1em', transition: 'opacity 300ms ease' }}>
             {String(active + 1).padStart(2, '0')} / {String(STEPS.length).padStart(2, '0')}
           </p>
         </div>

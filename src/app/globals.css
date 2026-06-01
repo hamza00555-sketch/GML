@@ -35,6 +35,11 @@
 
   --shadow-glass: 0 24px 80px rgba(0, 0, 0, 0.32);
   --shadow-green: 0 0 32px rgba(65, 211, 126, 0.22);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-page: 800ms;
+  --duration-card: 450ms;
+  --stagger-small: 120ms;
 }
 
 /* ─── Reset ─────────────────────────────────────────── */
@@ -102,14 +107,14 @@ body::after {
   -webkit-backdrop-filter: blur(22px) saturate(150%);
   box-shadow: var(--shadow-glass);
   transition:
-    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 400ms var(--ease-premium),
+    border-color 400ms ease,
+    background 400ms ease,
+    box-shadow 500ms ease;
 }
 
 .glass-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-7px);
   border-color: var(--glass-border-strong);
   background: var(--glass-bg-hover);
   box-shadow: var(--shadow-glass), var(--shadow-green);
@@ -120,7 +125,7 @@ body::after {
 }
 
 .card-visual {
-  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 450ms var(--ease-premium);
   will-change: transform;
 }
 
@@ -361,12 +366,130 @@ body::after {
 
 /* ─── Roadmap Carousel ───────────────────────────────── */
 @keyframes carouselEnterNext {
-  from { opacity: 0; transform: translateX(40px) scale(0.97); }
+  from { opacity: 0; transform: translateX(36px) scale(0.97); }
   to   { opacity: 1; transform: translateX(0)    scale(1);    }
 }
 @keyframes carouselEnterPrev {
-  from { opacity: 0; transform: translateX(-40px) scale(0.97); }
+  from { opacity: 0; transform: translateX(-36px) scale(0.97); }
   to   { opacity: 1; transform: translateX(0)     scale(1);    }
 }
-.carousel-enter-next { animation: carouselEnterNext 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-.carousel-enter-prev { animation: carouselEnterPrev 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.carousel-enter-next { animation: carouselEnterNext 0.85s var(--ease-premium) forwards; }
+.carousel-enter-prev { animation: carouselEnterPrev 0.85s var(--ease-premium) forwards; }
+
+/* ─── New keyframes ──────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUpScale {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes playBtnPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(65,211,126,0); }
+  50%       { transform: scale(1.07); box-shadow: 0 0 28px 6px rgba(65,211,126,0.22); }
+}
+
+@keyframes playheadSlide {
+  0%, 100% { transform: translateX(-14px); }
+  50%       { transform: translateX(14px); }
+}
+
+@keyframes recycleNudge {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  20%            { transform: rotate(-35deg); }
+  40%            { transform: rotate(12deg); }
+}
+
+@keyframes blockRise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Hero entrance (auto-plays on page mount) ───────── */
+.hero-enter {
+  animation: fadeSlideUp var(--duration-page) var(--ease-premium) both;
+}
+.hero-enter-visual {
+  animation: fadeSlideUpScale var(--duration-page) var(--ease-premium) both;
+  animation-delay: 400ms;
+}
+.hero-enter-0 { animation-delay: 0ms; }
+.hero-enter-1 { animation-delay: 110ms; }
+.hero-enter-2 { animation-delay: 220ms; }
+.hero-enter-3 { animation-delay: 360ms; }
+.hero-enter-4 { animation-delay: 500ms; }
+
+/* ─── Scroll-reveal — group approach ─────────────────── */
+.reveal-group .reveal-child {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--duration-page) var(--ease-premium),
+    transform var(--duration-page) var(--ease-premium);
+}
+
+.reveal-group.is-visible .reveal-child:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+.reveal-group.is-visible .reveal-child:nth-child(2) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 1); }
+.reveal-group.is-visible .reveal-child:nth-child(3) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 2); }
+.reveal-group.is-visible .reveal-child:nth-child(4) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 3); }
+.reveal-group.is-visible .reveal-child:nth-child(5) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 4); }
+.reveal-group.is-visible .reveal-child:nth-child(6) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 5); }
+.reveal-group.is-visible .reveal-child:nth-child(7) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 6); }
+.reveal-group.is-visible .reveal-child:nth-child(8) { opacity: 1; transform: none; transition-delay: calc(var(--stagger-small) * 7); }
+
+/* ─── Scroll-reveal — individual element ─────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--duration-page) var(--ease-premium), transform var(--duration-page) var(--ease-premium);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(14px) scale(0.97);
+  transition: opacity var(--duration-page) var(--ease-premium), transform var(--duration-page) var(--ease-premium);
+}
+.reveal-scale.is-visible { opacity: 1; transform: none; }
+
+/* ─── Floating ────────────────────────────────────────── */
+.float-slow   { animation: floatY 5.5s ease-in-out infinite; }
+.float-slow-2 { animation: floatY 7s   ease-in-out infinite; animation-delay: -2.5s; }
+.float-slow-3 { animation: floatY 6s   ease-in-out infinite; animation-delay: -4s; }
+
+/* ─── Play button pulse ───────────────────────────────── */
+.play-btn-pulse { animation: playBtnPulse 2.8s ease-in-out infinite; }
+
+/* ─── prefers-reduced-motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter, .hero-enter-visual {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal-group .reveal-child,
+  .reveal, .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .float-slow, .float-slow-2, .float-slow-3,
+  .play-btn-pulse,
+  .dot-live { animation: none !important; }
+  .carousel-enter-next,
+  .carousel-enter-prev { animation-duration: 0.01ms !important; }
+  .glass-card { transition: border-color 150ms ease, background 150ms ease !important; }
+}

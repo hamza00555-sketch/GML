@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 function CapabilityCard({
   letter, title, desc, color, borderColor,
@@ -10,35 +11,43 @@ function CapabilityCard({
   letter: string; title: string; desc: string; color: string; borderColor: string
 }) {
   const visual = letter === 'G' ? (
-    /* Generate: document/asset creation */
+    /* Generate: stacked document pages with subtle float stagger */
     <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
-      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
-      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
-      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"/>
+      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-3.5s' }}/>
+      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-1.5s' }}/>
+      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '0s' }}/>
       <line x1="16" y1="10" x2="36" y2="10" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5" strokeLinecap="round"/>
       <line x1="16" y1="16" x2="30" y2="16" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
       <line x1="16" y1="22" x2="34" y2="22" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   ) : letter === 'A' ? (
-    /* Animate: timeline with playhead */
+    /* Animate: timeline with animated playhead */
     <svg width="52" height="36" viewBox="0 0 52 36" fill="none">
       <rect x="2" y="14" width="48" height="3" rx="1.5" fill="rgba(65,211,126,0.15)"/>
       {[8,16,24,32,40].map((x,i) => <rect key={i} x={x} y="12" width="1.5" height="7" rx="0.75" fill="rgba(65,211,126,0.3)"/>)}
-      {/* Segments */}
       <rect x="4" y="20" width="12" height="8" rx="3" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
       <rect x="20" y="20" width="18" height="8" rx="3" fill="rgba(65,211,126,0.3)" stroke="rgba(65,211,126,0.5)" strokeWidth="1"/>
       <rect x="42" y="20" width="8" height="8" rx="3" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
-      {/* Playhead */}
-      <line x1="26" y1="6" x2="26" y2="30" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M23 6 L29 6 L26 10 Z" fill="rgba(65,211,126,0.8)"/>
+      {/* Animated playhead */}
+      <g style={{ animation: 'playheadSlide 3.5s ease-in-out infinite' }}>
+        <line x1="26" y1="6" x2="26" y2="30" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M23 6 L29 6 L26 10 Z" fill="rgba(65,211,126,0.8)"/>
+      </g>
     </svg>
   ) : (
-    /* Build: stacking blocks */
+    /* Build: stacking blocks with staggered rise */
     <svg width="48" height="44" viewBox="0 0 48 44" fill="none">
-      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
-      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.38)" strokeWidth="1.5"/>
-      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5"/>
-      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeDasharray="3 2"/>
+      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.6s' }}/>
+      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.38)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.85s' }}/>
+      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.1s' }}/>
+      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeDasharray="3 2"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.35s' }}/>
     </svg>
   )
 
@@ -63,6 +72,8 @@ export default function GabPage() {
   const { content } = useContent()
   const { gab } = content
 
+  const cardsReveal = useScrollReveal(0.08)
+
   return (
     <main style={{ minHeight: '100vh' }}>
       <Navbar />
@@ -70,12 +81,12 @@ export default function GabPage() {
       {/* ── Hero ── */}
       <section style={{ paddingTop: 152, paddingBottom: 80, paddingLeft: 24, paddingRight: 24 }}>
         <div className="container">
-          <span className="label-tag" style={{ marginBottom: 20, display: 'inline-flex' }}>
+          <span className="label-tag hero-enter hero-enter-0" style={{ marginBottom: 20, display: 'inline-flex' }}>
             <span className="dot-live" />
             قيد التطوير
           </span>
 
-          <h1 style={{
+          <h1 className="hero-enter hero-enter-1" style={{
             fontSize: 'clamp(28px, 4.5vw, 56px)',
             fontWeight: 900,
             color: 'var(--text-main)',
@@ -87,38 +98,47 @@ export default function GabPage() {
             {gab.title}
           </h1>
 
-          <p className="section-subtitle" style={{ marginBottom: 40 }}>
+          <p className="section-subtitle hero-enter hero-enter-2" style={{ marginBottom: 40 }}>
             {gab.subtitle}
           </p>
-
         </div>
       </section>
 
       {/* ── Capabilities ── */}
       <section style={{ padding: '0 24px 80px' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14, maxWidth: 960 }}>
-            <CapabilityCard
-              letter="G"
-              title="Generate"
-              desc={gab.generateDesc}
-              color="var(--brand-green)"
-              borderColor="rgba(65,211,126,0.2)"
-            />
-            <CapabilityCard
-              letter="A"
-              title="Animate"
-              desc={gab.animateDesc}
-              color="var(--brand-green)"
-              borderColor="rgba(65,211,126,0.2)"
-            />
-            <CapabilityCard
-              letter="B"
-              title="Build"
-              desc={gab.buildDesc}
-              color="rgba(65,211,126,0.75)"
-              borderColor="rgba(65,211,126,0.15)"
-            />
+          <div
+            ref={cardsReveal.ref}
+            className={`reveal-group${cardsReveal.visible ? ' is-visible' : ''}`}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14, maxWidth: 960 }}
+          >
+            <div className="reveal-child">
+              <CapabilityCard
+                letter="G"
+                title="Generate"
+                desc={gab.generateDesc}
+                color="var(--brand-green)"
+                borderColor="rgba(65,211,126,0.2)"
+              />
+            </div>
+            <div className="reveal-child">
+              <CapabilityCard
+                letter="A"
+                title="Animate"
+                desc={gab.animateDesc}
+                color="var(--brand-green)"
+                borderColor="rgba(65,211,126,0.2)"
+              />
+            </div>
+            <div className="reveal-child">
+              <CapabilityCard
+                letter="B"
+                title="Build"
+                desc={gab.buildDesc}
+                color="rgba(65,211,126,0.75)"
+                borderColor="rgba(65,211,126,0.15)"
+              />
+            </div>
           </div>
         </div>
       </section>
