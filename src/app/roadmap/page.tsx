@@ -62,97 +62,11 @@ const STATUS_STYLE: Record<StatusType, { bg: string; color: string; border: stri
   vision:  { bg: 'rgba(32,32,168,0.18)',  color: 'rgba(140,140,255,0.9)',    border: '1px solid rgba(86,86,216,0.28)'  },
 }
 
-function VisualLibrary() {
-  return (
-    <svg width="148" height="112" viewBox="0 0 148 112" fill="none">
-      <rect x="10" y="26" width="92" height="70" rx="9" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.28)" strokeWidth="1.5"/>
-      <rect x="10" y="14" width="38" height="16" rx="5" fill="rgba(86,86,216,0.18)" stroke="rgba(86,86,216,0.32)" strokeWidth="1.5"/>
-      <rect x="17" y="34" width="32" height="22" rx="5" fill="rgba(65,211,126,0.09)" stroke="rgba(65,211,126,0.26)" strokeWidth="1"/>
-      <polygon points="25,39 35,45 25,51" fill="rgba(65,211,126,0.65)"/>
-      <rect x="55" y="34" width="32" height="22" rx="5" fill="rgba(86,86,216,0.14)" stroke="rgba(86,86,216,0.26)" strokeWidth="1"/>
-      <rect x="61" y="42" width="20" height="3" rx="1.5" fill="rgba(86,86,216,0.5)"/>
-      <rect x="61" y="48" width="13" height="3" rx="1.5" fill="rgba(86,86,216,0.3)"/>
-      <rect x="17" y="64" width="32" height="22" rx="5" fill="rgba(86,86,216,0.09)" stroke="rgba(86,86,216,0.2)" strokeWidth="1"/>
-      <path d="M21 75 L24 68 L27 78 L30 65 L33 78 L36 70 L39 75 L43 75" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <rect x="55" y="64" width="32" height="22" rx="5" fill="rgba(65,211,126,0.07)" stroke="rgba(65,211,126,0.18)" strokeWidth="1"/>
-      <path d="M59 80 L67 71 L73 76 L80 68 L86 74" stroke="rgba(65,211,126,0.4)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <circle cx="116" cy="38" r="20" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.4)" strokeWidth="2"/>
-      <circle cx="116" cy="38" r="13" fill="rgba(65,211,126,0.06)"/>
-      <path d="M108 38 L113 43 L124 30" stroke="var(--brand-green)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
-function VisualWorkshop() {
-  return (
-    <svg width="148" height="112" viewBox="0 0 148 112" fill="none">
-      <rect x="6" y="6" width="108" height="76" rx="8" fill="rgba(32,32,168,0.18)" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5"/>
-      <rect x="12" y="12" width="96" height="64" rx="5" fill="rgba(0,0,40,0.45)"/>
-      <rect x="18" y="20" width="56" height="5" rx="2.5" fill="rgba(86,86,216,0.38)"/>
-      <rect x="18" y="29" width="38" height="4" rx="2" fill="rgba(86,86,216,0.22)"/>
-      <circle cx="72" cy="54" r="15" fill="rgba(65,211,126,0.13)" stroke="rgba(65,211,126,0.38)" strokeWidth="2"/>
-      <polygon points="67,47 67,61 83,54" fill="rgba(65,211,126,0.88)"/>
-      <rect x="18" y="66" width="84" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
-      <rect x="18" y="66" width="42" height="4" rx="2" fill="rgba(65,211,126,0.45)"/>
-      <circle cx="60" cy="68" r="5" fill="var(--brand-green)"/>
-      <rect x="54" y="82" width="16" height="12" rx="3" fill="rgba(86,86,216,0.18)"/>
-      <rect x="40" y="94" width="40" height="5" rx="2.5" fill="rgba(86,86,216,0.22)"/>
-      <rect x="120" y="20" width="26" height="62" rx="6" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.24)" strokeWidth="1"/>
-      <rect x="124" y="26" width="18" height="3" rx="1.5" fill="rgba(86,86,216,0.38)"/>
-      <rect x="124" y="33" width="12" height="3" rx="1.5" fill="rgba(86,86,216,0.22)"/>
-      <rect x="124" y="40" width="18" height="3" rx="1.5" fill="rgba(86,86,216,0.22)"/>
-      <rect x="124" y="47" width="14" height="3" rx="1.5" fill="rgba(65,211,126,0.38)"/>
-      <circle cx="133" cy="68" r="8" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.28)" strokeWidth="1.5"/>
-      <polygon points="130,64 130,72 139,68" fill="rgba(65,211,126,0.7)"/>
-    </svg>
-  )
-}
-
-function Visual3D() {
-  return (
-    <svg width="148" height="112" viewBox="0 0 148 112" fill="none">
-      <path d="M74 10 L118 34 L74 58 L30 34 Z" fill="rgba(86,86,216,0.2)" stroke="rgba(86,86,216,0.42)" strokeWidth="1.5"/>
-      <path d="M118 34 L118 78 L74 102 L74 58 Z" fill="rgba(65,211,126,0.09)" stroke="rgba(65,211,126,0.26)" strokeWidth="1.5"/>
-      <path d="M30 34 L30 78 L74 102 L74 58 Z" fill="rgba(32,32,168,0.22)" stroke="rgba(86,86,216,0.32)" strokeWidth="1.5"/>
-      <line x1="74" y1="10" x2="74" y2="58" stroke="rgba(65,211,126,0.55)" strokeWidth="2"/>
-      <line x1="74" y1="58" x2="74" y2="102" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5"/>
-      <line x1="30" y1="34" x2="118" y2="34" stroke="rgba(65,211,126,0.22)" strokeWidth="1" strokeDasharray="3 3"/>
-      <rect x="70" y="6"  width="8" height="8" rx="2" fill="rgba(65,211,126,0.28)" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5"/>
-      <rect x="114" y="30" width="8" height="8" rx="2" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
-      <rect x="26"  y="30" width="8" height="8" rx="2" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
-      <rect x="70"  y="98" width="8" height="8" rx="2" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
-      <path d="M130 14 L142 20 L130 26 L118 20 Z" fill="rgba(86,86,216,0.14)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
-      <path d="M142 20 L142 32 L130 38 L130 26 Z" fill="rgba(65,211,126,0.07)" stroke="rgba(65,211,126,0.18)" strokeWidth="1"/>
-      <path d="M118 20 L118 32 L130 38 L130 26 Z" fill="rgba(32,32,168,0.14)" stroke="rgba(86,86,216,0.18)" strokeWidth="1"/>
-    </svg>
-  )
-}
-
-function VisualVR() {
-  return (
-    <svg width="148" height="112" viewBox="0 0 148 112" fill="none">
-      <ellipse cx="74" cy="56" rx="68" ry="20" fill="none" stroke="rgba(65,211,126,0.13)" strokeWidth="1.5" strokeDasharray="5 3"/>
-      <ellipse cx="74" cy="56" rx="52" ry="14" fill="none" stroke="rgba(65,211,126,0.08)" strokeWidth="1" strokeDasharray="4 4"/>
-      <path d="M22 44 C22 32 36 26 74 26 C112 26 126 32 126 44 L126 68 C126 80 112 86 74 86 C36 86 22 80 22 68 Z"
-        fill="rgba(32,32,168,0.2)" stroke="rgba(86,86,216,0.42)" strokeWidth="2"/>
-      <ellipse cx="50" cy="56" rx="17" ry="13" fill="rgba(65,211,126,0.11)" stroke="rgba(65,211,126,0.38)" strokeWidth="2"/>
-      <ellipse cx="50" cy="56" rx="10" ry="8"  fill="rgba(65,211,126,0.07)" stroke="rgba(65,211,126,0.18)" strokeWidth="1"/>
-      <circle  cx="50" cy="56" r="4" fill="rgba(65,211,126,0.22)"/>
-      <ellipse cx="98" cy="56" rx="17" ry="13" fill="rgba(65,211,126,0.11)" stroke="rgba(65,211,126,0.38)" strokeWidth="2"/>
-      <ellipse cx="98" cy="56" rx="10" ry="8"  fill="rgba(65,211,126,0.07)" stroke="rgba(65,211,126,0.18)" strokeWidth="1"/>
-      <circle  cx="98" cy="56" r="4" fill="rgba(65,211,126,0.22)"/>
-      <rect x="67" y="53" width="14" height="6" rx="3" fill="rgba(86,86,216,0.28)"/>
-      <rect x="2"  y="33" width="18" height="13" rx="3" fill="rgba(86,86,216,0.13)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
-      <line x1="20" y1="39" x2="30" y2="48" stroke="rgba(86,86,216,0.22)" strokeWidth="1" strokeDasharray="3 2"/>
-      <rect x="128" y="33" width="18" height="13" rx="3" fill="rgba(86,86,216,0.13)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
-      <line x1="128" y1="39" x2="118" y2="48" stroke="rgba(86,86,216,0.22)" strokeWidth="1" strokeDasharray="3 2"/>
-      <circle cx="74"  cy="16" r="4" fill="rgba(65,211,126,0.5)" stroke="rgba(65,211,126,0.75)" strokeWidth="1.5"/>
-      <circle cx="20"  cy="16" r="3" fill="rgba(65,211,126,0.28)" stroke="rgba(65,211,126,0.48)" strokeWidth="1"/>
-      <circle cx="128" cy="16" r="3" fill="rgba(65,211,126,0.28)" stroke="rgba(65,211,126,0.48)" strokeWidth="1"/>
-      <line x1="20" y1="16" x2="74"  y2="16" stroke="rgba(65,211,126,0.22)" strokeWidth="1"/>
-      <line x1="74" y1="16" x2="128" y2="16" stroke="rgba(65,211,126,0.22)" strokeWidth="1"/>
-    </svg>
-  )
+const STEP_IMAGES: Record<VisualType, string> = {
+  library:  '/assets/gml/phase-1/roadmap-library.png',
+  workshop: '/assets/gml/phase-1/roadmap-workshops.png',
+  '3d':     '/assets/gml/phase-1/roadmap-3d.png',
+  vr:       '/assets/gml/phase-1/roadmap-vr.png',
 }
 
 function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev' }) {
@@ -279,10 +193,12 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
             background: 'radial-gradient(circle at 50% 50%, rgba(65,211,126,0.055) 0%, transparent 68%)',
             pointerEvents: 'none',
           }}/>
-          {step.visualType === 'library'  && <VisualLibrary />}
-          {step.visualType === 'workshop' && <VisualWorkshop />}
-          {step.visualType === '3d'       && <Visual3D />}
-          {step.visualType === 'vr'       && <VisualVR />}
+          <img
+            src={STEP_IMAGES[step.visualType]}
+            alt={step.title}
+            loading="lazy"
+            className="step-img"
+          />
         </div>
       </div>
     </div>

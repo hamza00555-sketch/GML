@@ -8,76 +8,39 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 /* ── Challenge visuals ─────────────────────────────── */
 function VisualSlowProduction() {
   return (
-    <div className="card-visual" style={{ height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width="44" height="76" viewBox="0 0 44 76" fill="none" style={{ animation: 'floatY 6s ease-in-out infinite' }}>
-        <rect x="4" y="2" width="36" height="7" rx="3.5" fill="rgba(86,86,216,0.45)" stroke="rgba(86,86,216,0.55)" strokeWidth="1"/>
-        <rect x="4" y="67" width="36" height="7" rx="3.5" fill="rgba(86,86,216,0.45)" stroke="rgba(86,86,216,0.55)" strokeWidth="1"/>
-        <path d="M8 9 L36 9 L26 33 L18 33 Z" fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.28)" strokeWidth="0.8"/>
-        <path d="M8 9 L18 9 L17 14 L8 9 Z" fill="rgba(86,86,216,0.4)"/>
-        <path d="M18 41 L26 41 L36 67 L8 67 Z" fill="rgba(65,211,126,0.15)" stroke="rgba(65,211,126,0.22)" strokeWidth="0.8"/>
-        <path d="M12 67 L32 67 L26 53 L18 53 Z" fill="rgba(65,211,126,0.25)"/>
-        <rect x="19" y="33" width="6" height="8" rx="3" fill="rgba(86,86,216,0.5)"/>
-        <line x1="22" y1="41" x2="22" y2="47" stroke="rgba(65,211,126,0.65)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 3"/>
-      </svg>
+    <div className="asset-wrap" style={{ height: 110 }}>
+      <img
+        src="/assets/gml/phase-1/challenge-slow.png"
+        alt="الإنتاج البطيء — مشكلة في إنتاج الموشن"
+        loading="lazy"
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
     </div>
   )
 }
 
 function VisualInconsistentQuality() {
-  const items = [
-    { x: 4,  y: 36, w: 30, h: 9, o: 0.42, drift: 'driftA 5s ease-in-out infinite' },
-    { x: 24, y: 14, w: 22, h: 9, o: 0.28, drift: 'driftB 6.5s ease-in-out infinite' },
-    { x: 0,  y: 60, w: 34, h: 9, o: 0.18, drift: 'driftA 7s ease-in-out infinite -2s' },
-    { x: 40, y: 48, w: 16, h: 9, o: 0.38, drift: 'driftB 5.5s ease-in-out infinite -3s' },
-    { x: 14, y: 4,  w: 24, h: 9, o: 0.22, drift: 'driftA 6s ease-in-out infinite -1.5s' },
-    { x: 42, y: 26, w: 20, h: 9, o: 0.32, drift: 'driftB 7.5s ease-in-out infinite -0.5s' },
-  ]
   return (
-    <div className="card-visual" style={{ height: 86, position: 'relative', overflow: 'hidden' }}>
-      <svg width="100%" height="86" viewBox="0 0 64 78" preserveAspectRatio="xMidYMid slice" fill="none" style={{ position: 'absolute', inset: 0 }}>
-        {items.map((s, i) => (
-          <rect key={i} x={s.x} y={s.y} width={s.w} height={s.h} rx="4"
-            fill={`rgba(86,86,216,${s.o})`} stroke={`rgba(86,86,216,${Math.min(s.o + 0.2, 0.65)})`} strokeWidth="1"
-            style={{ animation: s.drift }}/>
-        ))}
-        <rect x="16" y="28" width="32" height="11" rx="5"
-          fill="rgba(65,211,126,0.16)" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5"/>
-        <line x1="22" y1="33.5" x2="42" y2="33.5" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
+    <div className="asset-wrap" style={{ height: 110 }}>
+      <img
+        src="/assets/gml/phase-1/challenge-quality.png"
+        alt="عدم ثبات الجودة — مشكلة في اتساق المخرجات"
+        loading="lazy"
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
     </div>
   )
 }
 
 function VisualRepetitiveWork() {
   return (
-    <div className="card-visual" style={{ position: 'relative', height: 86, overflow: 'hidden' }}>
-      <div style={{
-        position: 'absolute', top: 4, right: 0, width: 58, height: 46,
-        borderRadius: 12, background: 'rgba(32,32,168,0.28)',
-        border: '1px solid rgba(86,86,216,0.38)',
-      }}>
-        <div style={{ position: 'absolute', top: 10, left: 10, right: 10, height: 4, background: 'rgba(86,86,216,0.42)', borderRadius: 2 }} />
-        <div style={{ position: 'absolute', top: 20, left: 10, right: 18, height: 4, background: 'rgba(86,86,216,0.26)', borderRadius: 2 }} />
-        <div style={{ position: 'absolute', top: 30, left: 10, right: 24, height: 4, background: 'rgba(86,86,216,0.16)', borderRadius: 2 }} />
-      </div>
-      <div style={{
-        position: 'absolute', top: 2, right: -2, width: 62, height: 50,
-        borderRadius: 14, border: '1.5px dashed rgba(65,211,126,0.55)',
-      }} />
-      <div style={{ position: 'absolute', bottom: 6, left: 4 }}>
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.42)" strokeWidth="1.5"/>
-          <line x1="16" y1="9" x2="16" y2="23" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="9" y1="16" x2="23" y2="16" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
-        </svg>
-      </div>
-      <div style={{
-        position: 'absolute', bottom: 12, left: 42,
-        fontSize: 20, color: 'rgba(86,86,216,0.38)', lineHeight: 1,
-        display: 'inline-block',
-        animation: 'recycleNudge 4s ease-in-out infinite',
-        transformOrigin: 'center',
-      }}>↺</div>
+    <div className="asset-wrap" style={{ height: 110 }}>
+      <img
+        src="/assets/gml/phase-1/challenge-repetitive.png"
+        alt="تكرار العمل — إعادة بناء العناصر في كل مشروع"
+        loading="lazy"
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
     </div>
   )
 }
@@ -99,29 +62,13 @@ const driftStyles = `
 /* ── Nav card visuals ──────────────────────────────── */
 function VisualLibrary() {
   return (
-    <div className="card-visual" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 4 }}>
-      {[
-        { bg: 'rgba(65,211,126,0.14)', border: 'rgba(65,211,126,0.3)', icon: 'play', delay: '0s' },
-        { bg: 'rgba(32,32,168,0.38)',  border: 'rgba(86,86,216,0.42)', icon: 'T',    delay: '-1.8s' },
-        { bg: 'rgba(32,32,168,0.28)',  border: 'rgba(86,86,216,0.32)', icon: 'wave', delay: '-3.5s' },
-        { bg: 'rgba(32,32,168,0.22)',  border: 'rgba(86,86,216,0.28)', icon: 'grid', delay: '-0.9s' },
-        { bg: 'rgba(65,211,126,0.08)', border: 'rgba(65,211,126,0.2)', icon: 'img',  delay: '-2.7s' },
-        { bg: 'rgba(32,32,168,0.32)',  border: 'rgba(86,86,216,0.38)', icon: 'bars', delay: '-4.2s' },
-      ].map((tile, i) => (
-        <div key={i} style={{
-          height: 56, borderRadius: 12, background: tile.bg, border: `1px solid ${tile.border}`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 8px',
-          animation: `floatY ${5 + i * 0.4}s ease-in-out infinite`,
-          animationDelay: tile.delay,
-        }}>
-          {tile.icon === 'play' && <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 4L14.5 9L5 14V4Z" fill="rgba(65,211,126,0.85)"/></svg>}
-          {tile.icon === 'T'    && <span style={{ fontFamily: 'Georgia, serif', fontWeight: 900, fontSize: 24, color: 'rgba(86,86,216,0.9)', lineHeight: 1 }}>T</span>}
-          {tile.icon === 'wave' && <svg width="38" height="18" viewBox="0 0 38 18" fill="none"><path d="M2 9 C6 2 10 16 14 9 C18 2 22 16 26 9 C30 2 34 16 36 9" stroke="rgba(86,86,216,0.72)" strokeWidth="1.5" strokeLinecap="round"/></svg>}
-          {tile.icon === 'grid' && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4 }}>{[0,1,2,3].map(j => <div key={j} style={{ width: 10, height: 10, borderRadius: 3, background: j === 0 ? 'rgba(65,211,126,0.55)' : 'rgba(86,86,216,0.42)' }} />)}</div>}
-          {tile.icon === 'img'  && <svg width="30" height="24" viewBox="0 0 30 24" fill="none"><rect x="1" y="1" width="28" height="22" rx="4" stroke="rgba(65,211,126,0.4)" strokeWidth="1.5"/><circle cx="8" cy="8" r="3" fill="rgba(65,211,126,0.3)"/><path d="M1 18 L7 11 L12 15 L18 9 L29 17" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-          {tile.icon === 'bars' && <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, padding: '0 2px 4px' }}>{[8,14,10,20,13].map((h, j) => <div key={j} style={{ width: 7, borderRadius: '2px 2px 0 0', height: `${h}px`, background: j === 3 ? 'rgba(65,211,126,0.55)' : 'rgba(86,86,216,0.48)' }}/>)}</div>}
-        </div>
-      ))}
+    <div className="asset-wrap" style={{ borderRadius: 12, marginBottom: 4, overflow: 'hidden' }}>
+      <img
+        src="/assets/gml/phase-2/mvp-library.png"
+        alt="مكتبة GML — الإصدار التجريبي الأول"
+        loading="lazy"
+        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 180 }}
+      />
     </div>
   )
 }
@@ -224,74 +171,11 @@ function VisualNextStep() {
 
 function HeroVisual() {
   return (
-    <div className="glass-card" style={{
-      borderRadius: 28, padding: 0, minHeight: 400,
-      position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(145deg, rgba(32,32,168,0.28) 0%, rgba(0,0,57,0.55) 100%)',
-      borderColor: 'rgba(65,211,126,0.2)',
-    }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: -80, right: -80, width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(32,32,168,0.5) 0%, transparent 65%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: -60, left: -60, width: 220, height: 220, borderRadius: '50%', background: 'radial-gradient(circle, rgba(65,211,126,0.12) 0%, transparent 65%)', pointerEvents: 'none' }} />
-
-      {/* Window chrome */}
-      <div style={{ padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: 10, position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {['rgba(255,80,80,0.55)','rgba(255,180,0,0.45)','rgba(65,211,126,0.5)'].map((c,i) => (
-            <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />
-          ))}
-        </div>
-        <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.06)', maxWidth: 120 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span className="dot-live" />
-          <span style={{ fontSize: 9, color: 'rgba(65,211,126,0.65)', fontWeight: 700, letterSpacing: '0.06em' }}>GML</span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div style={{ padding: '20px 20px 24px', position: 'relative', zIndex: 1 }}>
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: 'rgba(86,86,216,0.7)', textTransform: 'uppercase', marginBottom: 14 }}>
-          مكتبة العناصر
-        </div>
-
-        {/* Floating tiles */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 16 }}>
-          {[
-            { label: 'خلفيات', icon: 'layers', bg: 'rgba(32,32,168,0.42)', border: 'rgba(86,86,216,0.45)', dur: '5.5s', delay: '0s' },
-            { label: 'انتقالات', icon: 'arrow', bg: 'rgba(65,211,126,0.14)', border: 'rgba(65,211,126,0.3)', dur: '7s', delay: '-2s' },
-            { label: 'عدادات', icon: 'circle', bg: 'rgba(32,32,168,0.32)', border: 'rgba(86,86,216,0.35)', dur: '6s', delay: '-4s' },
-            { label: 'نصوص', icon: 'text', bg: 'rgba(32,32,168,0.26)', border: 'rgba(86,86,216,0.28)', dur: '6.5s', delay: '-1s' },
-            { label: 'رسوم', icon: 'star', bg: 'rgba(65,211,126,0.1)', border: 'rgba(65,211,126,0.22)', dur: '5s', delay: '-3s' },
-            { label: 'موشن', icon: 'wave', bg: 'rgba(32,32,168,0.2)', border: 'rgba(86,86,216,0.22)', dur: '7.5s', delay: '-0.5s' },
-          ].map((tile, i) => (
-            <div key={i} style={{
-              borderRadius: 14, padding: '12px 8px 10px', background: tile.bg, border: `1px solid ${tile.border}`,
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-              animation: `floatY ${tile.dur} ease-in-out infinite`,
-              animationDelay: tile.delay,
-            }}>
-              <div style={{ height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {tile.icon === 'layers' && <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect x="0" y="6" width="18" height="12" rx="3" fill="rgba(86,86,216,0.35)" stroke="rgba(86,86,216,0.5)" strokeWidth="1"/><rect x="2" y="3" width="18" height="12" rx="3" fill="rgba(86,86,216,0.28)" stroke="rgba(86,86,216,0.42)" strokeWidth="1"/><rect x="4" y="0" width="18" height="12" rx="3" fill="rgba(86,86,216,0.2)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/></svg>}
-                {tile.icon === 'arrow'  && <svg width="28" height="16" viewBox="0 0 28 16" fill="none"><rect x="0" y="2" width="10" height="12" rx="2" fill="rgba(65,211,126,0.2)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/><path d="M12 8H16M14 5L17 8L14 11" stroke="rgba(65,211,126,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><rect x="18" y="2" width="10" height="12" rx="2" fill="rgba(65,211,126,0.3)" stroke="rgba(65,211,126,0.55)" strokeWidth="1"/></svg>}
-                {tile.icon === 'circle' && <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="rgba(86,86,216,0.28)" strokeWidth="2.5"/><path d="M11 2 A9 9 0 0 1 20 11" stroke="rgba(86,86,216,0.72)" strokeWidth="2.5" strokeLinecap="round"/></svg>}
-                {tile.icon === 'text'   && <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 20, color: 'rgba(86,86,216,0.85)', lineHeight: 1 }}>T</span>}
-                {tile.icon === 'star'   && <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.55)" strokeWidth="1.2"/>{[0,60,120,180,240,300].map((deg,j)=>{ const r=(deg*Math.PI)/180; return <line key={j} x1={11+5*Math.cos(r)} y1={11+5*Math.sin(r)} x2={11+9*Math.cos(r)} y2={11+9*Math.sin(r)} stroke="rgba(65,211,126,0.45)" strokeWidth="1.5" strokeLinecap="round"/>})}</svg>}
-                {tile.icon === 'wave'   && <svg width="32" height="14" viewBox="0 0 32 14" fill="none"><path d="M2 7 C5 2 9 12 13 7 C17 2 21 12 25 7 C27 4 29 8 30 7" stroke="rgba(86,86,216,0.65)" strokeWidth="1.5" strokeLinecap="round"/></svg>}
-              </div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(244,251,255,0.55)', letterSpacing: '0.02em' }}>{tile.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Status bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontSize: 10, color: 'rgba(244,251,255,0.35)', fontWeight: 600 }}>نظام إنتاج بصري</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span className="dot-live" style={{ width: 6, height: 6 }} />
-            <span style={{ fontSize: 10, color: 'rgba(65,211,126,0.65)', fontWeight: 700, letterSpacing: '0.04em' }}>v1.0</span>
-          </div>
-        </div>
-      </div>
+    <div className="hero-asset">
+      <img
+        src="/assets/gml/phase-1/hero-main.png"
+        alt="لوحة تحكم مكتبة GML للموشن جرافيكس"
+      />
     </div>
   )
 }
@@ -310,7 +194,7 @@ export default function Home() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section style={{ paddingTop: 128, paddingBottom: 80 }}>
+      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative' }}>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 48, alignItems: 'center' }}>
             {/* Text */}
@@ -342,6 +226,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <img
+          src="/assets/gml/decorative/wave-green.png"
+          alt=""
+          aria-hidden="true"
+          className="wave-decor"
+          style={{ bottom: -20, left: '5%', width: '40%', maxWidth: 380 }}
+        />
       </section>
 
       {/* ── Challenge bento ──────────────────────── */}
@@ -434,6 +325,9 @@ export default function Home() {
                 <VisualExperiment />
               </div>
               <div style={{ marginTop: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                  <img src="/assets/gml/icons/experiment.png" alt="" aria-hidden="true" className="nav-card-icon" />
+                </div>
                 <h3 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-main)', marginBottom: 10, letterSpacing: '-0.025em' }}>
                   {home.navCards[1].title}
                 </h3>
@@ -448,6 +342,9 @@ export default function Home() {
                 <VisualRoadmap />
               </div>
               <div style={{ marginTop: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <img src="/assets/gml/icons/roadmap.png" alt="" aria-hidden="true" className="nav-card-icon" />
+                </div>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                   {home.navCards[2].title}
                 </h3>
@@ -462,6 +359,9 @@ export default function Home() {
                 <VisualGAB />
               </div>
               <div style={{ marginTop: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <img src="/assets/gml/icons/gab-arrows.png" alt="" aria-hidden="true" className="nav-card-icon" />
+                </div>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em', marginBottom: 8 }}>
                   {home.navCards[3].title}
                 </h3>
@@ -476,6 +376,9 @@ export default function Home() {
                 <VisualNextStep />
               </div>
               <div style={{ marginTop: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <img src="/assets/gml/icons/next-step.png" alt="" aria-hidden="true" className="nav-card-icon" />
+                </div>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                   {home.navCards[4].title}
                 </h3>
