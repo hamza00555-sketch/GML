@@ -58,7 +58,7 @@ function LibraryItemCard({ title, desc, index, groupVisible }: {
               src={LIBRARY_IMAGES[index].src}
               alt={LIBRARY_IMAGES[index].alt}
               loading="lazy"
-              style={{ width: '100%', maxHeight: 150, objectFit: 'contain', display: 'block' }}
+              style={{ width: '100%', maxHeight: 200, objectFit: 'contain', display: 'block' }}
             />
           </div>
         ) : (

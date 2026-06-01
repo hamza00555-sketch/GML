@@ -66,7 +66,7 @@ function ComparisonCard({ title, text, color, type }: {
                 src="/assets/gml/phase-1/experiment-time.png"
                 alt="مقارنة الوقت — بدون GML مقابل مع GML"
                 loading="lazy"
-                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 160 }}
+                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 220 }}
               />
             </div>
           ) : (
@@ -75,7 +75,7 @@ function ComparisonCard({ title, text, color, type }: {
                 src="/assets/gml/phase-1/experiment-quality.png"
                 alt="مقارنة الجودة — قبل وبعد GML"
                 loading="lazy"
-                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 160 }}
+                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 220 }}
               />
             </div>
           )}

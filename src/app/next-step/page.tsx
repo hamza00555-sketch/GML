@@ -202,7 +202,7 @@ function SupportCard({
               src={SUPPORT_IMAGES[num].src}
               alt={SUPPORT_IMAGES[num].alt}
               loading="lazy"
-              style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 120 }}
+              style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 160 }}
             />
           </div>
         )}

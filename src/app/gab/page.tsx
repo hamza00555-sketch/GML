@@ -24,7 +24,7 @@ function CapabilityCard({
             src={GAB_IMAGES[letter]?.src ?? ''}
             alt={GAB_IMAGES[letter]?.alt ?? title}
             loading="lazy"
-            style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 140 }}
+            style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 200 }}
           />
         </div>
         <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-main)', marginBottom: 12, letterSpacing: '-0.02em' }}>
