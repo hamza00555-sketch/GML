@@ -345,7 +345,11 @@ export default function Home() {
       </section>
 
       {/* ── Challenge bento ──────────────────────── */}
-      <section style={{ paddingBottom: 80 }}>
+      <section
+        ref={challengeReveal.ref}
+        className={`reveal-group${challengeReveal.visible ? ' is-visible' : ''}`}
+        style={{ paddingBottom: 80 }}
+      >
         <div className="bento-grid">
           {/* Header */}
           <div className="bento-full" style={{ paddingBottom: 8 }}>
@@ -353,66 +357,58 @@ export default function Home() {
             <h2 className="section-title" style={{ marginTop: 12 }}>التحدي الحالي</h2>
           </div>
 
-          {/* Cards with scroll reveal */}
-          <div
-            ref={challengeReveal.ref}
-            className={`bento-full reveal-group${challengeReveal.visible ? ' is-visible' : ''}`}
-            style={{ display: 'contents' }}
-          >
-            <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <VisualSlowProduction />
-              <div style={{ marginTop: 20 }}>
-                <div className="num-badge" style={{ marginBottom: 12 }}>01</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                  {home.challenges[0].title}
-                </h3>
-                <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                  {home.challenges[0].desc}
-                </p>
-              </div>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualSlowProduction />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>01</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[0].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[0].desc}
+              </p>
             </div>
+          </div>
 
-            <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <VisualInconsistentQuality />
-              <div style={{ marginTop: 20 }}>
-                <div className="num-badge" style={{ marginBottom: 12 }}>02</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                  {home.challenges[1].title}
-                </h3>
-                <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                  {home.challenges[1].desc}
-                </p>
-              </div>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualInconsistentQuality />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>02</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[1].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[1].desc}
+              </p>
             </div>
+          </div>
 
-            <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <VisualRepetitiveWork />
-              <div style={{ marginTop: 20 }}>
-                <div className="num-badge" style={{ marginBottom: 12 }}>03</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                  {home.challenges[2].title}
-                </h3>
-                <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                  {home.challenges[2].desc}
-                </p>
-              </div>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+            <VisualRepetitiveWork />
+            <div style={{ marginTop: 20 }}>
+              <div className="num-badge" style={{ marginBottom: 12 }}>03</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                {home.challenges[2].title}
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                {home.challenges[2].desc}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Navigation bento ─────────────────────── */}
-      <section style={{ paddingBottom: 80 }}>
+      <section
+        ref={navReveal.ref}
+        className={`reveal-group${navReveal.visible ? ' is-visible' : ''}`}
+        style={{ paddingBottom: 80 }}
+      >
         <div className="bento-grid">
           <div className="bento-full" style={{ paddingBottom: 8 }}>
             <h2 className="section-title">استكشف أقسام المشروع</h2>
           </div>
 
-          <div
-            ref={navReveal.ref}
-            className={`bento-full reveal-group${navReveal.visible ? ' is-visible' : ''}`}
-            style={{ display: 'contents' }}
-          >
             <Link href="/library" className="bento-large glass-card reveal-child" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <VisualLibrary />
@@ -495,7 +491,6 @@ export default function Home() {
                 {home.closingStatement}
               </p>
             </div>
-          </div>
         </div>
       </section>
 
