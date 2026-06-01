@@ -8,18 +8,13 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 function VideoEmbed({ url, title }: { url: string; title: string }) {
   if (!url) {
     return (
-      <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', background: 'rgba(0,0,30,0.8)', aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img
-          src="/assets/gml/phase-1/experiment-timelapse.png"
-          alt="تسجيل الشاشة — تجربة التايم لابس مع GML"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', transition: 'transform 600ms cubic-bezier(0.22, 1, 0.36, 1)' }}
-        />
-        <div className="play-btn play-btn-pulse" style={{ position: 'relative', zIndex: 2 }}>
+      <div className="video-placeholder">
+        <div className="play-btn play-btn-pulse">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M5 3.5L14.5 9L5 14.5V3.5Z" fill="rgba(244,251,255,0.6)" />
           </svg>
         </div>
-        <div style={{ position: 'absolute', bottom: 14, right: 14, fontSize: 11, color: 'rgba(244,251,255,0.55)', fontWeight: 600, background: 'rgba(0,0,0,0.45)', padding: '3px 8px', borderRadius: 6, zIndex: 2 }}>
+        <div style={{ position: 'absolute', bottom: 14, right: 14, fontSize: 11, color: 'rgba(244,251,255,0.3)', fontWeight: 600 }}>
           {title}
         </div>
       </div>
@@ -56,27 +51,74 @@ function ComparisonCard({ title, text, color, type }: {
     <div
       ref={ref}
       className={`glass-card reveal-scale${visible ? ' is-visible' : ''}`}
-      style={{ borderRadius: 20, padding: 28, overflow: 'hidden' }}
+      style={{ borderRadius: 20, padding: 28 }}
     >
       <div className="card-visual">
         <div style={{ marginBottom: 20 }}>
           {type === 'time' ? (
-            <div style={{ margin: '-28px -28px 0 -28px', height: 260, borderRadius: '20px 20px 0 0', overflow: 'hidden', flexShrink: 0 }}>
-              <img
-                src="/assets/gml/phase-1/experiment-time.png"
-                alt="مقارنة الوقت — بدون GML مقابل مع GML"
-                loading="lazy"
-                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-              />
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10 }}>
+              {/* Before bar */}
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, color: 'rgba(244,251,255,0.35)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 5, textAlign: 'center' }}>بدون GML</div>
+                <div style={{
+                  height: visible ? 68 : 0,
+                  borderRadius: '8px 8px 0 0',
+                  background: 'rgba(86,86,216,0.22)',
+                  border: '1px solid rgba(86,86,216,0.38)',
+                  overflow: 'hidden',
+                  transition: 'height 900ms cubic-bezier(0.22, 1, 0.36, 1) 150ms',
+                }}>
+                  <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(90deg, rgba(86,86,216,0.1) 0px, rgba(86,86,216,0.1) 4px, transparent 4px, transparent 8px)' }} />
+                </div>
+              </div>
+              <div style={{ width: 1, height: 68, background: 'rgba(255,255,255,0.07)', alignSelf: 'flex-end' }} />
+              {/* After bar */}
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, color: 'rgba(65,211,126,0.65)', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 5, textAlign: 'center' }}>مع GML</div>
+                <div style={{
+                  height: visible ? 28 : 0,
+                  borderRadius: '8px 8px 0 0',
+                  background: 'rgba(65,211,126,0.18)',
+                  border: '1px solid rgba(65,211,126,0.42)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'height 900ms cubic-bezier(0.22, 1, 0.36, 1) 420ms',
+                  overflow: 'hidden',
+                }}>
+                  <div style={{ width: 28, height: 4, borderRadius: 2, background: 'rgba(65,211,126,0.55)' }} />
+                </div>
+              </div>
             </div>
           ) : (
-            <div style={{ margin: '-28px -28px 0 -28px', height: 260, borderRadius: '20px 20px 0 0', overflow: 'hidden', flexShrink: 0 }}>
-              <img
-                src="/assets/gml/phase-1/experiment-quality.png"
-                alt="مقارنة الجودة — قبل وبعد GML"
-                loading="lazy"
-                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-              />
+            <div>
+              <div style={{ marginBottom: 6 }}>
+                <div style={{ fontSize: 9, color: 'rgba(244,251,255,0.3)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>بدون GML — غير متسق</div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 3 }}>
+                  {[0.5,0.8,0.3,0.9,0.4,0.7].map((o, i) => (
+                    <div key={i} style={{
+                      height: 14, borderRadius: 3,
+                      background: `rgba(86,86,216,${o * 0.35})`,
+                      border: `1px solid rgba(86,86,216,${o * 0.5})`,
+                      opacity: visible ? 1 : 0,
+                      transition: `opacity 500ms ease ${100 + i * 60}ms`,
+                    }} />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: 9, color: 'rgba(65,211,126,0.6)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>مع GML — متسق</div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 3 }}>
+                  {Array.from({ length: 6 }, (_, i) => (
+                    <div key={i} style={{
+                      height: 14, borderRadius: 3,
+                      background: 'rgba(65,211,126,0.2)',
+                      border: '1px solid rgba(65,211,126,0.4)',
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? 'translateY(0)' : 'translateY(6px)',
+                      transition: `opacity 500ms ease ${520 + i * 70}ms, transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${520 + i * 70}ms`,
+                    }} />
+                  ))}
+                </div>
+              </div>
             </div>
           )}
         </div>

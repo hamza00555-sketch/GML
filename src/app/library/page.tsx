@@ -5,34 +5,43 @@ import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
-const LIBRARY_IMAGES: Record<number, { src: string; alt: string }> = {
-  0: { src: '/assets/gml/phase-1/library-backgrounds.png', alt: 'خلفيات متحركة — عناصر الخلفية' },
-  1: { src: '/assets/gml/phase-1/library-transitions.png', alt: 'انتقالات — عناصر الانتقال' },
-  2: { src: '/assets/gml/phase-1/library-counters.png', alt: 'عدادات رقمية متحركة' },
-  4: { src: '/assets/gml/phase-1/library-illustrations.png', alt: 'رسوم توضيحية متحركة' },
-}
-
 function LibraryItemCard({ title, desc, index, groupVisible }: {
   title: string; desc: string; index: number; groupVisible: boolean
 }) {
   const visuals = [
-    /* 0 خلفيات */
+    /* 0 خلفيات - layered panels */
     <svg key={0} width="44" height="36" viewBox="0 0 44 36" fill="none">
       <rect x="0" y="8" width="34" height="24" rx="5" fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
       <rect x="4" y="4" width="34" height="24" rx="5" fill="rgba(86,86,216,0.18)" stroke="rgba(86,86,216,0.36)" strokeWidth="1"/>
       <rect x="8" y="0" width="34" height="24" rx="5" fill="rgba(86,86,216,0.24)" stroke="rgba(86,86,216,0.45)" strokeWidth="1"/>
+      <circle cx="16" cy="8" r="3" fill="rgba(86,86,216,0.45)"/>
+      <path d="M8 20 L14 13 L19 17 L25 11 L40 18" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>,
 
-    /* 1 انتقالات */
+    /* 1 انتقالات - arrow between panels */
     <svg key={1} width="52" height="32" viewBox="0 0 52 32" fill="none">
       <rect x="0" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.3)" strokeWidth="1"/>
+      <line x1="3" y1="10" x2="17" y2="10" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="3" y1="16" x2="17" y2="16" stroke="rgba(65,211,126,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="3" y1="22" x2="12" y2="22" stroke="rgba(65,211,126,0.18)" strokeWidth="1.5" strokeLinecap="round"/>
       <path d="M23 16 H29 M26 12 L30 16 L26 20" stroke="rgba(65,211,126,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       <rect x="32" y="2" width="20" height="28" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.42)" strokeWidth="1"/>
     </svg>,
 
-    /* 2 عدادات */
+    /* 2 عدادات - circular progress arc animates on scroll reveal */
     <svg key={2} width="44" height="44" viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="18" stroke="rgba(86,86,216,0.2)" strokeWidth="3.5"/>
+      <path
+        d="M22 4 A18 18 0 0 1 40 22 A18 18 0 0 1 30 37.6"
+        stroke="rgba(65,211,126,0.72)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        style={{
+          strokeDasharray: 90,
+          strokeDashoffset: groupVisible ? 0 : 90,
+          transition: 'stroke-dashoffset 1000ms cubic-bezier(0.22, 1, 0.36, 1) 360ms',
+        }}
+      />
       <circle cx="22" cy="22" r="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"/>
     </svg>,
 
@@ -43,29 +52,28 @@ function LibraryItemCard({ title, desc, index, groupVisible }: {
       <line x1="8" y1="36" x2="36" y2="36" stroke="rgba(65,211,126,0.4)" strokeWidth="1.5" strokeDasharray="3 2"/>
     </svg>,
 
-    /* 4 رسوم متحركة */
+    /* 4 رسوم متحركة - starburst with floating center */
     <svg key={4} width="44" height="44" viewBox="0 0 44 44" fill="none">
-      <circle cx="22" cy="22" r="7" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.6)" strokeWidth="1.5"/>
+      {[0,45,90,135,22,67,112,157].map((deg, i) => {
+        const rad = (deg * Math.PI) / 180
+        const inner = i < 4 ? 8 : 10
+        const outer = i < 4 ? 18 : 14
+        return <line key={i} x1={22 + inner * Math.cos(rad)} y1={22 + inner * Math.sin(rad)} x2={22 + outer * Math.cos(rad)} y2={22 + outer * Math.sin(rad)} stroke={i < 4 ? 'rgba(65,211,126,0.6)' : 'rgba(86,86,216,0.4)'} strokeWidth={i < 4 ? 2 : 1.5} strokeLinecap="round"/>
+      })}
+      <circle cx="22" cy="22" r="7" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.6)" strokeWidth="1.5"
+        style={{ animation: 'floatY 4s ease-in-out infinite' }}/>
+      <path d="M32 12 C36 16 36 24 32 28" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
     </svg>,
   ]
 
+  const visual = visuals[index % visuals.length]
+
   return (
-    <div className="glass-card lib-card" style={{ borderRadius: 22, padding: 28, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <div className="card-visual" style={{ marginBottom: 20, flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {LIBRARY_IMAGES[index] ? (
-          <div style={{ margin: '-28px -28px 0 -28px', height: 220, borderRadius: '22px 22px 0 0', overflow: 'hidden', flexShrink: 0 }}>
-            <img
-              src={LIBRARY_IMAGES[index].src}
-              alt={LIBRARY_IMAGES[index].alt}
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-            />
-          </div>
-        ) : (
-          <div style={{ marginBottom: 20, height: 52, display: 'flex', alignItems: 'center' }}>
-            {visuals[index % visuals.length]}
-          </div>
-        )}
+    <div className="glass-card" style={{ borderRadius: 22, padding: 28, height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className="card-visual" style={{ marginBottom: 20 }}>
+        <div style={{ marginBottom: 20, height: 52, display: 'flex', alignItems: 'center' }}>
+          {visual}
+        </div>
         <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.01em' }}>
           {title}
         </h3>

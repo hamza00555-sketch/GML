@@ -149,13 +149,6 @@ function HeroVisual() {
   )
 }
 
-const SUPPORT_IMAGES: Record<string, { src: string; alt: string }> = {
-  '01': { src: '/assets/gml/phase-2/next-step-support.png',  alt: 'دعم لتطوير المكتبة' },
-  '02': { src: '/assets/gml/phase-2/next-step-team.png',     alt: 'وقت لتجربة الفريق' },
-  '03': { src: '/assets/gml/phase-2/next-step-training.png', alt: 'دعم تدريبي وتقني' },
-  '04': { src: '/assets/gml/phase-2/next-step-prototype.png', alt: 'Prototype لفكرة GAB' },
-}
-
 /* ── Support card ──────────────────────────────────── */
 function SupportCard({
   num, title, desc,
@@ -194,18 +187,8 @@ function SupportCard({
   }
 
   return (
-    <div className="glass-card" style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%', overflow: 'hidden' }}>
+    <div className="glass-card" style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}>
       <div className="card-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {SUPPORT_IMAGES[num] && (
-          <div style={{ margin: '-36px -36px 0 -36px', height: 200, borderRadius: '24px 24px 0 0', overflow: 'hidden', flexShrink: 0 }}>
-            <img
-              src={SUPPORT_IMAGES[num].src}
-              alt={SUPPORT_IMAGES[num].alt}
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-            />
-          </div>
-        )}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
           <div style={{
             fontSize: 11, fontWeight: 800, letterSpacing: '0.06em',
@@ -267,7 +250,7 @@ export default function NextStepPage() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────── */}
-      <section style={{ paddingTop: 152, paddingBottom: 88, paddingLeft: 24, paddingRight: 24, position: 'relative' }}>
+      <section style={{ paddingTop: 152, paddingBottom: 88, paddingLeft: 24, paddingRight: 24 }}>
         <div className="container">
           <div style={{
             display: 'grid',
@@ -305,13 +288,6 @@ export default function NextStepPage() {
             </div>
           </div>
         </div>
-        <img
-          src="/assets/gml/decorative/wave-green.png"
-          alt=""
-          aria-hidden="true"
-          className="wave-decor"
-          style={{ bottom: -10, left: '10%', width: '38%', maxWidth: 340 }}
-        />
       </section>
 
       {/* ── Bento cards ──────────────────────────────── */}

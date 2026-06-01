@@ -5,27 +5,57 @@ import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
-const GAB_IMAGES: Record<string, { src: string; alt: string }> = {
-  G: { src: '/assets/gml/phase-2/gab-generate.png', alt: 'Generate — توليد المحتوى بأمر واحد' },
-  A: { src: '/assets/gml/phase-2/gab-animate.png',  alt: 'Animate — تحريك العناصر تلقائياً' },
-  B: { src: '/assets/gml/phase-2/gab-build.png',    alt: 'Build — بناء المشروع النهائي' },
-}
-
 function CapabilityCard({
   letter, title, desc, color, borderColor,
 }: {
   letter: string; title: string; desc: string; color: string; borderColor: string
 }) {
+  const visual = letter === 'G' ? (
+    /* Generate: stacked document pages with subtle float stagger */
+    <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-3.5s' }}/>
+      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-1.5s' }}/>
+      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"
+        style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '0s' }}/>
+      <line x1="16" y1="10" x2="36" y2="10" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="16" y1="16" x2="30" y2="16" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="16" y1="22" x2="34" y2="22" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ) : letter === 'A' ? (
+    /* Animate: timeline with animated playhead */
+    <svg width="52" height="36" viewBox="0 0 52 36" fill="none">
+      <rect x="2" y="14" width="48" height="3" rx="1.5" fill="rgba(65,211,126,0.15)"/>
+      {[8,16,24,32,40].map((x,i) => <rect key={i} x={x} y="12" width="1.5" height="7" rx="0.75" fill="rgba(65,211,126,0.3)"/>)}
+      <rect x="4" y="20" width="12" height="8" rx="3" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/>
+      <rect x="20" y="20" width="18" height="8" rx="3" fill="rgba(65,211,126,0.3)" stroke="rgba(65,211,126,0.5)" strokeWidth="1"/>
+      <rect x="42" y="20" width="8" height="8" rx="3" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
+      {/* Animated playhead */}
+      <g style={{ animation: 'playheadSlide 3.5s ease-in-out infinite' }}>
+        <line x1="26" y1="6" x2="26" y2="30" stroke="rgba(65,211,126,0.8)" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M23 6 L29 6 L26 10 Z" fill="rgba(65,211,126,0.8)"/>
+      </g>
+    </svg>
+  ) : (
+    /* Build: stacking blocks with staggered rise */
+    <svg width="48" height="44" viewBox="0 0 48 44" fill="none">
+      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.6s' }}/>
+      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.38)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.85s' }}/>
+      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.12)" stroke="rgba(65,211,126,0.3)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.1s' }}/>
+      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.22)" strokeWidth="1.5" strokeDasharray="3 2"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.35s' }}/>
+    </svg>
+  )
+
   return (
-    <div className="glass-card gab-card" style={{ borderRadius: 22, padding: 32, borderColor, overflow: 'hidden' }}>
+    <div className="glass-card" style={{ borderRadius: 22, padding: 32, borderColor }}>
       <div className="card-visual">
-        <div style={{ margin: '-32px -32px 0 -32px', height: 240, borderRadius: '22px 22px 0 0', overflow: 'hidden', flexShrink: 0 }}>
-          <img
-            src={GAB_IMAGES[letter]?.src ?? ''}
-            alt={GAB_IMAGES[letter]?.alt ?? title}
-            loading="lazy"
-            style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-          />
+        <div style={{ marginBottom: 22, height: 52, display: 'flex', alignItems: 'center' }}>
+          {visual}
         </div>
         <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-main)', marginBottom: 12, letterSpacing: '-0.02em' }}>
           {title}
@@ -49,7 +79,7 @@ export default function GabPage() {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section style={{ paddingTop: 152, paddingBottom: 80, paddingLeft: 24, paddingRight: 24, position: 'relative' }}>
+      <section style={{ paddingTop: 152, paddingBottom: 80, paddingLeft: 24, paddingRight: 24 }}>
         <div className="container">
           <span className="label-tag hero-enter hero-enter-0" style={{ marginBottom: 20, display: 'inline-flex' }}>
             <span className="dot-live" />
@@ -72,13 +102,6 @@ export default function GabPage() {
             {gab.subtitle}
           </p>
         </div>
-        <img
-          src="/assets/gml/decorative/wave-green.png"
-          alt=""
-          aria-hidden="true"
-          className="wave-decor"
-          style={{ bottom: 0, right: '8%', width: '35%', maxWidth: 320 }}
-        />
       </section>
 
       {/* ── Capabilities ── */}
@@ -116,26 +139,6 @@ export default function GabPage() {
                 borderColor="rgba(65,211,126,0.15)"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── GAB workflow connector ── */}
-      <section style={{ padding: '0 24px 48px' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ maxWidth: 480, width: '100%' }}>
-            <img
-              src="/assets/gml/phase-2/gab-process.png"
-              alt="مسار عمل GAB — توليد ثم تحريك ثم بناء"
-              loading="lazy"
-              style={{
-                width: '100%',
-                objectFit: 'contain',
-                display: 'block',
-                opacity: 0.9,
-                animation: 'floatY 7s ease-in-out infinite',
-              }}
-            />
           </div>
         </div>
       </section>
