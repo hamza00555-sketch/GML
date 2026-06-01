@@ -513,14 +513,14 @@ export default function Home() {
           >
             {/* Card 1 — كل مشروع يبدأ من الصفر */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <circle cx="24" cy="24" r="17" stroke="rgba(86,86,216,0.28)" strokeWidth="1.5"/>
-                  <line x1="24" y1="24" x2="24" y2="12" stroke="rgba(86,86,216,0.65)" strokeWidth="2" strokeLinecap="round"/>
-                  <line x1="24" y1="24" x2="33" y2="24" stroke="rgba(86,86,216,0.45)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <circle cx="24" cy="24" r="2.5" fill="rgba(86,86,216,0.55)"/>
-                  <path d="M37 12 C42 18 42 30 37 36" stroke="rgba(65,211,126,0.55)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  <path d="M34.5 10 L38.5 13.5 L36 17" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="96" height="96" viewBox="0 0 48 48" fill="none">
+                  <circle cx="24" cy="24" r="17" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5"/>
+                  <line x1="24" y1="24" x2="24" y2="12" stroke="rgba(86,86,216,0.95)" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="24" y1="24" x2="33" y2="24" stroke="rgba(86,86,216,0.80)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="24" cy="24" r="2.5" fill="rgba(86,86,216,0.90)"/>
+                  <path d="M37 12 C42 18 42 30 37 36" stroke="rgba(65,211,126,0.90)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M34.5 10 L38.5 13.5 L36 17" stroke="rgba(65,211,126,0.90)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                 </svg>
               </div>
               <div style={{
@@ -541,17 +541,17 @@ export default function Home() {
 
             {/* Card 2 — تفاوت في الشكل النهائي */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="56" height="40" viewBox="0 0 56 40" fill="none">
-                  <rect x="0" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/>
-                  <line x1="4" y1="11" x2="19" y2="11" stroke="rgba(86,86,216,0.52)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="4" y1="18" x2="19" y2="18" stroke="rgba(86,86,216,0.36)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="4" y1="25" x2="14" y2="25" stroke="rgba(86,86,216,0.22)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="27" y1="20" x2="29" y2="20" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <rect x="33" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.06)" stroke="rgba(86,86,216,0.18)" strokeWidth="1"/>
-                  <line x1="37" y1="14" x2="52" y2="14" stroke="rgba(86,86,216,0.2)" strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="37" y1="22" x2="44" y2="22" stroke="rgba(86,86,216,0.12)" strokeWidth="1" strokeLinecap="round"/>
-                  <line x1="37" y1="29" x2="50" y2="29" stroke="rgba(86,86,216,0.18)" strokeWidth="1" strokeLinecap="round"/>
+              <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="112" height="80" viewBox="0 0 56 40" fill="none">
+                  <rect x="0" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.28)" stroke="rgba(86,86,216,0.80)" strokeWidth="1"/>
+                  <line x1="4" y1="11" x2="19" y2="11" stroke="rgba(86,86,216,0.90)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="4" y1="18" x2="19" y2="18" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="4" y1="25" x2="14" y2="25" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="27" y1="20" x2="29" y2="20" stroke="rgba(65,211,126,0.80)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="33" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.14)" stroke="rgba(86,86,216,0.45)" strokeWidth="1"/>
+                  <line x1="37" y1="14" x2="52" y2="14" stroke="rgba(86,86,216,0.55)" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="37" y1="22" x2="44" y2="22" stroke="rgba(86,86,216,0.38)" strokeWidth="1" strokeLinecap="round"/>
+                  <line x1="37" y1="29" x2="50" y2="29" stroke="rgba(86,86,216,0.45)" strokeWidth="1" strokeLinecap="round"/>
                 </svg>
               </div>
               <div style={{
@@ -572,16 +572,16 @@ export default function Home() {
 
             {/* Card 3 — إعادة بناء نفس العناصر */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-                  <rect x="0" y="10" width="28" height="30" rx="4" fill="rgba(86,86,216,0.08)" stroke="rgba(86,86,216,0.2)" strokeWidth="1"/>
-                  <rect x="4" y="6" width="28" height="30" rx="4" fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
-                  <rect x="8" y="2" width="28" height="30" rx="4" fill="rgba(86,86,216,0.18)" stroke="rgba(86,86,216,0.38)" strokeWidth="1"/>
-                  <line x1="13" y1="12" x2="32" y2="12" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="13" y1="18" x2="27" y2="18" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="13" y1="24" x2="30" y2="24" stroke="rgba(86,86,216,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M33 33 C38 31 38 39 33 41" stroke="rgba(65,211,126,0.6)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  <path d="M31 31 L34.5 34 L37 31.5" stroke="rgba(65,211,126,0.6)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="88" height="88" viewBox="0 0 44 44" fill="none">
+                  <rect x="0" y="10" width="28" height="30" rx="4" fill="rgba(86,86,216,0.22)" stroke="rgba(86,86,216,0.55)" strokeWidth="1"/>
+                  <rect x="4" y="6" width="28" height="30" rx="4" fill="rgba(86,86,216,0.32)" stroke="rgba(86,86,216,0.65)" strokeWidth="1"/>
+                  <rect x="8" y="2" width="28" height="30" rx="4" fill="rgba(86,86,216,0.42)" stroke="rgba(86,86,216,0.80)" strokeWidth="1"/>
+                  <line x1="13" y1="12" x2="32" y2="12" stroke="rgba(86,86,216,0.90)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="13" y1="18" x2="27" y2="18" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="13" y1="24" x2="30" y2="24" stroke="rgba(86,86,216,0.60)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M33 33 C38 31 38 39 33 41" stroke="rgba(65,211,126,0.90)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M31 31 L34.5 34 L37 31.5" stroke="rgba(65,211,126,0.90)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <div style={{
@@ -602,19 +602,19 @@ export default function Home() {
 
             {/* Card 4 — صعوبة نقل المعرفة */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="52" height="44" viewBox="0 0 52 44" fill="none">
-                  <circle cx="26" cy="22" r="9" fill="rgba(86,86,216,0.14)" stroke="rgba(86,86,216,0.42)" strokeWidth="1.5"/>
-                  <circle cx="26" cy="19" r="2.8" fill="rgba(86,86,216,0.45)"/>
-                  <path d="M19 29 Q26 25 33 29" stroke="rgba(86,86,216,0.42)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
-                  <circle cx="6" cy="8" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
-                  <circle cx="46" cy="8" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
-                  <circle cx="6" cy="36" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
-                  <circle cx="46" cy="36" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
-                  <line x1="18" y1="17" x2="10" y2="11" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
-                  <line x1="34" y1="17" x2="42" y2="11" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
-                  <line x1="18" y1="27" x2="10" y2="33" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
-                  <line x1="34" y1="27" x2="42" y2="33" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
+              <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="104" height="88" viewBox="0 0 52 44" fill="none">
+                  <circle cx="26" cy="22" r="9" fill="rgba(86,86,216,0.35)" stroke="rgba(86,86,216,0.82)" strokeWidth="1.5"/>
+                  <circle cx="26" cy="19" r="2.8" fill="rgba(86,86,216,0.90)"/>
+                  <path d="M19 29 Q26 25 33 29" stroke="rgba(86,86,216,0.80)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                  <circle cx="6" cy="8" r="4" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.72)" strokeWidth="1"/>
+                  <circle cx="46" cy="8" r="4" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.72)" strokeWidth="1"/>
+                  <circle cx="6" cy="36" r="4" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.72)" strokeWidth="1"/>
+                  <circle cx="46" cy="36" r="4" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.72)" strokeWidth="1"/>
+                  <line x1="18" y1="17" x2="10" y2="11" stroke="rgba(86,86,216,0.55)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="34" y1="17" x2="42" y2="11" stroke="rgba(86,86,216,0.55)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="18" y1="27" x2="10" y2="33" stroke="rgba(86,86,216,0.55)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="34" y1="27" x2="42" y2="33" stroke="rgba(86,86,216,0.55)" strokeWidth="1" strokeDasharray="3 2"/>
                 </svg>
               </div>
               <div style={{
