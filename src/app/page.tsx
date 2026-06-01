@@ -475,57 +475,175 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Challenge bento ──────────────────────── */}
-      <section
-        ref={challengeReveal.ref}
-        className={`reveal-group${challengeReveal.visible ? ' is-visible' : ''}`}
-        style={{ paddingBottom: 80 }}
-      >
+      {/* ── Challenge Section — Phase 2 ──────────── */}
+      <section style={{ paddingBottom: 96 }}>
         <div className="bento-grid">
-          {/* Header */}
-          <div className="bento-full" style={{ paddingBottom: 8 }}>
+
+          {/* Section header */}
+          <div className="bento-full" style={{ paddingBottom: 20 }}>
             <span className="label-tag" style={{ marginBottom: 14, display: 'inline-flex' }}>المشكلة</span>
-            <h2 className="section-title" style={{ marginTop: 12 }}>التحدي الحالي</h2>
+            <h2 className="section-title" style={{ marginTop: 12 }}>لماذا نحتاج GML؟</h2>
+            <p style={{ fontSize: 17, color: 'var(--text-muted)', lineHeight: 1.85, marginTop: 16, maxWidth: 660 }}>
+              التحدي ليس في إنتاج فيديو واحد، بل في تكرار نفس الجهد مع كل مشروع جديد، واختلاف جودة المخرجات حسب الوقت والمصمم.
+            </p>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-            <VisualSlowProduction />
-            <div style={{ marginTop: 20 }}>
-              <div className="num-badge" style={{ marginBottom: 12 }}>01</div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                {home.challenges[0].title}
+          {/* 4 Challenge cards */}
+          <div
+            ref={challengeReveal.ref}
+            className={`bento-full reveal-group${challengeReveal.visible ? ' is-visible' : ''}`}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}
+          >
+            {/* Card 1 — كل مشروع يبدأ من الصفر */}
+            <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                  <circle cx="24" cy="24" r="17" stroke="rgba(86,86,216,0.28)" strokeWidth="1.5"/>
+                  <line x1="24" y1="24" x2="24" y2="12" stroke="rgba(86,86,216,0.65)" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="24" y1="24" x2="33" y2="24" stroke="rgba(86,86,216,0.45)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="24" cy="24" r="2.5" fill="rgba(86,86,216,0.55)"/>
+                  <path d="M37 12 C42 18 42 30 37 36" stroke="rgba(65,211,126,0.55)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M34.5 10 L38.5 13.5 L36 17" stroke="rgba(65,211,126,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <div style={{
+                fontSize: 11, fontWeight: 800, color: 'var(--brand-green)',
+                letterSpacing: '0.06em', marginBottom: 12,
+                background: 'rgba(65,211,126,0.08)', border: '1px solid rgba(65,211,126,0.22)',
+                display: 'inline-flex', padding: '4px 11px', borderRadius: 100, width: 'fit-content',
+              }}>
+                حتى 3–4 ساعات
+              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                كل مشروع يبدأ من الصفر
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                {home.challenges[0].desc}
+                وقت يُصرف على بناء عناصر متكررة بدل التركيز على الرسالة والمحتوى.
+              </p>
+            </div>
+
+            {/* Card 2 — تفاوت في الشكل النهائي */}
+            <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="56" height="40" viewBox="0 0 56 40" fill="none">
+                  <rect x="0" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/>
+                  <line x1="4" y1="11" x2="19" y2="11" stroke="rgba(86,86,216,0.52)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="4" y1="18" x2="19" y2="18" stroke="rgba(86,86,216,0.36)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="4" y1="25" x2="14" y2="25" stroke="rgba(86,86,216,0.22)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="27" y1="20" x2="29" y2="20" stroke="rgba(65,211,126,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="33" y="2" width="23" height="36" rx="4" fill="rgba(86,86,216,0.06)" stroke="rgba(86,86,216,0.18)" strokeWidth="1"/>
+                  <line x1="37" y1="14" x2="52" y2="14" stroke="rgba(86,86,216,0.2)" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="37" y1="22" x2="44" y2="22" stroke="rgba(86,86,216,0.12)" strokeWidth="1" strokeLinecap="round"/>
+                  <line x1="37" y1="29" x2="50" y2="29" stroke="rgba(86,86,216,0.18)" strokeWidth="1" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <div style={{
+                fontSize: 11, fontWeight: 800, color: 'var(--brand-cyan)',
+                letterSpacing: '0.06em', marginBottom: 12,
+                background: 'rgba(86,86,216,0.1)', border: '1px solid rgba(86,86,216,0.22)',
+                display: 'inline-flex', padding: '4px 11px', borderRadius: 100, width: 'fit-content',
+              }}>
+                جودة غير موحدة
+              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                تفاوت في الشكل النهائي
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                اختلاف الأسلوب البصري بين المخرجات يضعف ثبات الهوية عبر الفيديوهات.
+              </p>
+            </div>
+
+            {/* Card 3 — إعادة بناء نفس العناصر */}
+            <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <rect x="0" y="10" width="28" height="30" rx="4" fill="rgba(86,86,216,0.08)" stroke="rgba(86,86,216,0.2)" strokeWidth="1"/>
+                  <rect x="4" y="6" width="28" height="30" rx="4" fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.28)" strokeWidth="1"/>
+                  <rect x="8" y="2" width="28" height="30" rx="4" fill="rgba(86,86,216,0.18)" stroke="rgba(86,86,216,0.38)" strokeWidth="1"/>
+                  <line x1="13" y1="12" x2="32" y2="12" stroke="rgba(86,86,216,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="13" y1="18" x2="27" y2="18" stroke="rgba(86,86,216,0.38)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="13" y1="24" x2="30" y2="24" stroke="rgba(86,86,216,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M33 33 C38 31 38 39 33 41" stroke="rgba(65,211,126,0.6)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M31 31 L34.5 34 L37 31.5" stroke="rgba(65,211,126,0.6)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div style={{
+                fontSize: 11, fontWeight: 800, color: 'var(--brand-cyan)',
+                letterSpacing: '0.06em', marginBottom: 12,
+                background: 'rgba(86,86,216,0.1)', border: '1px solid rgba(86,86,216,0.22)',
+                display: 'inline-flex', padding: '4px 11px', borderRadius: 100, width: 'fit-content',
+              }}>
+                تكرار غير ضروري
+              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                إعادة بناء نفس العناصر
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                الخلفيات، الانتقالات، العدادات، والنصوص تُعاد صناعتها بدل إعادة استخدامها.
+              </p>
+            </div>
+
+            {/* Card 4 — صعوبة نقل المعرفة */}
+            <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+              <div className="card-visual" style={{ height: 76, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+                <svg width="52" height="44" viewBox="0 0 52 44" fill="none">
+                  <circle cx="26" cy="22" r="9" fill="rgba(86,86,216,0.14)" stroke="rgba(86,86,216,0.42)" strokeWidth="1.5"/>
+                  <circle cx="26" cy="19" r="2.8" fill="rgba(86,86,216,0.45)"/>
+                  <path d="M19 29 Q26 25 33 29" stroke="rgba(86,86,216,0.42)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                  <circle cx="6" cy="8" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
+                  <circle cx="46" cy="8" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
+                  <circle cx="6" cy="36" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
+                  <circle cx="46" cy="36" r="4" fill="rgba(65,211,126,0.08)" stroke="rgba(65,211,126,0.28)" strokeWidth="1"/>
+                  <line x1="18" y1="17" x2="10" y2="11" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="34" y1="17" x2="42" y2="11" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="18" y1="27" x2="10" y2="33" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
+                  <line x1="34" y1="27" x2="42" y2="33" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="3 2"/>
+                </svg>
+              </div>
+              <div style={{
+                fontSize: 11, fontWeight: 800, color: 'var(--brand-cyan)',
+                letterSpacing: '0.06em', marginBottom: 12,
+                background: 'rgba(86,86,216,0.1)', border: '1px solid rgba(86,86,216,0.22)',
+                display: 'inline-flex', padding: '4px 11px', borderRadius: 100, width: 'fit-content',
+              }}>
+                اعتماد على الأفراد
+              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+                صعوبة نقل المعرفة
+              </h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
+                بدون مكتبة منظمة، تبقى المعرفة مرتبطة بالأشخاص بدل أن تتحول إلى نظام واضح يمكن للفريق استخدامه وتطويره.
               </p>
             </div>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-            <VisualInconsistentQuality />
-            <div style={{ marginTop: 20 }}>
-              <div className="num-badge" style={{ marginBottom: 12 }}>02</div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                {home.challenges[1].title}
-              </h3>
-              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                {home.challenges[1].desc}
-              </p>
-            </div>
+          {/* Disclaimer note */}
+          <div className="bento-full" style={{ paddingTop: 6 }}>
+            <p style={{ fontSize: 11, color: 'var(--text-muted)', opacity: 0.5, letterSpacing: '0.02em', fontStyle: 'italic' }}>
+              * مؤشرات تشغيلية أولية قابلة للقياس بعد تجربة الفريق.
+            </p>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-            <VisualRepetitiveWork />
-            <div style={{ marginTop: 20 }}>
-              <div className="num-badge" style={{ marginBottom: 12 }}>03</div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                {home.challenges[2].title}
-              </h3>
-              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                {home.challenges[2].desc}
+          {/* Transition statement + CTA */}
+          <div className="bento-full glass-card" style={{
+            marginTop: 12,
+            padding: '36px 40px',
+            background: 'linear-gradient(135deg, rgba(65,211,126,0.05) 0%, rgba(32,32,168,0.1) 100%)',
+            borderColor: 'rgba(65,211,126,0.18)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            flexWrap: 'wrap', gap: 24,
+          }}>
+            <div style={{ maxWidth: 580 }}>
+              <div className="divider" style={{ marginBottom: 18 }} />
+              <p style={{ fontSize: 16, color: 'var(--text-muted)', lineHeight: 1.85, fontWeight: 500 }}>
+                هنا يأتي دور GML: تحويل العناصر المتكررة إلى نظام إنتاج قابل لإعادة الاستخدام.
               </p>
             </div>
+            <Link href="/library" className="btn-primary" style={{ flexShrink: 0 }}>
+              استعرض المكتبة
+            </Link>
           </div>
+
         </div>
       </section>
 
