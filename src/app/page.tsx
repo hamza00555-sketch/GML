@@ -223,72 +223,189 @@ function VisualNextStep() {
 }
 
 function HeroVisual() {
-  return (
-    <div className="glass-card" style={{
-      borderRadius: 28, padding: 0, minHeight: 400,
-      position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(145deg, rgba(32,32,168,0.28) 0%, rgba(0,0,57,0.55) 100%)',
-      borderColor: 'rgba(65,211,126,0.2)',
-    }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: -80, right: -80, width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(32,32,168,0.5) 0%, transparent 65%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: -60, left: -60, width: 220, height: 220, borderRadius: '50%', background: 'radial-gradient(circle, rgba(65,211,126,0.12) 0%, transparent 65%)', pointerEvents: 'none' }} />
+  const nodes: Array<{ label: string; icon: string; x: string; y: string; delay: string; dur: string; green: boolean }> = [
+    { label: 'خلفيات',   icon: 'layers', x: '50%', y: '10%', delay: '0s',    dur: '5.5s', green: true  },
+    { label: 'انتقالات', icon: 'arrow',  x: '84%', y: '38%', delay: '-2.2s', dur: '7s',   green: false },
+    { label: 'عدادات',   icon: 'circle', x: '72%', y: '76%', delay: '-4s',   dur: '6.2s', green: false },
+    { label: 'نصوص',     icon: 'text',   x: '16%', y: '72%', delay: '-1.1s', dur: '6.8s', green: false },
+    { label: 'رسوم',     icon: 'star',   x: '14%', y: '26%', delay: '-3.5s', dur: '5.8s', green: true  },
+  ]
 
-      {/* Window chrome */}
-      <div style={{ padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: 10, position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {['rgba(255,80,80,0.55)','rgba(255,180,0,0.45)','rgba(65,211,126,0.5)'].map((c,i) => (
-            <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />
-          ))}
-        </div>
-        <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.06)', maxWidth: 120 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span className="dot-live" />
-          <span style={{ fontSize: 9, color: 'rgba(65,211,126,0.65)', fontWeight: 700, letterSpacing: '0.06em' }}>GML</span>
-        </div>
+  return (
+    <div style={{ position: 'relative', padding: '22px 0' }}>
+      {/* Overflow badge — floats above card top edge */}
+      <div style={{
+        position: 'absolute', top: 2, left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex', alignItems: 'center', gap: 6,
+        padding: '5px 14px', borderRadius: 100,
+        background: 'rgba(22,22,148,0.65)',
+        border: '1px solid rgba(86,86,216,0.48)',
+        backdropFilter: 'blur(14px)',
+        boxShadow: '0 4px 22px rgba(22,22,148,0.5)',
+        animation: 'floatY 6s ease-in-out infinite',
+        animationDelay: '-1s',
+        zIndex: 4,
+        whiteSpace: 'nowrap',
+      }}>
+        <span className="dot-live" style={{ width: 5, height: 5 }} />
+        <span style={{ fontSize: 9, fontWeight: 800, color: 'rgba(150,150,255,0.9)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+          قيد التطوير
+        </span>
       </div>
 
-      {/* Content */}
-      <div style={{ padding: '20px 20px 24px', position: 'relative', zIndex: 1 }}>
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: 'rgba(86,86,216,0.7)', textTransform: 'uppercase', marginBottom: 14 }}>
-          مكتبة العناصر
+      {/* Overflow chip — floats below card bottom edge */}
+      <div style={{
+        position: 'absolute', bottom: 2, left: 28,
+        padding: '4px 12px', borderRadius: 8,
+        background: 'rgba(65,211,126,0.1)',
+        border: '1px solid rgba(65,211,126,0.3)',
+        backdropFilter: 'blur(12px)',
+        fontSize: 9, fontWeight: 800,
+        color: 'rgba(65,211,126,0.82)',
+        letterSpacing: '0.1em',
+        animation: 'floatY 7s ease-in-out infinite',
+        animationDelay: '-4s',
+        zIndex: 4,
+        boxShadow: '0 4px 16px rgba(65,211,126,0.14)',
+      }}>
+        v 1.0
+      </div>
+
+      <div className="glass-card" style={{
+        borderRadius: 28, padding: 0,
+        minHeight: 440,
+        position: 'relative',
+        overflow: 'visible',
+        background: 'linear-gradient(145deg, rgba(32,32,168,0.22) 0%, rgba(0,0,57,0.52) 100%)',
+        borderColor: 'rgba(65,211,126,0.2)',
+      }}>
+        {/* Grid overlay — clipped inside card shape */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          borderRadius: 28, overflow: 'hidden',
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        {/* Ambient blobs */}
+        <div style={{ position: 'absolute', top: -70, right: -70, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(32,32,168,0.42) 0%, transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
+        <div style={{ position: 'absolute', bottom: -60, left: -60, width: 200, height: 200, borderRadius: '50%', background: 'radial-gradient(circle, rgba(65,211,126,0.1) 0%, transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
+
+        {/* SVG connector lines — center (200,220) to each node */}
+        <svg
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}
+          viewBox="0 0 400 440"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <line x1="200" y1="220" x2="200" y2="46"  stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="4 5"/>
+          <line x1="200" y1="220" x2="336" y2="167" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
+          <line x1="200" y1="220" x2="288" y2="334" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
+          <line x1="200" y1="220" x2="64"  y2="317" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
+          <line x1="200" y1="220" x2="56"  y2="114" stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="4 5"/>
+          <circle cx="200" cy="220" r="138" stroke="rgba(86,86,216,0.07)" strokeWidth="1" fill="none" strokeDasharray="6 8"/>
+        </svg>
+
+        {/* Central hub */}
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 96, height: 96,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 2,
+        }}>
+          <div style={{ position: 'absolute', width: 96, height: 96, borderRadius: '50%', border: '1px solid rgba(65,211,126,0.18)', animation: 'floatY 9s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', width: 72, height: 72, borderRadius: '50%', border: '1px solid rgba(65,211,126,0.28)', background: 'rgba(65,211,126,0.03)', animation: 'floatY 7s ease-in-out infinite', animationDelay: '-3s' }} />
+          <div style={{
+            position: 'relative', zIndex: 1,
+            width: 52, height: 52, borderRadius: '50%',
+            background: 'linear-gradient(135deg, rgba(32,32,168,0.65) 0%, rgba(0,0,78,0.88) 100%)',
+            border: '1.5px solid rgba(65,211,126,0.52)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 0 32px rgba(65,211,126,0.22), inset 0 0 18px rgba(65,211,126,0.06)',
+            animation: 'playBtnPulse 4s ease-in-out infinite',
+          }}>
+            <span style={{ fontSize: 11, fontWeight: 900, color: 'rgba(65,211,126,0.95)', letterSpacing: '0.06em', fontFamily: 'monospace' }}>GML</span>
+          </div>
         </div>
 
-        {/* Floating tiles */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 16 }}>
-          {[
-            { label: 'خلفيات', icon: 'layers', bg: 'rgba(32,32,168,0.42)', border: 'rgba(86,86,216,0.45)', dur: '5.5s', delay: '0s' },
-            { label: 'انتقالات', icon: 'arrow', bg: 'rgba(65,211,126,0.14)', border: 'rgba(65,211,126,0.3)', dur: '7s', delay: '-2s' },
-            { label: 'عدادات', icon: 'circle', bg: 'rgba(32,32,168,0.32)', border: 'rgba(86,86,216,0.35)', dur: '6s', delay: '-4s' },
-            { label: 'نصوص', icon: 'text', bg: 'rgba(32,32,168,0.26)', border: 'rgba(86,86,216,0.28)', dur: '6.5s', delay: '-1s' },
-            { label: 'رسوم', icon: 'star', bg: 'rgba(65,211,126,0.1)', border: 'rgba(65,211,126,0.22)', dur: '5s', delay: '-3s' },
-            { label: 'موشن', icon: 'wave', bg: 'rgba(32,32,168,0.2)', border: 'rgba(86,86,216,0.22)', dur: '7.5s', delay: '-0.5s' },
-          ].map((tile, i) => (
-            <div key={i} style={{
-              borderRadius: 14, padding: '12px 8px 10px', background: tile.bg, border: `1px solid ${tile.border}`,
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-              animation: `floatY ${tile.dur} ease-in-out infinite`,
-              animationDelay: tile.delay,
+        {/* Module nodes */}
+        {nodes.map((node, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            top: node.y, left: node.x,
+            transform: 'translate(-50%, -50%)',
+            animation: `floatY ${node.dur} ease-in-out infinite`,
+            animationDelay: node.delay,
+            zIndex: 2,
+          }}>
+            <div style={{
+              borderRadius: 12, padding: '9px 13px',
+              background: node.green ? 'rgba(65,211,126,0.1)' : 'rgba(32,32,168,0.48)',
+              border: `1px solid ${node.green ? 'rgba(65,211,126,0.32)' : 'rgba(86,86,216,0.44)'}`,
+              backdropFilter: 'blur(14px)',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
+              minWidth: 62,
+              boxShadow: node.green ? '0 4px 20px rgba(65,211,126,0.14)' : '0 4px 20px rgba(32,32,168,0.28)',
             }}>
-              <div style={{ height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {tile.icon === 'layers' && <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect x="0" y="6" width="18" height="12" rx="3" fill="rgba(86,86,216,0.35)" stroke="rgba(86,86,216,0.5)" strokeWidth="1"/><rect x="2" y="3" width="18" height="12" rx="3" fill="rgba(86,86,216,0.28)" stroke="rgba(86,86,216,0.42)" strokeWidth="1"/><rect x="4" y="0" width="18" height="12" rx="3" fill="rgba(86,86,216,0.2)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/></svg>}
-                {tile.icon === 'arrow'  && <svg width="28" height="16" viewBox="0 0 28 16" fill="none"><rect x="0" y="2" width="10" height="12" rx="2" fill="rgba(65,211,126,0.2)" stroke="rgba(65,211,126,0.4)" strokeWidth="1"/><path d="M12 8H16M14 5L17 8L14 11" stroke="rgba(65,211,126,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><rect x="18" y="2" width="10" height="12" rx="2" fill="rgba(65,211,126,0.3)" stroke="rgba(65,211,126,0.55)" strokeWidth="1"/></svg>}
-                {tile.icon === 'circle' && <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="rgba(86,86,216,0.28)" strokeWidth="2.5"/><path d="M11 2 A9 9 0 0 1 20 11" stroke="rgba(86,86,216,0.72)" strokeWidth="2.5" strokeLinecap="round"/></svg>}
-                {tile.icon === 'text'   && <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 20, color: 'rgba(86,86,216,0.85)', lineHeight: 1 }}>T</span>}
-                {tile.icon === 'star'   && <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="4" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.55)" strokeWidth="1.2"/>{[0,60,120,180,240,300].map((deg,j)=>{ const r=(deg*Math.PI)/180; return <line key={j} x1={11+5*Math.cos(r)} y1={11+5*Math.sin(r)} x2={11+9*Math.cos(r)} y2={11+9*Math.sin(r)} stroke="rgba(65,211,126,0.45)" strokeWidth="1.5" strokeLinecap="round"/>})}</svg>}
-                {tile.icon === 'wave'   && <svg width="32" height="14" viewBox="0 0 32 14" fill="none"><path d="M2 7 C5 2 9 12 13 7 C17 2 21 12 25 7 C27 4 29 8 30 7" stroke="rgba(86,86,216,0.65)" strokeWidth="1.5" strokeLinecap="round"/></svg>}
+              <div style={{ height: 20, display: 'flex', alignItems: 'center' }}>
+                {node.icon === 'layers' && (
+                  <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                    <rect x="0" y="5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.42)" strokeWidth="1"/>
+                    <rect x="2" y="2.5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.15)" stroke="rgba(65,211,126,0.32)" strokeWidth="1"/>
+                    <rect x="4" y="0" width="14" height="11" rx="3" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.25)" strokeWidth="1"/>
+                  </svg>
+                )}
+                {node.icon === 'arrow' && (
+                  <svg width="26" height="14" viewBox="0 0 26 14" fill="none">
+                    <rect x="0" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.22)" stroke="rgba(86,86,216,0.44)" strokeWidth="1"/>
+                    <path d="M11 7H15M13 4L16 7L13 10" stroke="rgba(86,86,216,0.72)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="17" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.32)" stroke="rgba(86,86,216,0.54)" strokeWidth="1"/>
+                  </svg>
+                )}
+                {node.icon === 'circle' && (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="8" stroke="rgba(86,86,216,0.25)" strokeWidth="2.5"/>
+                    <path d="M10 2 A8 8 0 0 1 18 10 A8 8 0 0 1 13.9 17.1" stroke="rgba(65,211,126,0.72)" strokeWidth="2.5" strokeLinecap="round"/>
+                    <circle cx="10" cy="10" r="2.5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1"/>
+                  </svg>
+                )}
+                {node.icon === 'text' && (
+                  <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 18, color: 'rgba(86,86,216,0.88)', lineHeight: 1 }}>T</span>
+                )}
+                {node.icon === 'star' && (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="3.5" fill="rgba(65,211,126,0.18)" stroke="rgba(65,211,126,0.45)" strokeWidth="1.2"/>
+                    {[0, 60, 120, 180, 240, 300].map((deg, j) => {
+                      const r = (deg * Math.PI) / 180
+                      return <line key={j} x1={10 + 4.5 * Math.cos(r)} y1={10 + 4.5 * Math.sin(r)} x2={10 + 8 * Math.cos(r)} y2={10 + 8 * Math.sin(r)} stroke="rgba(65,211,126,0.38)" strokeWidth="1.2" strokeLinecap="round"/>
+                    })}
+                  </svg>
+                )}
               </div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(244,251,255,0.55)', letterSpacing: '0.02em' }}>{tile.label}</div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(244,251,255,0.62)', letterSpacing: '0.03em', whiteSpace: 'nowrap' }}>
+                {node.label}
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
         {/* Status bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontSize: 10, color: 'rgba(244,251,255,0.35)', fontWeight: 600 }}>نظام إنتاج بصري</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span className="dot-live" style={{ width: 6, height: 6 }} />
-            <span style={{ fontSize: 10, color: 'rgba(65,211,126,0.65)', fontWeight: 700, letterSpacing: '0.04em' }}>v1.0</span>
+        <div style={{
+          position: 'absolute', bottom: 18, left: 18, right: 18,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '8px 14px', borderRadius: 10,
+          background: 'rgba(0,0,0,0.22)',
+          border: '1px solid rgba(255,255,255,0.06)',
+          zIndex: 2,
+        }}>
+          <span style={{ fontSize: 10, color: 'rgba(244,251,255,0.28)', fontWeight: 600, letterSpacing: '0.03em' }}>نظام إنتاج بصري</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 10, color: 'rgba(86,86,216,0.55)', fontWeight: 600 }}>5 عناصر</span>
+            <div style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.1)' }} />
+            <span className="dot-live" style={{ width: 5, height: 5 }} />
+            <span style={{ fontSize: 10, color: 'rgba(65,211,126,0.68)', fontWeight: 700 }}>جاهز</span>
           </div>
         </div>
       </div>
@@ -312,13 +429,13 @@ export default function Home() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section style={{ paddingTop: 128, paddingBottom: 80 }}>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 48, alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 48, alignItems: 'center' }}>
             {/* Text */}
             <div>
               <div className="hero-enter hero-enter-0" style={{ marginBottom: 20 }}>
                 <span className="label-tag">
                   <span className="dot-live" />
-                  نسخة العرض التجريبية
+                  نظام الإنتاج البصري
                 </span>
               </div>
 
@@ -326,18 +443,32 @@ export default function Home() {
                 {home.hero.title}
               </h1>
 
-              <p className="section-subtitle hero-enter hero-enter-2" style={{ maxWidth: 520, marginBottom: 40 }}>
+              <p className="section-subtitle hero-enter hero-enter-2" style={{ maxWidth: 520, marginBottom: 32 }}>
                 {home.hero.subtitle}
               </p>
 
-              <div className="hero-enter hero-enter-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              {/* Metric chips */}
+              <div className="hero-enter hero-enter-3" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 36 }}>
+                {[
+                  { num: '3×',   label: 'سرعة الإنتاج' },
+                  { num: '+50',  label: 'عنصر جاهز' },
+                  { num: '100%', label: 'اتساق الهوية' },
+                ].map((m, i) => (
+                  <div key={i} className="metric-chip">
+                    <span className="metric-chip-num">{m.num}</span>
+                    <span className="metric-chip-label">{m.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="hero-enter hero-enter-4" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <Link href="/library" className="btn-primary">{home.hero.primaryCTA}</Link>
                 <Link href="/experiment" className="btn-secondary">{home.hero.secondaryCTA}</Link>
               </div>
             </div>
 
             {/* Visual panel */}
-            <div className="hero-enter-visual">
+            <div className="hero-enter-visual hero-visual-col">
               <HeroVisual />
             </div>
           </div>

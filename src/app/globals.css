@@ -57,6 +57,7 @@ body {
     radial-gradient(circle at 88% 88%, rgba(65, 211, 126, 0.07), transparent 22%),
     linear-gradient(160deg, #000039 0%, #00004E 55%, #0A0A72 100%);
   min-height: 100vh;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -472,6 +473,40 @@ body::after {
 
 /* ─── Play button pulse ───────────────────────────────── */
 .play-btn-pulse { animation: playBtnPulse 2.8s ease-in-out infinite; }
+
+/* ─── Hero grid responsive ────────────────────────────── */
+@media (max-width: 800px) {
+  .hero-visual-col { display: none; }
+}
+
+/* ─── Metric chips ────────────────────────────────────── */
+.metric-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.metric-chip-num {
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--brand-green);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-chip-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.2;
+}
 
 /* ─── prefers-reduced-motion ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
