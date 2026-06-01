@@ -56,26 +56,26 @@ function ComparisonCard({ title, text, color, type }: {
     <div
       ref={ref}
       className={`glass-card reveal-scale${visible ? ' is-visible' : ''}`}
-      style={{ borderRadius: 20, padding: 28 }}
+      style={{ borderRadius: 20, padding: 28, overflow: 'hidden' }}
     >
       <div className="card-visual">
         <div style={{ marginBottom: 20 }}>
           {type === 'time' ? (
-            <div className="asset-wrap" style={{ borderRadius: 10, marginBottom: 4 }}>
+            <div style={{ margin: '-28px -28px 0 -28px', height: 260, borderRadius: '20px 20px 0 0', overflow: 'hidden', flexShrink: 0 }}>
               <img
                 src="/assets/gml/phase-1/experiment-time.png"
                 alt="مقارنة الوقت — بدون GML مقابل مع GML"
                 loading="lazy"
-                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 220 }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
               />
             </div>
           ) : (
-            <div className="asset-wrap" style={{ borderRadius: 10, marginBottom: 4 }}>
+            <div style={{ margin: '-28px -28px 0 -28px', height: 260, borderRadius: '20px 20px 0 0', overflow: 'hidden', flexShrink: 0 }}>
               <img
                 src="/assets/gml/phase-1/experiment-quality.png"
                 alt="مقارنة الجودة — قبل وبعد GML"
                 loading="lazy"
-                style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 220 }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
               />
             </div>
           )}

@@ -8,7 +8,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 /* ── Challenge visuals ─────────────────────────────── */
 function VisualSlowProduction() {
   return (
-    <div className="asset-wrap" style={{ height: 180 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 240, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-1/challenge-slow.png"
         alt="الإنتاج البطيء — مشكلة في إنتاج الموشن"
@@ -21,7 +21,7 @@ function VisualSlowProduction() {
 
 function VisualInconsistentQuality() {
   return (
-    <div className="asset-wrap" style={{ height: 180 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 240, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-1/challenge-quality.png"
         alt="عدم ثبات الجودة — مشكلة في اتساق المخرجات"
@@ -34,7 +34,7 @@ function VisualInconsistentQuality() {
 
 function VisualRepetitiveWork() {
   return (
-    <div className="asset-wrap" style={{ height: 180 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 240, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-1/challenge-repetitive.png"
         alt="تكرار العمل — إعادة بناء العناصر في كل مشروع"
@@ -62,12 +62,12 @@ const driftStyles = `
 /* ── Nav card visuals ──────────────────────────────── */
 function VisualLibrary() {
   return (
-    <div className="asset-wrap" style={{ borderRadius: 12, marginBottom: 4, overflow: 'hidden' }}>
+    <div style={{ margin: '-32px -32px 0 -32px', height: 280, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-2/mvp-library.png"
         alt="مكتبة GML — الإصدار التجريبي الأول"
         loading="lazy"
-        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 260 }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
       />
     </div>
   )
@@ -75,12 +75,12 @@ function VisualLibrary() {
 
 function VisualExperiment() {
   return (
-    <div className="asset-wrap" style={{ borderRadius: 12, overflow: 'hidden' }}>
+    <div style={{ margin: '-32px -32px 0 -32px', height: 220, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-1/experiment-timelapse.png"
         alt="التجربة الميدانية — تسجيل شاشة التايم لابس"
         loading="lazy"
-        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 180 }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
       />
     </div>
   )
@@ -88,12 +88,12 @@ function VisualExperiment() {
 
 function VisualRoadmap() {
   return (
-    <div className="asset-wrap" style={{ borderRadius: 10 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 160, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-1/roadmap-library.png"
         alt="خارطة الطريق — مراحل نمو المكتبة"
         loading="lazy"
-        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 130 }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
       />
     </div>
   )
@@ -101,12 +101,12 @@ function VisualRoadmap() {
 
 function VisualGAB() {
   return (
-    <div className="asset-wrap" style={{ borderRadius: 10 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 160, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-2/gab-future.png"
         alt="GAB — الذكاء الاصطناعي في إنتاج الموشن"
         loading="lazy"
-        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 130 }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
       />
     </div>
   )
@@ -114,12 +114,12 @@ function VisualGAB() {
 
 function VisualNextStep() {
   return (
-    <div className="asset-wrap" style={{ borderRadius: 10 }}>
+    <div style={{ margin: '-28px -28px 0 -28px', height: 160, borderRadius: '32px 32px 0 0', overflow: 'hidden', flexShrink: 0 }}>
       <img
         src="/assets/gml/phase-2/next-step-prototype.png"
         alt="الخطوة القادمة — نماذج أولية وتطوير"
         loading="lazy"
-        style={{ width: '100%', display: 'block', objectFit: 'contain', maxHeight: 130 }}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
       />
     </div>
   )
@@ -204,7 +204,7 @@ export default function Home() {
             <h2 className="section-title" style={{ marginTop: 12 }}>التحدي الحالي</h2>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <VisualSlowProduction />
             <div style={{ marginTop: 20 }}>
               <div className="num-badge" style={{ marginBottom: 12 }}>01</div>
@@ -217,7 +217,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <VisualInconsistentQuality />
             <div style={{ marginTop: 20 }}>
               <div className="num-badge" style={{ marginBottom: 12 }}>02</div>
@@ -230,7 +230,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
+          <div className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <VisualRepetitiveWork />
             <div style={{ marginTop: 20 }}>
               <div className="num-badge" style={{ marginBottom: 12 }}>03</div>
@@ -256,7 +256,7 @@ export default function Home() {
             <h2 className="section-title">استكشف أقسام المشروع</h2>
           </div>
 
-            <Link href="/library" className="bento-large glass-card reveal-child" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <Link href="/library" className="bento-large glass-card reveal-child" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none', overflow: 'hidden' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <VisualLibrary />
               </div>
@@ -276,7 +276,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/experiment" className="bento-medium glass-card reveal-child" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <Link href="/experiment" className="bento-medium glass-card reveal-child" style={{ padding: 32, display: 'flex', flexDirection: 'column', textDecoration: 'none', overflow: 'hidden' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <VisualExperiment />
               </div>
@@ -293,7 +293,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/roadmap" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <Link href="/roadmap" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none', overflow: 'hidden' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <VisualRoadmap />
               </div>
@@ -310,7 +310,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/gab" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <Link href="/gab" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none', overflow: 'hidden' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <VisualGAB />
               </div>
@@ -327,7 +327,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/next-step" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
+            <Link href="/next-step" className="bento-small glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column', textDecoration: 'none', overflow: 'hidden' }}>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <VisualNextStep />
               </div>

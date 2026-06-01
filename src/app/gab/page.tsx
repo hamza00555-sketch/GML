@@ -17,14 +17,14 @@ function CapabilityCard({
   letter: string; title: string; desc: string; color: string; borderColor: string
 }) {
   return (
-    <div className="glass-card gab-card" style={{ borderRadius: 22, padding: 32, borderColor }}>
+    <div className="glass-card gab-card" style={{ borderRadius: 22, padding: 32, borderColor, overflow: 'hidden' }}>
       <div className="card-visual">
-        <div className="asset-wrap" style={{ marginBottom: 22, borderRadius: 10 }}>
+        <div style={{ margin: '-32px -32px 0 -32px', height: 240, borderRadius: '22px 22px 0 0', overflow: 'hidden', flexShrink: 0 }}>
           <img
             src={GAB_IMAGES[letter]?.src ?? ''}
             alt={GAB_IMAGES[letter]?.alt ?? title}
             loading="lazy"
-            style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 200 }}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
           />
         </div>
         <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-main)', marginBottom: 12, letterSpacing: '-0.02em' }}>

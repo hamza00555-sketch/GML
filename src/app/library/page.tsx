@@ -50,15 +50,15 @@ function LibraryItemCard({ title, desc, index, groupVisible }: {
   ]
 
   return (
-    <div className="glass-card lib-card" style={{ borderRadius: 22, padding: 28, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div className="glass-card lib-card" style={{ borderRadius: 22, padding: 28, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <div className="card-visual" style={{ marginBottom: 20, flex: 1, display: 'flex', flexDirection: 'column' }}>
         {LIBRARY_IMAGES[index] ? (
-          <div className="asset-wrap" style={{ marginBottom: 16, borderRadius: 10, overflow: 'hidden' }}>
+          <div style={{ margin: '-28px -28px 0 -28px', height: 220, borderRadius: '22px 22px 0 0', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src={LIBRARY_IMAGES[index].src}
               alt={LIBRARY_IMAGES[index].alt}
               loading="lazy"
-              style={{ width: '100%', maxHeight: 200, objectFit: 'contain', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
             />
           </div>
         ) : (

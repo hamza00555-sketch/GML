@@ -194,15 +194,15 @@ function SupportCard({
   }
 
   return (
-    <div className="glass-card" style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%' }}>
+    <div className="glass-card" style={{ borderRadius: 24, padding: '36px 36px 32px', height: '100%', overflow: 'hidden' }}>
       <div className="card-visual" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
         {SUPPORT_IMAGES[num] && (
-          <div className="asset-wrap" style={{ marginBottom: 20, borderRadius: 10 }}>
+          <div style={{ margin: '-36px -36px 0 -36px', height: 200, borderRadius: '24px 24px 0 0', overflow: 'hidden', flexShrink: 0 }}>
             <img
               src={SUPPORT_IMAGES[num].src}
               alt={SUPPORT_IMAGES[num].alt}
               loading="lazy"
-              style={{ width: '100%', objectFit: 'contain', display: 'block', maxHeight: 160 }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
             />
           </div>
         )}
