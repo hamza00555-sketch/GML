@@ -530,6 +530,22 @@ body::after {
 /* ─── Play button pulse ───────────────────────────────── */
 .play-btn-pulse { animation: playBtnPulse 2.8s ease-in-out infinite; }
 
+/* ─── Meteor Shower ───────────────────────────────────── */
+@keyframes meteorShoot {
+  0%   { transform: translate(0, 0) rotate(-38deg); opacity: 0; }
+  7%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate(-88vw, 100vh) rotate(-38deg); opacity: 0; }
+}
+
+.meteor-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
 /* ─── Hero grid responsive ────────────────────────────── */
 @media (max-width: 800px) {
   .hero-visual-col { display: none; }
@@ -582,6 +598,7 @@ body::after {
   .play-btn-pulse,
   .dot-live { animation: none !important; }
   .floating-asset { transform: rotate(var(--asset-rotate, -4deg)) !important; }
+  .meteor-bg { display: none; }
   .carousel-enter-next,
   .carousel-enter-prev { animation-duration: 0.01ms !important; }
   .glass-card { transition: border-color 150ms ease, background 150ms ease !important; }

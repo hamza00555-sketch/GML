@@ -96,6 +96,40 @@ const driftStyles = `
 }
 `
 
+/* ── Meteor Shower ─────────────────────────────────── */
+function MeteorShower() {
+  const meteors = [
+    { top: '-2%', right: '85%', dur: '9s',  delay: '0s',    size: 36, opacity: 0.38 },
+    { top: '-5%', right: '62%', dur: '12s', delay: '-3.5s', size: 52, opacity: 0.28 },
+    { top: '-1%', right: '42%', dur: '8s',  delay: '-6.5s', size: 28, opacity: 0.45 },
+    { top: '-6%', right: '92%', dur: '15s', delay: '-1.5s', size: 64, opacity: 0.22 },
+    { top: '-3%', right: '74%', dur: '10s', delay: '-8s',   size: 40, opacity: 0.35 },
+    { top: '-4%', right: '28%', dur: '11s', delay: '-4.5s', size: 44, opacity: 0.20 },
+    { top: '-2%', right: '14%', dur: '13s', delay: '-10s',  size: 32, opacity: 0.30 },
+  ]
+  return (
+    <div className="meteor-bg">
+      {meteors.map((m, i) => (
+        <div key={i} style={{
+          position: 'absolute',
+          top: m.top,
+          right: m.right,
+          animation: `meteorShoot ${m.dur} cubic-bezier(0.55, 0, 0.85, 0.5) ${m.delay} infinite`,
+          willChange: 'transform, opacity',
+          opacity: 0,
+        }}>
+          <svg width={m.size} height={Math.round(m.size * 0.9)} viewBox="0 0 60 54" fill="none">
+            <path
+              d="M 4 7 C 12 1 30 5 53 27 C 30 49 12 53 4 47 C 10 40 16 35 20 27 C 16 19 10 14 4 7 Z"
+              fill={`rgba(65, 211, 126, ${m.opacity})`}
+            />
+          </svg>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 /* ── Nav card visuals ──────────────────────────────── */
 function VisualLibrary() {
   return (
@@ -346,36 +380,36 @@ function HeroVisual() {
               border: `1px solid ${node.green ? 'rgba(65,211,126,0.32)' : 'rgba(86,86,216,0.44)'}`,
               backdropFilter: 'blur(14px)',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
-              minWidth: 62,
+              minWidth: 82,
               boxShadow: node.green ? '0 4px 20px rgba(65,211,126,0.14)' : '0 4px 20px rgba(32,32,168,0.28)',
             }}>
-              <div style={{ height: 20, display: 'flex', alignItems: 'center' }}>
+              <div style={{ height: 40, display: 'flex', alignItems: 'center' }}>
                 {node.icon === 'layers' && (
-                  <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                  <svg width="40" height="32" viewBox="0 0 20 16" fill="none">
                     <rect x="0" y="5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.80)" strokeWidth="1"/>
                     <rect x="2" y="2.5" width="14" height="11" rx="3" fill="rgba(65,211,126,0.45)" stroke="rgba(65,211,126,0.70)" strokeWidth="1"/>
                     <rect x="4" y="0" width="14" height="11" rx="3" fill="rgba(65,211,126,0.35)" stroke="rgba(65,211,126,0.62)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'arrow' && (
-                  <svg width="26" height="14" viewBox="0 0 26 14" fill="none">
+                  <svg width="52" height="28" viewBox="0 0 26 14" fill="none">
                     <rect x="0" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.55)" stroke="rgba(86,86,216,0.80)" strokeWidth="1"/>
                     <path d="M11 7H15M13 4L16 7L13 10" stroke="rgba(86,86,216,0.92)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <rect x="17" y="1" width="9" height="12" rx="2.5" fill="rgba(86,86,216,0.65)" stroke="rgba(86,86,216,0.88)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'circle' && (
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <svg width="40" height="40" viewBox="0 0 20 20" fill="none">
                     <circle cx="10" cy="10" r="8" stroke="rgba(86,86,216,0.60)" strokeWidth="2.5"/>
                     <path d="M10 2 A8 8 0 0 1 18 10 A8 8 0 0 1 13.9 17.1" stroke="rgba(65,211,126,0.90)" strokeWidth="2.5" strokeLinecap="round"/>
                     <circle cx="10" cy="10" r="2.5" fill="rgba(65,211,126,0.50)" stroke="rgba(65,211,126,0.80)" strokeWidth="1"/>
                   </svg>
                 )}
                 {node.icon === 'text' && (
-                  <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 18, color: 'rgba(86,86,216,1.0)', lineHeight: 1 }}>T</span>
+                  <span style={{ fontFamily: 'Georgia,serif', fontWeight: 900, fontSize: 36, color: 'rgba(86,86,216,1.0)', lineHeight: 1 }}>T</span>
                 )}
                 {node.icon === 'star' && (
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <svg width="40" height="40" viewBox="0 0 20 20" fill="none">
                     <circle cx="10" cy="10" r="3.5" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.85)" strokeWidth="1.2"/>
                     {[0, 60, 120, 180, 240, 300].map((deg, j) => {
                       const r = (deg * Math.PI) / 180
@@ -431,8 +465,9 @@ export default function Home() {
   const navReveal = useScrollReveal(0.08)
 
   return (
-    <main style={{ minHeight: '100vh' }}>
+    <main style={{ minHeight: '100vh', position: 'relative', zIndex: 2 }}>
       <style>{driftStyles}</style>
+      <MeteorShower />
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
