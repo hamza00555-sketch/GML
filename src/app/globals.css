@@ -532,10 +532,10 @@ body::after {
 
 /* ─── Meteor Shower ───────────────────────────────────── */
 @keyframes meteorShoot {
-  0%   { transform: translate(0, 0) rotate(-38deg); opacity: 0; }
-  7%   { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translate(-88vw, 100vh) rotate(-38deg); opacity: 0; }
+  0%   { transform: translate3d(0, 0, 0)          rotate(135deg) scale(0.01); }
+  8%   { transform: translate3d(-9vw, 8vh, 0)     rotate(135deg) scale(1); }
+  92%  { transform: translate3d(-101vw, 92vh, 0)  rotate(135deg) scale(1); }
+  100% { transform: translate3d(-110vw, 100vh, 0) rotate(135deg) scale(0.01); }
 }
 
 .meteor-bg {
@@ -543,7 +543,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  overflow: hidden;
+  contain: layout style;
 }
 
 /* ─── Hero grid responsive ────────────────────────────── */

@@ -99,13 +99,13 @@ const driftStyles = `
 /* ── Meteor Shower ─────────────────────────────────── */
 function MeteorShower() {
   const meteors = [
-    { top: '-2%', right: '85%', dur: '9s',  delay: '0s',    size: 36, opacity: 0.38 },
-    { top: '-5%', right: '62%', dur: '12s', delay: '-3.5s', size: 52, opacity: 0.28 },
-    { top: '-1%', right: '42%', dur: '8s',  delay: '-6.5s', size: 28, opacity: 0.45 },
-    { top: '-6%', right: '92%', dur: '15s', delay: '-1.5s', size: 64, opacity: 0.22 },
-    { top: '-3%', right: '74%', dur: '10s', delay: '-8s',   size: 40, opacity: 0.35 },
-    { top: '-4%', right: '28%', dur: '11s', delay: '-4.5s', size: 44, opacity: 0.20 },
-    { top: '-2%', right: '14%', dur: '13s', delay: '-10s',  size: 32, opacity: 0.30 },
+    { top:  '2%', right: '-5%',  dur: '9s',  delay: '0s',    size: 36, opacity: 0.40 },
+    { top: '10%', right: '-18%', dur: '12s', delay: '-3.5s', size: 52, opacity: 0.30 },
+    { top: '-2%', right: '-30%', dur: '8s',  delay: '-6.5s', size: 28, opacity: 0.48 },
+    { top: '18%', right: '-8%',  dur: '15s', delay: '-1.5s', size: 64, opacity: 0.22 },
+    { top:  '5%', right: '-22%', dur: '10s', delay: '-8s',   size: 40, opacity: 0.36 },
+    { top: '14%', right: '-12%', dur: '11s', delay: '-4.5s', size: 44, opacity: 0.26 },
+    { top: '-4%', right: '-40%', dur: '13s', delay: '-10s',  size: 32, opacity: 0.32 },
   ]
   return (
     <div className="meteor-bg">
@@ -114,16 +114,19 @@ function MeteorShower() {
           position: 'absolute',
           top: m.top,
           right: m.right,
-          animation: `meteorShoot ${m.dur} cubic-bezier(0.55, 0, 0.85, 0.5) ${m.delay} infinite`,
-          willChange: 'transform, opacity',
-          opacity: 0,
+          opacity: m.opacity,
+          animation: `meteorShoot ${m.dur} cubic-bezier(0.4, 0, 0.6, 1) ${m.delay} infinite`,
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
         }}>
-          <svg width={m.size} height={Math.round(m.size * 0.9)} viewBox="0 0 60 54" fill="none">
-            <path
-              d="M 4 7 C 12 1 30 5 53 27 C 30 49 12 53 4 47 C 10 40 16 35 20 27 C 16 19 10 14 4 7 Z"
-              fill={`rgba(65, 211, 126, ${m.opacity})`}
-            />
-          </svg>
+          <img
+            src="/assets/gml/decorative/arrow-meteor.png"
+            width={m.size}
+            height={Math.round(m.size * 1.54)}
+            alt=""
+            aria-hidden="true"
+            style={{ display: 'block' }}
+          />
         </div>
       ))}
     </div>
