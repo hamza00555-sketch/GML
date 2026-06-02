@@ -17,12 +17,10 @@
   backface-visibility: hidden;
 }
 
-/* RTL default: head enters from the right, trail follows behind */
 .meteorArrow--rtl {
   flex-direction: row;
 }
 
-/* LTR variant: mirror the whole component for left-to-right travel */
 .meteorArrow--ltr {
   scale: -1 1;
 }
@@ -31,31 +29,30 @@
 
 .meteorArrow__trail {
   position: relative;
-  width: 140px;
-  height: 3px;
+  width: 200px;
+  height: 5px;
   flex-shrink: 0;
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(65, 211, 126, 0.20) 45%,
-    rgba(65, 211, 126, 0.70) 100%
+    rgba(65, 211, 126, 0.22) 45%,
+    rgba(65, 211, 126, 0.75) 100%
   );
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-/* Wide soft glow halo behind the trail */
 .meteorArrow__trail::before {
   content: '';
   position: absolute;
-  inset: -8px 0 -8px 0;
+  inset: -12px 0 -12px 0;
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(65, 211, 126, 0.07) 40%,
-    rgba(65, 211, 126, 0.28) 100%
+    rgba(65, 211, 126, 0.08) 40%,
+    rgba(65, 211, 126, 0.32) 100%
   );
-  border-radius: 8px;
-  filter: blur(6px);
+  border-radius: 10px;
+  filter: blur(8px);
 }
 
 /* ── Head ────────────────────────────────────────────── */
@@ -63,23 +60,23 @@
 .meteorArrow__head {
   flex-shrink: 0;
   filter:
-    drop-shadow(0 0 4px rgba(65, 211, 126, 1.0))
-    drop-shadow(0 0 10px rgba(65, 211, 126, 0.80))
-    drop-shadow(0 0 22px rgba(65, 211, 126, 0.40));
+    drop-shadow(0 0 6px rgba(65, 211, 126, 1.0))
+    drop-shadow(0 0 14px rgba(65, 211, 126, 0.82))
+    drop-shadow(0 0 32px rgba(65, 211, 126, 0.44));
 }
 
-/* Portrait SVG: viewBox 0 0 80 123 → width:height ≈ 0.65 */
+/* PNG aspect ratio 1559:2391 ≈ 0.65 */
 .meteorArrow__svg {
   display: block;
-  width: 26px;
-  height: 40px;
+  width: 52px;
+  height: 80px;
 }
 
 /* ── Keyframe ────────────────────────────────────────── */
 
 @keyframes meteor-pass {
   0% {
-    transform: translate3d(0, 0, 0) rotate(-16deg);
+    transform: translate3d(0, 0, 0) rotate(135deg);
     opacity: 0;
   }
   8% {
@@ -89,7 +86,7 @@
     opacity: 0.72;
   }
   100% {
-    transform: translate3d(-110vw, 60vh, 0) rotate(-16deg);
+    transform: translate3d(-110vw, 60vh, 0) rotate(135deg);
     opacity: 0;
   }
 }
@@ -98,12 +95,13 @@
 
 @media (max-width: 768px) {
   .meteorArrow__trail {
-    width: 90px;
+    width: 120px;
+    height: 4px;
   }
 
   .meteorArrow__svg {
-    width: 20px;
-    height: 31px;
+    width: 36px;
+    height: 55px;
   }
 }
 
