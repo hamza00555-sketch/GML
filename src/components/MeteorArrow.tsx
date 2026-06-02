@@ -29,7 +29,7 @@ export default function MeteorArrow({
       <div className="meteorArrow__trail" />
       <div className="meteorArrow__head">
         <img
-          src="/assets/gml/decorative/arrow-meteor.svg"
+          src="/assets/gml/decorative/arrow-meteor.png"
           className="meteorArrow__svg"
           alt=""
           aria-hidden="true"
