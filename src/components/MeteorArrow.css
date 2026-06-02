@@ -1,0 +1,116 @@
+/* ── MeteorArrow ─────────────────────────────────────── */
+
+.meteorArrow {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+  animation:
+    meteor-pass
+    var(--meteor-duration, 7s)
+    linear
+    var(--meteor-delay, 0s)
+    infinite;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* RTL default: head enters from the right, trail follows behind */
+.meteorArrow--rtl {
+  flex-direction: row;
+}
+
+/* LTR variant: mirror the whole component for left-to-right travel */
+.meteorArrow--ltr {
+  scale: -1 1;
+}
+
+/* ── Trail ───────────────────────────────────────────── */
+
+.meteorArrow__trail {
+  position: relative;
+  width: 140px;
+  height: 3px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(65, 211, 126, 0.20) 45%,
+    rgba(65, 211, 126, 0.70) 100%
+  );
+  border-radius: 2px;
+}
+
+/* Wide soft glow halo behind the trail */
+.meteorArrow__trail::before {
+  content: '';
+  position: absolute;
+  inset: -8px 0 -8px 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(65, 211, 126, 0.07) 40%,
+    rgba(65, 211, 126, 0.28) 100%
+  );
+  border-radius: 8px;
+  filter: blur(6px);
+}
+
+/* ── Head ────────────────────────────────────────────── */
+
+.meteorArrow__head {
+  flex-shrink: 0;
+  filter:
+    drop-shadow(0 0 4px rgba(65, 211, 126, 1.0))
+    drop-shadow(0 0 10px rgba(65, 211, 126, 0.80))
+    drop-shadow(0 0 22px rgba(65, 211, 126, 0.40));
+}
+
+/* Portrait SVG: viewBox 0 0 80 123 → width:height ≈ 0.65 */
+.meteorArrow__svg {
+  display: block;
+  width: 26px;
+  height: 40px;
+}
+
+/* ── Keyframe ────────────────────────────────────────── */
+
+@keyframes meteor-pass {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-16deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.72;
+  }
+  92% {
+    opacity: 0.72;
+  }
+  100% {
+    transform: translate3d(-110vw, 60vh, 0) rotate(-16deg);
+    opacity: 0;
+  }
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .meteorArrow__trail {
+    width: 90px;
+  }
+
+  .meteorArrow__svg {
+    width: 20px;
+    height: 31px;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .meteorArrow {
+    display: none;
+  }
+}

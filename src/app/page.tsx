@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import MeteorArrow from '@/components/MeteorArrow'
 import { useContent } from '@/components/ContentProvider'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
@@ -95,69 +96,6 @@ const driftStyles = `
   70%       { transform: translate(3px, 3px); }
 }
 `
-
-/* ── Meteor Shower ─────────────────────────────────── */
-function MeteorShower() {
-  const meteors = [
-    { top:  '2%', right:  '-5%', dur: '4s',   delay: '0s',    size: 36, opacity: 0.58 },
-    { top: '10%', right: '-18%', dur: '6s',   delay: '-1.5s', size: 52, opacity: 0.48 },
-    { top: '-2%', right: '-30%', dur: '3.5s', delay: '-2.8s', size: 28, opacity: 0.65 },
-    { top: '18%', right:  '-8%', dur: '7s',   delay: '-0.8s', size: 64, opacity: 0.38 },
-    { top:  '5%', right: '-22%', dur: '5s',   delay: '-3.5s', size: 40, opacity: 0.52 },
-    { top: '14%', right: '-12%', dur: '5.5s', delay: '-1.8s', size: 44, opacity: 0.44 },
-    { top: '-4%', right: '-40%', dur: '6.5s', delay: '-4.5s', size: 32, opacity: 0.55 },
-  ]
-  return (
-    <div className="meteor-bg">
-      {meteors.map((m, i) => {
-        const trailLen = Math.round(m.size * 3.2)
-        const trailH   = Math.max(5, Math.round(m.size * 0.18))
-        const trailBlur = Math.max(3, Math.round(m.size * 0.1))
-        return (
-          <div key={i} style={{
-            position: 'absolute',
-            top: m.top,
-            right: m.right,
-            opacity: m.opacity,
-            display: 'flex',
-            alignItems: 'center',
-            animation: `meteorShoot ${m.dur} cubic-bezier(0.4, 0, 0.6, 1) ${m.delay} infinite`,
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
-          }}>
-            {/* Light trail — left of arrow in local coords = upper-right after rotate(135deg) */}
-            <div style={{
-              width: trailLen,
-              height: trailH * 4,
-              background: 'linear-gradient(to right, transparent 0%, rgba(65,211,126,0.12) 55%, rgba(65,211,126,0.60) 100%)',
-              filter: `blur(${trailBlur}px)`,
-              flexShrink: 0,
-              alignSelf: 'center',
-            }} />
-            {/* Arrow — SVG with transparent bg → triple drop-shadow glow works cleanly */}
-            <div style={{
-              filter: [
-                'drop-shadow(0 0 5px rgba(65,211,126,1.0))',
-                'drop-shadow(0 0 12px rgba(65,211,126,0.82))',
-                'drop-shadow(0 0 26px rgba(65,211,126,0.45))',
-              ].join(' '),
-              flexShrink: 0,
-            }}>
-              <img
-                src="/assets/gml/decorative/arrow-meteor.svg"
-                width={m.size}
-                height={Math.round(m.size * 1.54)}
-                alt=""
-                aria-hidden="true"
-                style={{ display: 'block' }}
-              />
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
 
 /* ── Nav card visuals ──────────────────────────────── */
 function VisualLibrary() {
@@ -496,11 +434,15 @@ export default function Home() {
   return (
     <main style={{ minHeight: '100vh', position: 'relative', zIndex: 2 }}>
       <style>{driftStyles}</style>
-      <MeteorShower />
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section style={{ paddingTop: 128, paddingBottom: 80 }}>
+      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative' }}>
+        <div className="heroDecorLayer">
+          <MeteorArrow style={{ top: '6%', right: '-6%' }} delay="0s" duration="4.5s" />
+          <MeteorArrow style={{ top: '-2%', right: '-22%' }} delay="-1.8s" duration="5.8s" />
+          <MeteorArrow style={{ top: '22%', right: '-4%' }} delay="-3.6s" duration="5s" />
+        </div>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 48, alignItems: 'center' }}>
             {/* Text */}
