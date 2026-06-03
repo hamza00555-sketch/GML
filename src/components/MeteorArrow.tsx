@@ -26,11 +26,12 @@ export default function MeteorArrow({
       } as React.CSSProperties}
       aria-hidden="true"
     >
+      <span className="meteorArrow__tail meteorArrow__tail--soft" />
+      <span className="meteorArrow__tail meteorArrow__tail--sharp" />
       <img
         src="/assets/gml/decorative/arrow-meteor.png"
         className="meteorArrow__img"
         alt=""
-        aria-hidden="true"
       />
     </div>
   )
