@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -96,6 +97,27 @@ const driftStyles = `
   70%       { transform: translate(3px, 3px); }
 }
 `
+
+/* ── Stat counter ──────────────────────────────────── */
+function StatCounter({
+  target, prefix = '', suffix = '', duration = 950, active = false,
+}: { target: number; prefix?: string; suffix?: string; duration?: number; active?: boolean }) {
+  const [val, setVal] = useState(0)
+  const started = useRef(false)
+  useEffect(() => {
+    if (!active || started.current) return
+    started.current = true
+    const t0 = performance.now()
+    const tick = (t: number) => {
+      const p = Math.min((t - t0) / duration, 1)
+      const e = 1 - Math.pow(1 - p, 3) // ease-out cubic
+      setVal(Math.round(e * target))
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [active, target, duration])
+  return <>{prefix}{val}{suffix}</>
+}
 
 /* ── Nav card visuals ──────────────────────────────── */
 function VisualLibrary() {
@@ -429,7 +451,13 @@ export default function Home() {
   const { home } = content
 
   const challengeReveal = useScrollReveal(0.1)
+  const challengeHeaderReveal = useScrollReveal(0.08)
   const navReveal = useScrollReveal(0.08)
+  const [statsActive, setStatsActive] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setStatsActive(true), 520)
+    return () => clearTimeout(t)
+  }, [])
 
   return (
     <main style={{ minHeight: '100vh', position: 'relative', zIndex: 2 }}>
@@ -465,12 +493,14 @@ export default function Home() {
               {/* Metric chips */}
               <div className="hero-enter hero-enter-3" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 36 }}>
                 {[
-                  { num: '3×',   label: 'سرعة الإنتاج' },
-                  { num: '+50',  label: 'عنصر جاهز' },
-                  { num: '100%', label: 'اتساق الهوية' },
+                  { target: 3,   prefix: '',  suffix: '×', label: 'سرعة الإنتاج' },
+                  { target: 50,  prefix: '+', suffix: '',  label: 'عنصر جاهز' },
+                  { target: 100, prefix: '',  suffix: '%', label: 'اتساق الهوية' },
                 ].map((m, i) => (
                   <div key={i} className="metric-chip">
-                    <span className="metric-chip-num">{m.num}</span>
+                    <span className="metric-chip-num">
+                      <StatCounter target={m.target} prefix={m.prefix} suffix={m.suffix} active={statsActive} />
+                    </span>
                     <span className="metric-chip-label">{m.label}</span>
                   </div>
                 ))}
@@ -503,10 +533,14 @@ export default function Home() {
         <div className="bento-grid">
 
           {/* Section header */}
-          <div className="bento-full" style={{ paddingBottom: 20 }}>
-            <span className="label-tag" style={{ marginBottom: 14, display: 'inline-flex' }}>المشكلة</span>
-            <h2 className="section-title" style={{ marginTop: 12 }}>لماذا نحتاج GML؟</h2>
-            <p style={{ fontSize: 17, color: 'var(--text-muted)', lineHeight: 1.85, marginTop: 16, maxWidth: 660 }}>
+          <div
+            ref={challengeHeaderReveal.ref}
+            className={`bento-full reveal-group${challengeHeaderReveal.visible ? ' is-visible' : ''}`}
+            style={{ paddingBottom: 20 }}
+          >
+            <span className="label-tag reveal-child" style={{ marginBottom: 14, display: 'inline-flex' }}>المشكلة</span>
+            <h2 className="section-title reveal-child" style={{ marginTop: 12 }}>لماذا نحتاج GML؟</h2>
+            <p className="reveal-child" style={{ fontSize: 17, color: 'var(--text-muted)', lineHeight: 1.85, marginTop: 16, maxWidth: 660 }}>
               التحدي ليس في إنتاج فيديو واحد، بل في تكرار نفس الجهد مع كل مشروع جديد، واختلاف جودة المخرجات حسب الوقت والمصمم.
             </p>
           </div>
@@ -677,7 +711,7 @@ export default function Home() {
         style={{ paddingBottom: 80 }}
       >
         <div className="bento-grid">
-          <div className="bento-full" style={{ paddingBottom: 8 }}>
+          <div className="bento-full reveal-child" style={{ paddingBottom: 8 }}>
             <h2 className="section-title">استكشف أقسام المشروع</h2>
           </div>
 
