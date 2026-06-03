@@ -13,7 +13,7 @@ export default function MeteorArrow({
   className = '',
   direction = 'rtl',
   delay = '0s',
-  duration = '7s',
+  duration = '5s',
   style,
 }: MeteorArrowProps) {
   return (
@@ -26,15 +26,12 @@ export default function MeteorArrow({
       } as React.CSSProperties}
       aria-hidden="true"
     >
-      <div className="meteorArrow__head">
-        <img
-          src="/assets/gml/decorative/arrow-meteor.png"
-          className="meteorArrow__svg"
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
-      <div className="meteorArrow__trail" />
+      <img
+        src="/assets/gml/decorative/arrow-meteor.png"
+        className="meteorArrow__img"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
   )
 }
