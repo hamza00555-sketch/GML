@@ -439,9 +439,9 @@ export default function Home() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative' }}>
         <div className="heroDecorLayer">
-          <MeteorArrow style={{ top: '6%', right: '-6%' }} delay="0s" duration="4.5s" />
-          <MeteorArrow style={{ top: '-2%', right: '-4%' }} delay="-1.8s" duration="5.8s" />
-          <MeteorArrow style={{ top: '22%', right: '-4%' }} delay="-3.6s" duration="5s" />
+          <MeteorArrow style={{ top: '4%',  right: '-4%' }} delay="0s"    duration="4.5s" />
+          <MeteorArrow style={{ top: '-1%', right: '-8%' }} delay="-1.8s" duration="5.8s" />
+          <MeteorArrow style={{ top: '10%', right: '-2%' }} delay="-3.6s" duration="5s"   />
         </div>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 48, alignItems: 'center' }}>
