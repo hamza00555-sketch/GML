@@ -437,11 +437,9 @@ export default function Home() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative' }}>
+      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative', overflow: 'hidden' }}>
         <div className="heroDecorLayer">
-          <MeteorArrow style={{ top: '5%',  right: '-5%'  }} delay="0s"    duration="2.8s" />
-          <MeteorArrow style={{ top: '1%',  right: '-12%' }} delay="-1.2s" duration="3.2s" />
-          <MeteorArrow style={{ top: '14%', right: '-3%'  }} delay="-0.8s" duration="2.5s" />
+          <MeteorArrow style={{ top: '62%', right: '-6%' }} delay="0s" duration="2.8s" />
         </div>
         <div style={{ width: 'min(1180px, calc(100% - 40px))', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 48, alignItems: 'center' }}>

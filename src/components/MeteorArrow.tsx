@@ -13,7 +13,7 @@ export default function MeteorArrow({
   className = '',
   direction = 'rtl',
   delay = '0s',
-  duration = '5s',
+  duration = '2.8s',
   style,
 }: MeteorArrowProps) {
   return (
@@ -26,13 +26,21 @@ export default function MeteorArrow({
       } as React.CSSProperties}
       aria-hidden="true"
     >
-      <span className="meteorArrow__tail meteorArrow__tail--soft" />
-      <span className="meteorArrow__tail meteorArrow__tail--sharp" />
-      <img
-        src="/assets/gml/decorative/arrow-meteor.png"
-        className="meteorArrow__img"
-        alt=""
-      />
+      {/*
+        Inner body holds the static rotation + all visual elements.
+        Outer wrapper animates translate only → clean separation of
+        position from orientation.
+      */}
+      <div className="meteorArrow__body">
+        <span className="meteorArrow__tail meteorArrow__tail--wake" />
+        <span className="meteorArrow__tail meteorArrow__tail--soft" />
+        <span className="meteorArrow__tail meteorArrow__tail--sharp" />
+        <img
+          src="/assets/gml/decorative/arrow-meteor.png"
+          className="meteorArrow__img"
+          alt=""
+        />
+      </div>
     </div>
   )
 }
