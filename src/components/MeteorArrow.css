@@ -54,17 +54,20 @@
   width: clamp(28px, 2vw, 40px);
   height: auto;
   transform: rotate(180deg);
-  opacity: 0.88;
+  opacity: 0.55;
   filter:
-    drop-shadow(0 0 3px rgba(65, 211, 126, 0.50))
-    drop-shadow(0 0 9px rgba(65, 211, 126, 0.14));
+    drop-shadow(0 0 3px rgba(65, 211, 126, 0.38))
+    drop-shadow(0 0 8px rgba(65, 211, 126, 0.10));
 }
 
 /* ── Shared tail base ────────────────────────────────── */
 
 /*
   All tails:
-  - left:100% = right edge of body's untransformed box (= tips side after flip)
+  - left:80%  = inside the img bounding box, near the tips (after 180° flip,
+                tips are at ~84% of width). The bright gradient start is hidden
+                behind the img (z:3) so the trail appears to emerge from the
+                arrow rather than floating beside it.
   - top:50%   = vertical center of body (= centerline of C-crescent)
   - transform-origin: left center: scaleX grows upper-right (body local +x)
   - translateY(-50%) centers the span on the body centerline
@@ -72,7 +75,7 @@
 .meteorArrow__tail {
   position: absolute;
   top: 50%;
-  left: 100%;
+  left: 80%;
   transform: translateY(-50%) scaleX(0.05);
   transform-origin: left center;
   border-radius: 999px;
@@ -162,13 +165,13 @@
 @keyframes meteorMove {
   0%   { transform: translate3d( 10vw,  -4vh, 0); opacity: 0;    }
   5%   { transform: translate3d(  8vw,  -3vh, 0); opacity: 0;    }
-  10%  { transform: translate3d(  5vw,  -1vh, 0); opacity: 0.58; }
-  20%  { transform: translate3d( -2vw,   3vh, 0); opacity: 0.88; }
-  38%  { transform: translate3d(-26vw,  18vh, 0); opacity: 0.95; }
-  62%  { transform: translate3d(-74vw,  48vh, 0); opacity: 0.95; }
-  70%  { transform: translate3d(-84vw,  54vh, 0); opacity: 0.86; }
-  78%  { transform: translate3d(-93vw,  60vh, 0); opacity: 0.30; }
-  88%  { transform: translate3d(-106vw, 67vh, 0); opacity: 0.05; }
+  10%  { transform: translate3d(  5vw,  -1vh, 0); opacity: 0.38; }
+  20%  { transform: translate3d( -2vw,   3vh, 0); opacity: 0.58; }
+  38%  { transform: translate3d(-26vw,  18vh, 0); opacity: 0.65; }
+  62%  { transform: translate3d(-74vw,  48vh, 0); opacity: 0.65; }
+  70%  { transform: translate3d(-84vw,  54vh, 0); opacity: 0.55; }
+  78%  { transform: translate3d(-93vw,  60vh, 0); opacity: 0.18; }
+  88%  { transform: translate3d(-106vw, 67vh, 0); opacity: 0.03; }
   100% { transform: translate3d(-115vw, 71vh, 0); opacity: 0;    }
 }
 

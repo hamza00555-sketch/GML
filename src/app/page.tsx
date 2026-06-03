@@ -437,7 +437,7 @@ export default function Home() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ paddingTop: 128, paddingBottom: 80, position: 'relative', overflowX: 'clip' }}>
         <div className="heroDecorLayer">
           <MeteorArrow style={{ top: '62%', right: '-6%' }} delay="0s" duration="2.8s" />
         </div>
