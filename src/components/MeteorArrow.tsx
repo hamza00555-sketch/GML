@@ -26,7 +26,6 @@ export default function MeteorArrow({
       } as React.CSSProperties}
       aria-hidden="true"
     >
-      <div className="meteorArrow__trail" />
       <div className="meteorArrow__head">
         <img
           src="/assets/gml/decorative/arrow-meteor.png"
@@ -35,6 +34,7 @@ export default function MeteorArrow({
           aria-hidden="true"
         />
       </div>
+      <div className="meteorArrow__trail" />
     </div>
   )
 }
