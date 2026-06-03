@@ -37,7 +37,7 @@
 */
 .meteorArrow__body {
   position: relative;
-  transform: rotate(-45deg);
+  transform: rotate(-30deg);
 }
 
 /* ── Arrow image ─────────────────────────────────────── */
@@ -163,16 +163,16 @@
   0% and 100% both opacity:0 — snap-back reset is invisible.
 */
 @keyframes meteorMove {
-  0%   { transform: translate3d( 10vw,  -4vh, 0); opacity: 0;    }
-  5%   { transform: translate3d(  8vw,  -3vh, 0); opacity: 0;    }
-  10%  { transform: translate3d(  5vw,  -1vh, 0); opacity: 0.38; }
-  20%  { transform: translate3d( -2vw,   3vh, 0); opacity: 0.58; }
-  38%  { transform: translate3d(-26vw,  18vh, 0); opacity: 0.65; }
-  62%  { transform: translate3d(-74vw,  48vh, 0); opacity: 0.65; }
-  70%  { transform: translate3d(-84vw,  54vh, 0); opacity: 0.55; }
-  78%  { transform: translate3d(-93vw,  60vh, 0); opacity: 0.18; }
-  88%  { transform: translate3d(-106vw, 67vh, 0); opacity: 0.03; }
-  100% { transform: translate3d(-115vw, 71vh, 0); opacity: 0;    }
+  0%   { transform: translate3d(  10vw,   -4vh, 0); opacity: 0;    }
+  5%   { transform: translate3d(   8vw, -2.8vh, 0); opacity: 0;    }
+  10%  { transform: translate3d(   5vw,   -1vh, 0); opacity: 0.38; }
+  20%  { transform: translate3d(  -2vw,  3.2vh, 0); opacity: 0.58; }
+  38%  { transform: translate3d( -26vw, 17.6vh, 0); opacity: 0.65; }
+  62%  { transform: translate3d( -74vw, 46.4vh, 0); opacity: 0.65; }
+  70%  { transform: translate3d( -84vw, 52.4vh, 0); opacity: 0.55; }
+  78%  { transform: translate3d( -93vw, 57.8vh, 0); opacity: 0.18; }
+  88%  { transform: translate3d(-106vw, 65.6vh, 0); opacity: 0.03; }
+  100% { transform: translate3d(-115vw,   71vh, 0); opacity: 0;    }
 }
 
 /* Tail peaks at scaleX(1.35) during the fastest 38-62% phase */
@@ -239,19 +239,23 @@
   .meteorArrow__tail--wake {
     display: none;
   }
+
+  .meteorArrow__body {
+    transform: rotate(-52deg);
+  }
 }
 
 @keyframes meteorMoveMobile {
-  0%   { transform: translate3d(  8vw,  -3vh, 0); opacity: 0;    }
-  5%   { transform: translate3d(  6vw,  -2vh, 0); opacity: 0;    }
-  10%  { transform: translate3d(  3vw,   0vh, 0); opacity: 0.55; }
-  20%  { transform: translate3d( -1vw,   2vh, 0); opacity: 0.82; }
-  38%  { transform: translate3d(-15vw,  11vh, 0); opacity: 0.90; }
-  62%  { transform: translate3d(-42vw,  29vh, 0); opacity: 0.90; }
-  70%  { transform: translate3d(-48vw,  33vh, 0); opacity: 0.80; }
-  78%  { transform: translate3d(-54vw,  37vh, 0); opacity: 0.28; }
-  88%  { transform: translate3d(-62vw,  42vh, 0); opacity: 0.04; }
-  100% { transform: translate3d(-70vw,  46vh, 0); opacity: 0;    }
+  0%   { transform: translate3d(  8vw,   -3vh, 0); opacity: 0;    }
+  5%   { transform: translate3d(  6vw,  -1.7vh, 0); opacity: 0;    }
+  10%  { transform: translate3d(  3vw,    0vh, 0); opacity: 0.55; }
+  20%  { transform: translate3d( -1vw,  2.7vh, 0); opacity: 0.82; }
+  38%  { transform: translate3d(-15vw, 11.4vh, 0); opacity: 0.90; }
+  62%  { transform: translate3d(-42vw, 28.4vh, 0); opacity: 0.90; }
+  70%  { transform: translate3d(-48vw, 32.2vh, 0); opacity: 0.80; }
+  78%  { transform: translate3d(-54vw, 35.9vh, 0); opacity: 0.28; }
+  88%  { transform: translate3d(-62vw,   41vh, 0); opacity: 0.04; }
+  100% { transform: translate3d(-70vw,   46vh, 0); opacity: 0;    }
 }
 
 @keyframes meteorTailSharpM {
