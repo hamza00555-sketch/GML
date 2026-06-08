@@ -190,9 +190,9 @@ function NavButton({ onClick, dir }: { onClick: () => void; dir: 'next' | 'prev'
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         {dir === 'next' ? (
-          <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        ) : (
           <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        ) : (
+          <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         )}
       </svg>
     </button>
@@ -333,8 +333,8 @@ export default function RoadmapPage() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') navigate('next')
-      if (e.key === 'ArrowLeft')  navigate('prev')
+      if (e.key === 'ArrowLeft')  navigate('next')
+      if (e.key === 'ArrowRight') navigate('prev')
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -370,7 +370,7 @@ export default function RoadmapPage() {
         <div className="container">
           {!isMobile ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-              <NavButton onClick={() => navigate('prev')} dir="prev" />
+              <NavButton onClick={() => navigate('next')} dir="next" />
 
               {/* Dual-card carousel: base fades out, overlay enters */}
               <div style={{ flex: 1, position: 'relative', minHeight: 500 }}>
@@ -395,7 +395,7 @@ export default function RoadmapPage() {
                 )}
               </div>
 
-              <NavButton onClick={() => navigate('next')} dir="next" />
+              <NavButton onClick={() => navigate('prev')} dir="prev" />
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -418,8 +418,8 @@ export default function RoadmapPage() {
                 )}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
-                <NavButton onClick={() => navigate('prev')} dir="prev" />
                 <NavButton onClick={() => navigate('next')} dir="next" />
+                <NavButton onClick={() => navigate('prev')} dir="prev" />
               </div>
             </div>
           )}
@@ -454,7 +454,7 @@ export default function RoadmapPage() {
             borderRadius: 24, padding: isMobile ? '36px 28px' : '48px 52px',
             background: 'linear-gradient(135deg, rgba(32,32,168,0.16) 0%, rgba(0,0,78,0.5) 100%)',
             borderColor: 'rgba(32,32,168,0.35)',
-            maxWidth: 720,
+            maxWidth: 720, margin: '0 auto',
           }}>
             <div className="divider" style={{ marginBottom: 24 }} />
             <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-main)', marginBottom: 14 }}>الرؤية</h2>

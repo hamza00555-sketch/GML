@@ -630,13 +630,13 @@ export default function Home() {
                 background: 'rgba(86,86,216,0.1)', border: '1px solid rgba(86,86,216,0.22)',
                 display: 'inline-flex', padding: '4px 11px', borderRadius: 100, width: 'fit-content',
               }}>
-                تكرار غير ضروري
+                تحدٍّ إبداعي
               </div>
               <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
-                إعادة بناء نفس العناصر
+                صعوبة تخيّل الحركة
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
-                الخلفيات، الانتقالات، العدادات، والنصوص تُعاد صناعتها بدل إعادة استخدامها.
+                الاعتياد على الإطارات الثابتة يجعل تخيّل الحركة غير بديهي، مما يُطيل وقت التجريب ويُقيّد الإبداع.
               </p>
             </div>
 
