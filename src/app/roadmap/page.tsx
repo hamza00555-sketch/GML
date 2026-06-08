@@ -244,7 +244,7 @@ function StepCard({ step, isMobile }: { step: Step; isMobile: boolean }) {
       }}>
         <div>
           <h2 style={{
-            fontSize: 'clamp(22px, 3vw, 36px)',
+            fontSize: 'clamp(28px, 3.5vw, 44px)',
             fontWeight: 900, color: 'var(--text-main)',
             letterSpacing: '-0.03em', lineHeight: 1.2, marginBottom: 18,
           }}>{step.title}</h2>
@@ -457,7 +457,7 @@ export default function RoadmapPage() {
             maxWidth: 720, margin: '0 auto',
           }}>
             <div className="divider" style={{ marginBottom: 24 }} />
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-main)', marginBottom: 14 }}>الرؤية</h2>
+            <h2 style={{ fontSize: 'clamp(24px, 2.5vw, 32px)', fontWeight: 800, color: 'var(--text-main)', marginBottom: 14 }}>الرؤية</h2>
             <p style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.85 }}>
               GML يبدأ كمكتبة موشن، ثم يتوسع تدريجيًا إلى نظام إنتاج بصري يدعم الفريق في العمل بسرعة أعلى وجودة أكثر اتساقًا.
             </p>

@@ -571,7 +571,7 @@ export default function Home() {
               }}>
                 حتى 3–4 ساعات
               </div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 كل مشروع يبدأ من الصفر
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
@@ -602,7 +602,7 @@ export default function Home() {
               }}>
                 جودة غير موحدة
               </div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 تفاوت في الشكل النهائي
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
@@ -632,7 +632,7 @@ export default function Home() {
               }}>
                 تحدٍّ إبداعي
               </div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 صعوبة تخيّل الحركة
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
@@ -665,7 +665,7 @@ export default function Home() {
               }}>
                 اعتماد على الأفراد
               </div>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.015em' }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 صعوبة نقل المعرفة
               </h3>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.75 }}>
@@ -754,7 +754,7 @@ export default function Home() {
                 <VisualRoadmap />
               </div>
               <div style={{ marginTop: 20 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
+                <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                   {home.navCards[2].title}
                 </h3>
                 <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
@@ -782,7 +782,7 @@ export default function Home() {
                 <VisualNextStep />
               </div>
               <div style={{ marginTop: 20 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
+                <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                   {home.navCards[4].title}
                 </h3>
                 <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.7 }}>
