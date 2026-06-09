@@ -126,13 +126,13 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 180),   // GOSI
-      setTimeout(() => setPhase(2), 620),   // MOTION
-      setTimeout(() => setPhase(3), 1060),  // LIBRARY
-      setTimeout(() => setPhase(4), 2000),  // morph + scan
-      setTimeout(() => setPhase(5), 2650),  // GML stamp — يبقى لوحده
-      setTimeout(() => setPhase(6), 5600),  // جمل + camel reveal منفصل
-      setTimeout(() => setPhase(7), 6500),  // press to enter
+      setTimeout(() => setPhase(1), 750),   // GOSI — after meteor arrow crosses
+      setTimeout(() => setPhase(2), 1190),  // MOTION
+      setTimeout(() => setPhase(3), 1630),  // LIBRARY
+      setTimeout(() => setPhase(4), 2570),  // morph + scan
+      setTimeout(() => setPhase(5), 3220),  // GML stamp — يبقى لوحده
+      setTimeout(() => setPhase(6), 6170),  // جمل + camel reveal منفصل
+      setTimeout(() => setPhase(7), 7070),  // press to enter
     ]
     return () => timers.forEach(clearTimeout)
   }, [])
@@ -171,6 +171,19 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
           'linear-gradient(90deg,rgba(86,86,216,0.045) 1px,transparent 1px)',
         backgroundSize: '44px 44px',
       }} />
+
+      {/* Meteor arrow — crosses once at the very start before words appear */}
+      <MeteorArrow
+        direction="rtl"
+        duration="0.65s"
+        delay="0s"
+        style={{
+          top: '25%',
+          right: 0,
+          zIndex: 5,
+          animationIterationCount: 1,
+        } as React.CSSProperties}
+      />
 
       {/* Ambient glow */}
       <div style={{
