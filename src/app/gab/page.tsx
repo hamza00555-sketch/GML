@@ -13,11 +13,11 @@ function CapabilityCard({
   const visual = letter === 'G' ? (
     /* Generate: stacked document pages with subtle float stagger */
     <svg width="96" height="80" viewBox="0 0 48 40" fill="none">
-      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.35)" stroke="rgba(65,211,126,0.72)" strokeWidth="1"
+      <rect x="0" y="6" width="28" height="34" rx="5" fill="rgba(65,211,126,0.62)" stroke="rgba(65,211,126,0.80)" strokeWidth="1"
         style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-3.5s' }}/>
-      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.50)" stroke="rgba(65,211,126,0.82)" strokeWidth="1"
+      <rect x="6" y="2" width="28" height="34" rx="5" fill="rgba(65,211,126,0.72)" stroke="rgba(65,211,126,0.88)" strokeWidth="1"
         style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '-1.5s' }}/>
-      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.65)" stroke="rgba(65,211,126,0.90)" strokeWidth="1"
+      <rect x="12" y="0" width="28" height="34" rx="5" fill="rgba(65,211,126,0.82)" stroke="rgba(65,211,126,0.95)" strokeWidth="1"
         style={{ animation: 'floatY 6s ease-in-out infinite', animationDelay: '0s' }}/>
       <line x1="16" y1="10" x2="36" y2="10" stroke="rgba(65,211,126,0.90)" strokeWidth="1.5" strokeLinecap="round"/>
       <line x1="16" y1="16" x2="30" y2="16" stroke="rgba(65,211,126,0.75)" strokeWidth="1.5" strokeLinecap="round"/>
@@ -38,16 +38,16 @@ function CapabilityCard({
       </g>
     </svg>
   ) : (
-    /* Build: stacking blocks with staggered rise */
+    /* Build: stacking blocks with staggered rise then continuous float */
     <svg width="96" height="88" viewBox="0 0 48 44" fill="none">
-      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.68)" stroke="rgba(65,211,126,0.90)" strokeWidth="1.5"
-        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.6s' }}/>
-      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.82)" strokeWidth="1.5"
-        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '0.85s' }}/>
-      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.45)" stroke="rgba(65,211,126,0.75)" strokeWidth="1.5"
-        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.1s' }}/>
-      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.30)" stroke="rgba(65,211,126,0.62)" strokeWidth="1.5" strokeDasharray="3 2"
-        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both', animationDelay: '1.35s' }}/>
+      <rect x="8" y="30" width="32" height="12" rx="4" fill="rgba(65,211,126,0.80)" stroke="rgba(65,211,126,0.95)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22,1,0.36,1) both 0.6s, floatY 3.5s ease-in-out infinite 1.5s' }}/>
+      <rect x="4" y="18" width="26" height="12" rx="4" fill="rgba(65,211,126,0.72)" stroke="rgba(65,211,126,0.88)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22,1,0.36,1) both 0.85s, floatY 4s ease-in-out infinite 1.8s' }}/>
+      <rect x="10" y="6" width="20" height="12" rx="4" fill="rgba(65,211,126,0.62)" stroke="rgba(65,211,126,0.80)" strokeWidth="1.5"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22,1,0.36,1) both 1.1s, floatY 3.8s ease-in-out infinite 2.0s' }}/>
+      <rect x="16" y="0" width="14" height="8" rx="3" fill="rgba(65,211,126,0.55)" stroke="rgba(65,211,126,0.78)" strokeWidth="1.5" strokeDasharray="3 2"
+        style={{ animation: 'blockRise 0.65s cubic-bezier(0.22,1,0.36,1) both 1.35s, floatY 4.5s ease-in-out infinite 2.2s' }}/>
     </svg>
   )
 

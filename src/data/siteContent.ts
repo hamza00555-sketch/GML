@@ -1,3 +1,5 @@
+import { VIDEOS } from './videos'
+
 export const defaultContent = {
   home: {
     hero: {
@@ -39,18 +41,18 @@ export const defaultContent = {
   experiment: {
     title: 'تجربة المكتبة مع الفريق',
     subtitle: 'اختبار عملي لاستخدام مكتبة الموشن في إنتاج فيديو من محتوى وفويس أوفر جاهز.',
-    timelapseVideoUrl: '',
+    timelapseVideoUrl: VIDEOS.timelapse,
     designer1: {
       name: 'المصمم الأول',
       role: 'مصمم موشن',
-      videoUrl: '',
+      videoUrl: VIDEOS.designer1,
       quote: 'استخدام المكتبة قلّص وقت التنفيذ بشكل ملحوظ وأتاح لي التركيز على الجانب الإبداعي.',
       productionTime: '',
     },
     designer2: {
       name: 'المصممة الثانية',
       role: 'مصممة موشن',
-      videoUrl: '',
+      videoUrl: VIDEOS.designer2,
       quote: 'وجود مرجع بصري موحّد رفع مستوى الاتساق في المشروع بشكل واضح.',
       productionTime: '',
     },

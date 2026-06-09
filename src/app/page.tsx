@@ -96,6 +96,8 @@ const driftStyles = `
   40%       { transform: translate(-3px, -2px); }
   70%       { transform: translate(3px, 3px); }
 }
+@keyframes dashFlowHome { to { stroke-dashoffset: -22; } }
+@keyframes gabDot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: 0.75; } }
 `
 
 /* ── Stat counter ──────────────────────────────────── */
@@ -191,6 +193,7 @@ function VisualRoadmap() {
               color: step === 1 ? 'rgba(65,211,126,1)' : 'rgba(244,251,255,0.80)',
               boxShadow: step === 1 ? '0 0 18px rgba(65,211,126,0.75)' : 'none',
               position: 'relative', zIndex: 1,
+              animation: step === 1 ? 'playBtnPulse 3s ease-in-out infinite' : 'none',
             }}>
               {step}
             </div>
@@ -217,8 +220,9 @@ function VisualGAB() {
           const mid = (col * 2 + row * 5) % 7 === 0
           return (
             <circle key={i} cx={cx} cy={cy} r={lit ? 4 : mid ? 3 : 2}
-              fill={lit ? 'rgba(65,211,126,0.88)' : mid ? 'rgba(86,86,216,0.72)' : 'rgba(86,86,216,0.45)'}
+              fill={lit ? 'rgba(65,211,126,0.92)' : mid ? 'rgba(86,86,216,0.80)' : 'rgba(86,86,216,0.62)'}
               opacity={lit ? 1 : 0.9}
+              style={lit ? { animation: `gabDot ${3 + (i % 3) * 0.6}s ease-in-out infinite`, animationDelay: `-${(i * 0.4) % 2.5}s` } : undefined}
             />
           )
         })}
@@ -235,7 +239,7 @@ function VisualGAB() {
 function VisualNextStep() {
   return (
     <div className="card-visual" style={{ height: 136, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width="104" height="124" viewBox="0 0 52 62" fill="none">
+      <svg width="104" height="124" viewBox="0 0 52 62" fill="none" style={{ animation: 'floatY 5.5s ease-in-out infinite', animationDelay: '-1.5s' }}>
         <rect x="4" y="4" width="44" height="54" rx="7" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5" fill="rgba(32,32,168,0.45)"/>
         <rect x="8" y="8" width="36" height="46" rx="5" fill="rgba(65,211,126,0.25)" stroke="rgba(65,211,126,0.60)" strokeWidth="1"/>
         <circle cx="34" cy="31" r="3" fill="none" stroke="rgba(65,211,126,0.90)" strokeWidth="1.5"/>
@@ -322,12 +326,12 @@ function HeroVisual() {
           viewBox="0 0 400 440"
           preserveAspectRatio="xMidYMid meet"
         >
-          <line x1="200" y1="220" x2="200" y2="46"  stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="4 5"/>
-          <line x1="200" y1="220" x2="336" y2="167" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
-          <line x1="200" y1="220" x2="288" y2="334" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
-          <line x1="200" y1="220" x2="64"  y2="317" stroke="rgba(86,86,216,0.12)"  strokeWidth="1" strokeDasharray="4 5"/>
-          <line x1="200" y1="220" x2="56"  y2="114" stroke="rgba(65,211,126,0.15)" strokeWidth="1" strokeDasharray="4 5"/>
-          <circle cx="200" cy="220" r="138" stroke="rgba(86,86,216,0.07)" strokeWidth="1" fill="none" strokeDasharray="6 8"/>
+          <line x1="200" y1="220" x2="200" y2="46"  stroke="rgba(65,211,126,0.22)" strokeWidth="1" strokeDasharray="4 5" style={{ animation: 'dashFlowHome 2s linear infinite' }}/>
+          <line x1="200" y1="220" x2="336" y2="167" stroke="rgba(86,86,216,0.18)"  strokeWidth="1" strokeDasharray="4 5" style={{ animation: 'dashFlowHome 2.4s linear infinite' }}/>
+          <line x1="200" y1="220" x2="288" y2="334" stroke="rgba(86,86,216,0.18)"  strokeWidth="1" strokeDasharray="4 5" style={{ animation: 'dashFlowHome 2.8s linear infinite' }}/>
+          <line x1="200" y1="220" x2="64"  y2="317" stroke="rgba(86,86,216,0.18)"  strokeWidth="1" strokeDasharray="4 5" style={{ animation: 'dashFlowHome 2.2s linear infinite' }}/>
+          <line x1="200" y1="220" x2="56"  y2="114" stroke="rgba(65,211,126,0.22)" strokeWidth="1" strokeDasharray="4 5" style={{ animation: 'dashFlowHome 2.6s linear infinite' }}/>
+          <circle cx="200" cy="220" r="138" stroke="rgba(86,86,216,0.10)" strokeWidth="1" fill="none" strokeDasharray="6 8" style={{ animation: 'dashFlowHome 8s linear infinite' }}/>
         </svg>
 
         {/* Central hub */}
@@ -554,7 +558,7 @@ export default function Home() {
             {/* Card 1 — كل مشروع يبدأ من الصفر */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
               <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="96" height="96" viewBox="0 0 48 48" fill="none">
+                <svg width="96" height="96" viewBox="0 0 48 48" fill="none" style={{ animation: 'floatY 6s ease-in-out infinite' }}>
                   <circle cx="24" cy="24" r="17" stroke="rgba(86,86,216,0.75)" strokeWidth="1.5"/>
                   <line x1="24" y1="24" x2="24" y2="12" stroke="rgba(86,86,216,0.95)" strokeWidth="2" strokeLinecap="round"/>
                   <line x1="24" y1="24" x2="33" y2="24" stroke="rgba(86,86,216,0.80)" strokeWidth="1.5" strokeLinecap="round"/>
@@ -613,7 +617,7 @@ export default function Home() {
             {/* Card 3 — إعادة بناء نفس العناصر */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
               <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="88" height="88" viewBox="0 0 44 44" fill="none">
+                <svg width="88" height="88" viewBox="0 0 44 44" fill="none" style={{ animation: 'floatY 5.5s ease-in-out infinite', animationDelay: '-2s' }}>
                   <rect x="0" y="10" width="28" height="30" rx="4" fill="rgba(86,86,216,0.22)" stroke="rgba(86,86,216,0.55)" strokeWidth="1"/>
                   <rect x="4" y="6" width="28" height="30" rx="4" fill="rgba(86,86,216,0.32)" stroke="rgba(86,86,216,0.65)" strokeWidth="1"/>
                   <rect x="8" y="2" width="28" height="30" rx="4" fill="rgba(86,86,216,0.42)" stroke="rgba(86,86,216,0.80)" strokeWidth="1"/>
@@ -643,7 +647,7 @@ export default function Home() {
             {/* Card 4 — صعوبة نقل المعرفة */}
             <div className="glass-card reveal-child" style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
               <div className="card-visual" style={{ height: 152, display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-                <svg width="104" height="88" viewBox="0 0 52 44" fill="none">
+                <svg width="104" height="88" viewBox="0 0 52 44" fill="none" style={{ animation: 'floatY 6.5s ease-in-out infinite', animationDelay: '-4s' }}>
                   <circle cx="26" cy="22" r="9" fill="rgba(86,86,216,0.35)" stroke="rgba(86,86,216,0.82)" strokeWidth="1.5"/>
                   <circle cx="26" cy="19" r="2.8" fill="rgba(86,86,216,0.90)"/>
                   <path d="M19 29 Q26 25 33 29" stroke="rgba(86,86,216,0.80)" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
