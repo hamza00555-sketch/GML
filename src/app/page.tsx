@@ -131,8 +131,8 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
       setTimeout(() => setPhase(3), 1060),  // LIBRARY
       setTimeout(() => setPhase(4), 2000),  // morph + scan
       setTimeout(() => setPhase(5), 2650),  // GML stamp
-      setTimeout(() => setPhase(6), 3200),  // subtitle
-      setTimeout(() => setPhase(7), 3900),  // press to enter
+      setTimeout(() => setPhase(6), 3350),  // جمل + camel
+      setTimeout(() => setPhase(7), 4200),  // press to enter
     ]
     return () => timers.forEach(clearTimeout)
   }, [])
@@ -143,11 +143,10 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
     setTimeout(onDone, 650)
   }
 
-  const show = (cond: boolean, delay = 0) => ({
+  const show = (cond: boolean) => ({
     opacity:   cond ? 1 : 0,
-    transform: cond ? 'translateY(0px)' : 'translateY(14px)',
-    transition: `opacity 500ms cubic-bezier(0.22,1,0.36,1) ${delay}ms,
-                 transform 500ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+    transform: cond ? 'translateY(0px)' : 'translateY(18px)',
+    transition: 'opacity 550ms cubic-bezier(0.22,1,0.36,1), transform 550ms cubic-bezier(0.22,1,0.36,1)',
   })
 
   return (
@@ -161,8 +160,7 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         cursor: phase >= 6 ? 'pointer' : 'default',
         opacity: leaving ? 0 : 1,
         transition: leaving ? 'opacity 650ms ease' : 'none',
-        overflow: 'hidden',
-        userSelect: 'none',
+        overflow: 'hidden', userSelect: 'none',
       }}
     >
       {/* Grid */}
@@ -196,10 +194,11 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         }} />
       )}
 
-      {/* GOSI MOTION LIBRARY */}
+      {/* GOSI MOTION LIBRARY — direction:ltr fixes RTL flex order */}
       <div style={{
         position: 'absolute',
         display: 'flex', alignItems: 'center',
+        direction: 'ltr',
         gap: 'clamp(14px,3vw,44px)',
         flexWrap: 'wrap', justifyContent: 'center',
         padding: '0 24px',
@@ -211,8 +210,7 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
           <div key={i} style={{
             fontFamily: 'monospace',
             fontSize: 'clamp(20px,3.2vw,38px)',
-            fontWeight: 900, lineHeight: 1,
-            letterSpacing: '0.06em',
+            fontWeight: 900, lineHeight: 1, letterSpacing: '0.06em',
             opacity:   phase > i ? 1 : 0,
             transform: phase > i ? 'translateY(0)' : 'translateY(16px)',
             transition: 'opacity 420ms cubic-bezier(0.22,1,0.36,1), transform 420ms cubic-bezier(0.22,1,0.36,1)',
@@ -223,14 +221,15 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         ))}
       </div>
 
-      {/* GML + logo + tagline */}
+      {/* GML → جمل column */}
       <div style={{
         position: 'absolute',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0,
         ...show(phase >= 5),
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {/* Logo mark */}
+
+        {/* GML row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, direction: 'ltr' }}>
           <div style={{
             width: 58, height: 58, borderRadius: 16, flexShrink: 0,
             background: 'rgba(65,211,126,0.08)',
@@ -245,11 +244,9 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
               <rect x="18" y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.32)"/>
             </svg>
           </div>
-
-          {/* GML lettering */}
           <div style={{
             fontFamily: 'monospace',
-            fontSize: 'clamp(58px,10vw,100px)',
+            fontSize: 'clamp(58px,10vw,96px)',
             fontWeight: 900, color: '#41D37E',
             letterSpacing: '-0.025em', lineHeight: 1,
             animation: phase === 5 ? 'gmlStamp 0.55s cubic-bezier(0.22,1,0.36,1) forwards' : 'none',
@@ -258,24 +255,36 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
           </div>
         </div>
 
-        {/* Subtitle */}
+        {/* Connector line */}
         <div style={{
+          width: 1, height: 36,
+          background: 'linear-gradient(180deg,rgba(65,211,126,0.45),rgba(65,211,126,0.1))',
+          opacity: phase >= 6 ? 1 : 0,
+          transition: 'opacity 400ms ease 100ms',
+          margin: '10px 0',
+        }} />
+
+        {/* جمل + camel logo */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 18,
+          direction: 'ltr',
           ...show(phase >= 6),
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-          textAlign: 'center',
         }}>
+          <img
+            src="/logo-camel.png" alt=""
+            style={{
+              width: 68, height: 68,
+              objectFit: 'contain', opacity: 0.92,
+              filter: 'drop-shadow(0 0 12px rgba(65,211,126,0.3))',
+            }}
+          />
           <div style={{
-            fontSize: 'clamp(10px,1.3vw,13px)', fontFamily: 'monospace',
-            letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'rgba(244,251,255,0.32)',
+            fontSize: 'clamp(44px,7.5vw,78px)',
+            fontWeight: 900,
+            color: 'rgba(244,251,255,0.88)',
+            letterSpacing: '-0.01em', lineHeight: 1,
           }}>
-            GOSI · MOTION · LIBRARY
-          </div>
-          <div style={{
-            fontSize: 'clamp(13px,1.6vw,17px)', fontWeight: 700,
-            color: 'rgba(244,251,255,0.55)', letterSpacing: '0.04em',
-          }}>
-            نظام الإنتاج البصري
+            جمل
           </div>
         </div>
       </div>
