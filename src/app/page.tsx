@@ -98,7 +98,206 @@ const driftStyles = `
 }
 @keyframes dashFlowHome { to { stroke-dashoffset: -22; } }
 @keyframes gabDot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: 0.75; } }
+@keyframes splashBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+@keyframes splashScan {
+  0%   { transform: translateY(-55vh); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(55vh); opacity: 0; }
+}
+@keyframes gmlStamp {
+  0%   { opacity: 0; transform: scale(1.4) translateY(10px); }
+  60%  { opacity: 1; transform: scale(0.96) translateY(0);   }
+  100% { opacity: 1; transform: scale(1)   translateY(0);   }
+}
+@keyframes splashExit { from { opacity:1; } to { opacity:0; } }
 `
+
+/* ── Splash screen ───────────────────────────────────── */
+const WORDS = [
+  { accent: 'G', rest: 'OSI'    },
+  { accent: 'M', rest: 'OTION'  },
+  { accent: 'L', rest: 'IBRARY' },
+]
+
+function SplashScreen({ onDone }: { onDone: () => void }) {
+  const [phase, setPhase] = useState(0)
+  const [leaving, setLeaving] = useState(false)
+
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 180),   // GOSI
+      setTimeout(() => setPhase(2), 620),   // MOTION
+      setTimeout(() => setPhase(3), 1060),  // LIBRARY
+      setTimeout(() => setPhase(4), 2000),  // morph + scan
+      setTimeout(() => setPhase(5), 2650),  // GML stamp
+      setTimeout(() => setPhase(6), 3200),  // subtitle
+      setTimeout(() => setPhase(7), 3900),  // press to enter
+    ]
+    return () => timers.forEach(clearTimeout)
+  }, [])
+
+  const enter = () => {
+    if (phase < 6) return
+    setLeaving(true)
+    setTimeout(onDone, 650)
+  }
+
+  const show = (cond: boolean, delay = 0) => ({
+    opacity:   cond ? 1 : 0,
+    transform: cond ? 'translateY(0px)' : 'translateY(14px)',
+    transition: `opacity 500ms cubic-bezier(0.22,1,0.36,1) ${delay}ms,
+                 transform 500ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+  })
+
+  return (
+    <div
+      onClick={enter}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9999,
+        background: '#020c1b',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flexDirection: 'column',
+        cursor: phase >= 6 ? 'pointer' : 'default',
+        opacity: leaving ? 0 : 1,
+        transition: leaving ? 'opacity 650ms ease' : 'none',
+        overflow: 'hidden',
+        userSelect: 'none',
+      }}
+    >
+      {/* Grid */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage:
+          'linear-gradient(rgba(86,86,216,0.045) 1px,transparent 1px),' +
+          'linear-gradient(90deg,rgba(86,86,216,0.045) 1px,transparent 1px)',
+        backgroundSize: '44px 44px',
+      }} />
+
+      {/* Ambient glow */}
+      <div style={{
+        position: 'absolute', top: '42%', left: '50%',
+        transform: 'translate(-50%,-50%)',
+        width: 520, height: 220,
+        background: 'radial-gradient(ellipse,rgba(65,211,126,0.11) 0%,transparent 68%)',
+        pointerEvents: 'none',
+        opacity: phase >= 5 ? 1 : 0,
+        transition: 'opacity 1.4s ease',
+      }} />
+
+      {/* Scan line */}
+      {phase === 4 && (
+        <div style={{
+          position: 'absolute', left: 0, right: 0, height: 1.5, zIndex: 2,
+          background: 'linear-gradient(90deg,transparent 0%,rgba(65,211,126,0.5) 25%,rgba(65,211,126,0.9) 50%,rgba(65,211,126,0.5) 75%,transparent 100%)',
+          animation: 'splashScan 0.65s ease-in-out forwards',
+          pointerEvents: 'none',
+          boxShadow: '0 0 12px rgba(65,211,126,0.6)',
+        }} />
+      )}
+
+      {/* GOSI MOTION LIBRARY */}
+      <div style={{
+        position: 'absolute',
+        display: 'flex', alignItems: 'center',
+        gap: 'clamp(14px,3vw,44px)',
+        flexWrap: 'wrap', justifyContent: 'center',
+        padding: '0 24px',
+        opacity:   phase >= 4 ? 0 : 1,
+        transform: phase >= 4 ? 'scale(0.86) translateY(-10px)' : 'scale(1) translateY(0)',
+        transition: 'opacity 420ms ease, transform 420ms ease',
+      }}>
+        {WORDS.map((w, i) => (
+          <div key={i} style={{
+            fontFamily: 'monospace',
+            fontSize: 'clamp(20px,3.2vw,38px)',
+            fontWeight: 900, lineHeight: 1,
+            letterSpacing: '0.06em',
+            opacity:   phase > i ? 1 : 0,
+            transform: phase > i ? 'translateY(0)' : 'translateY(16px)',
+            transition: 'opacity 420ms cubic-bezier(0.22,1,0.36,1), transform 420ms cubic-bezier(0.22,1,0.36,1)',
+          }}>
+            <span style={{ color: '#41D37E' }}>{w.accent}</span>
+            <span style={{ color: 'rgba(244,251,255,0.4)' }}>{w.rest}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* GML + logo + tagline */}
+      <div style={{
+        position: 'absolute',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22,
+        ...show(phase >= 5),
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          {/* Logo mark */}
+          <div style={{
+            width: 58, height: 58, borderRadius: 16, flexShrink: 0,
+            background: 'rgba(65,211,126,0.08)',
+            border: '1.5px solid rgba(65,211,126,0.32)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            animation: phase >= 5 ? 'playBtnPulse 4s ease-in-out infinite' : 'none',
+          }}>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="3"  y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.95)"/>
+              <rect x="18" y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
+              <rect x="3"  y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
+              <rect x="18" y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.32)"/>
+            </svg>
+          </div>
+
+          {/* GML lettering */}
+          <div style={{
+            fontFamily: 'monospace',
+            fontSize: 'clamp(58px,10vw,100px)',
+            fontWeight: 900, color: '#41D37E',
+            letterSpacing: '-0.025em', lineHeight: 1,
+            animation: phase === 5 ? 'gmlStamp 0.55s cubic-bezier(0.22,1,0.36,1) forwards' : 'none',
+          }}>
+            GML
+          </div>
+        </div>
+
+        {/* Subtitle */}
+        <div style={{
+          ...show(phase >= 6),
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+          textAlign: 'center',
+        }}>
+          <div style={{
+            fontSize: 'clamp(10px,1.3vw,13px)', fontFamily: 'monospace',
+            letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: 'rgba(244,251,255,0.32)',
+          }}>
+            GOSI · MOTION · LIBRARY
+          </div>
+          <div style={{
+            fontSize: 'clamp(13px,1.6vw,17px)', fontWeight: 700,
+            color: 'rgba(244,251,255,0.55)', letterSpacing: '0.04em',
+          }}>
+            نظام الإنتاج البصري
+          </div>
+        </div>
+      </div>
+
+      {/* Press to enter */}
+      <div style={{
+        position: 'absolute', bottom: '9%',
+        ...show(phase >= 7),
+        display: 'flex', alignItems: 'center', gap: 8,
+        fontSize: 12, fontWeight: 700, letterSpacing: '0.12em',
+        color: 'rgba(244,251,255,0.28)',
+        animation: phase >= 7 ? 'splashBlink 2.4s ease-in-out infinite' : 'none',
+      }}>
+        <span style={{
+          width: 5, height: 5, borderRadius: '50%',
+          background: '#41D37E', display: 'inline-block', opacity: 0.65,
+        }} />
+        اضغط للدخول
+      </div>
+    </div>
+  )
+}
 
 /* ── Stat counter ──────────────────────────────────── */
 function StatCounter({
@@ -458,14 +657,26 @@ export default function Home() {
   const challengeHeaderReveal = useScrollReveal(0.08)
   const navReveal = useScrollReveal(0.08)
   const [statsActive, setStatsActive] = useState(false)
+  const [showSplash, setShowSplash] = useState(false)
+
   useEffect(() => {
     const t = setTimeout(() => setStatsActive(true), 520)
     return () => clearTimeout(t)
   }, [])
 
+  useEffect(() => {
+    if (!sessionStorage.getItem('gml-splash')) setShowSplash(true)
+  }, [])
+
+  const handleSplashDone = () => {
+    sessionStorage.setItem('gml-splash', '1')
+    setShowSplash(false)
+  }
+
   return (
     <main style={{ minHeight: '100vh', position: 'relative', zIndex: 2 }}>
       <style>{driftStyles}</style>
+      {showSplash && <SplashScreen onDone={handleSplashDone} />}
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
