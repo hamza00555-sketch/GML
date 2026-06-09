@@ -43,14 +43,14 @@ export const defaultContent = {
     subtitle: 'اختبار عملي لاستخدام مكتبة الموشن في إنتاج فيديو من محتوى وفويس أوفر جاهز.',
     timelapseVideoUrl: VIDEOS.timelapse,
     designer1: {
-      name: 'المصمم الأول',
-      role: 'مصمم موشن',
+      name: 'عهود',
+      role: 'مصممة موشن',
       audioUrl: VIDEOS.designer1Audio,
       quote: 'استخدام المكتبة قلّص وقت التنفيذ بشكل ملحوظ وأتاح لي التركيز على الجانب الإبداعي.',
       productionTime: '',
     },
     designer2: {
-      name: 'المصممة الثانية',
+      name: 'نوف',
       role: 'مصممة موشن',
       audioUrl: VIDEOS.designer2Audio,
       quote: 'وجود مرجع بصري موحّد رفع مستوى الاتساق في المشروع بشكل واضح.',

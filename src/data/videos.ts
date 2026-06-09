@@ -19,9 +19,9 @@ export const VIDEOS = {
   // ─── فويس نوت المصمم الأول ─────────────────────────────────
   // ضع المسار بعد رفع الملف على GitHub: '/audio/designer1.m4a'
   // أو رابط مباشر للملف
-  designer1Audio: '',
+  designer1Audio: '/audio/designer1.mp3',
 
   // ─── فويس نوت المصمم الثانية ───────────────────────────────
-  designer2Audio: '',
+  designer2Audio: '/audio/designer2.mp3',
 
 }
