@@ -797,10 +797,11 @@ function RoadmapJourneySection() {
         pointerEvents: 'none', zIndex: 0,
       }}/>
 
-      {/* Journey viewport */}
+      {/* Journey viewport — direction:ltr so overflow origin is on the left */}
       <div style={{
         position: 'relative',
         overflow: 'hidden',
+        direction: 'ltr',
         margin: '0 24px',
         borderRadius: 28,
         border: '1px solid rgba(255,255,255,0.1)',
