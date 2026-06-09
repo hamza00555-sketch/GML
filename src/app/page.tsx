@@ -286,7 +286,7 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         <img
           src="/logo-camel.png" alt=""
           style={{
-            width: 72, height: 72, objectFit: 'contain', opacity: 0.93,
+            width: 144, height: 144, objectFit: 'contain', opacity: 0.93,
             filter: 'drop-shadow(0 0 14px rgba(65,211,126,0.28))',
           }}
         />
