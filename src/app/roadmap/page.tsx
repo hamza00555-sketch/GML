@@ -725,8 +725,13 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
         height: isMobile ? 240 : '100%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
+        <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3', position: 'relative' }}>
           <IllComp active={isActive} />
+          <div style={{
+            position: 'absolute', inset: 0,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 72, pointerEvents: 'none',
+          }}>🐱</div>
         </div>
       </div>
     </div>
