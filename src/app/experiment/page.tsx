@@ -1,9 +1,178 @@
 'use client'
 import Link from 'next/link'
+import { useRef, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { useContent } from '@/components/ContentProvider'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+
+const EXP_CSS = `
+@keyframes waveBar {
+  0%,100% { transform: scaleY(0.15); }
+  50%      { transform: scaleY(1);    }
+}
+@keyframes voiceGlow {
+  0%,100% { opacity: 0.5; }
+  50%      { opacity: 1;   }
+}
+@keyframes idleWave {
+  0%,100% { transform: scaleY(0.25); }
+  50%      { transform: scaleY(0.55); }
+}
+`
+
+const WAVE_HEIGHTS = [0.3,0.65,0.45,0.9,0.55,0.35,0.8,0.5,1.0,0.7,0.4,0.85,0.6,0.95,0.5,0.75,0.3,0.8,0.6,0.45,0.7,0.5,0.35,0.65]
+
+function AudioPlayer({
+  name, role, quote, accent, src,
+}: {
+  name: string; role: string; quote: string; accent: 0 | 1; src: string
+}) {
+  const [playing, setPlaying]   = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [current, setCurrent]   = useState(0)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  const ac = accent === 0 ? '86,86,216' : '65,211,126'
+  const borderColor = accent === 0 ? 'rgba(86,86,216,0.25)' : 'rgba(65,211,126,0.22)'
+
+  const toggle = () => {
+    if (!audioRef.current || !src) return
+    if (playing) { audioRef.current.pause() } else { void audioRef.current.play() }
+    setPlaying(p => !p)
+  }
+
+  const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
+
+  const seekTo = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!audioRef.current || !duration) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const ratio = (e.clientX - rect.left) / rect.width
+    audioRef.current.currentTime = ratio * duration
+  }
+
+  return (
+    <div className="glass-card" style={{ borderRadius: 22, overflow: 'hidden', borderColor, padding: 0 }}>
+      {src && (
+        <audio
+          ref={audioRef} src={src}
+          onTimeUpdate={() => { const a = audioRef.current; if (a) { setCurrent(a.currentTime); setProgress(a.currentTime / a.duration) } }}
+          onLoadedMetadata={() => setDuration(audioRef.current?.duration ?? 0)}
+          onEnded={() => { setPlaying(false); setProgress(0); setCurrent(0) }}
+        />
+      )}
+
+      {/* Visual area */}
+      <div style={{
+        background: accent === 0
+          ? 'linear-gradient(135deg,rgba(32,32,168,0.28) 0%,rgba(0,0,57,0.55) 100%)'
+          : 'linear-gradient(135deg,rgba(0,48,24,0.28) 0%,rgba(0,0,57,0.55) 100%)',
+        padding: '26px 26px 18px',
+        position: 'relative', overflow: 'hidden',
+      }}>
+
+        {/* Ambient glow blob */}
+        <div style={{
+          position: 'absolute', top: -30, left: '50%', transform: 'translateX(-50%)',
+          width: 220, height: 80,
+          background: `radial-gradient(ellipse,rgba(${ac},0.18) 0%,transparent 70%)`,
+          animation: playing ? `voiceGlow 1.8s ease-in-out infinite` : 'none',
+          pointerEvents: 'none',
+        }} />
+
+        {/* Row: play button + waveform */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, position: 'relative' }}>
+
+          {/* Play/Pause */}
+          <button
+            onClick={toggle}
+            style={{
+              width: 50, height: 50, borderRadius: '50%', flexShrink: 0, cursor: src ? 'pointer' : 'default',
+              background: `rgba(${ac},${playing ? 0.22 : 0.12})`,
+              border: `1.5px solid rgba(${ac},${playing ? 0.65 : 0.32})`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              outline: 'none', transition: 'all 0.2s ease',
+              animation: playing ? 'playBtnPulse 2.2s ease-in-out infinite' : 'none',
+              opacity: src ? 1 : 0.45,
+            }}
+          >
+            {playing ? (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="2"   y="2" width="4" height="10" rx="1.5" fill={`rgba(${ac},0.95)`}/>
+                <rect x="8.5" y="2" width="4" height="10" rx="1.5" fill={`rgba(${ac},0.95)`}/>
+              </svg>
+            ) : (
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none">
+                <path d="M3 2L12.5 8L3 14V2Z" fill={`rgba(${ac},${src ? 0.95 : 0.5})`}/>
+              </svg>
+            )}
+          </button>
+
+          {/* Waveform bars */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 2, height: 48 }}>
+            {WAVE_HEIGHTS.map((h, i) => (
+              <div key={i} style={{
+                flex: 1, maxWidth: 5, borderRadius: 3,
+                height: `${h * (playing ? 100 : 35)}%`,
+                background: `rgba(${ac},${playing ? 0.55 + h * 0.45 : 0.3})`,
+                transformOrigin: 'center',
+                animation: playing
+                  ? `waveBar ${0.55 + h * 0.45}s ease-in-out ${i * 0.055}s infinite`
+                  : `idleWave ${1.8 + h * 1.2}s ease-in-out ${i * 0.08}s infinite`,
+                transition: 'height 0.35s ease, background 0.35s ease',
+              }}/>
+            ))}
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ marginTop: 14 }}>
+          <div
+            onClick={seekTo}
+            style={{ height: 4, borderRadius: 2, background: `rgba(${ac},0.15)`, overflow: 'hidden', cursor: src ? 'pointer' : 'default' }}
+          >
+            <div style={{ height: '100%', width: `${progress * 100}%`, background: `rgba(${ac},0.72)`, borderRadius: 2, transition: 'width 0.1s linear' }}/>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 9, color: `rgba(${ac},0.5)`, fontWeight: 700, fontFamily: 'monospace' }}>
+            <span>{fmt(current)}</span>
+            <span>{duration ? fmt(duration) : '--:--'}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Info */}
+      <div style={{ padding: '18px 24px 22px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+          <div style={{
+            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+            background: `rgba(${ac},0.12)`,
+            border: `1px solid rgba(${ac},0.28)`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <div style={{ width: 14, height: 14, borderRadius: '50%', background: `rgba(${ac},0.55)` }}/>
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-main)' }}>{name}</div>
+            <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{role}</div>
+          </div>
+          {!src && (
+            <div style={{ fontSize: 10, color: `rgba(${ac},0.6)`, background: `rgba(${ac},0.08)`, padding: '3px 9px', borderRadius: 6, border: `1px solid rgba(${ac},0.18)`, fontWeight: 700 }}>
+              قريباً
+            </div>
+          )}
+        </div>
+        <blockquote style={{
+          fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.85,
+          borderRight: `2px solid rgba(${ac},0.32)`,
+          paddingRight: 14, margin: 0,
+        }}>
+          {quote}
+        </blockquote>
+      </div>
+    </div>
+  )
+}
 
 function VideoEmbed({ url, title }: { url: string; title: string }) {
   if (!url) {
@@ -146,6 +315,7 @@ export default function ExperimentPage() {
 
   return (
     <main style={{ minHeight: '100vh' }}>
+      <style>{EXP_CSS}</style>
       <Navbar />
 
       {/* ── Hero ── */}
@@ -244,56 +414,14 @@ export default function ExperimentPage() {
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 14 }}
           >
             {[experiment.designer1, experiment.designer2].map((d, i) => (
-              <div key={i} className="glass-card reveal-child" style={{
-                borderRadius: 22, padding: 0, overflow: 'hidden',
-                borderColor: i === 0 ? 'rgba(86,86,216,0.25)' : 'rgba(65,211,126,0.2)',
-              }}>
-                <div style={{ position: 'relative' }}>
-                  <VideoEmbed url={d.videoUrl} title={d.name} />
-                  {!d.videoUrl && (
-                    <div style={{
-                      position: 'absolute', top: 12, right: 14,
-                      display: 'flex', alignItems: 'center', gap: 5,
-                      background: 'rgba(0,0,0,0.45)', borderRadius: 20, padding: '4px 10px',
-                    }}>
-                      <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#FF4444', opacity: 0.85 }} />
-                      <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)', fontWeight: 700, letterSpacing: '0.1em' }}>REC</span>
-                    </div>
-                  )}
-                </div>
-                <div style={{ padding: '20px 24px 22px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-                    <div style={{
-                      width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-                      background: i === 0 ? 'rgba(86,86,216,0.18)' : 'rgba(65,211,126,0.12)',
-                      border: `1px solid ${i === 0 ? 'rgba(86,86,216,0.32)' : 'rgba(65,211,126,0.22)'}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <div style={{ width: 14, height: 14, borderRadius: '50%', background: i === 0 ? 'rgba(86,86,216,0.55)' : 'rgba(65,211,126,0.55)' }} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-main)' }}>{d.name}</div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{d.role}</div>
-                    </div>
-                    {d.productionTime && (
-                      <div style={{
-                        fontSize: 11, color: 'var(--brand-green)',
-                        background: 'var(--brand-green-soft)',
-                        padding: '4px 10px', borderRadius: 8, fontWeight: 700,
-                        border: '1px solid rgba(65,211,126,0.2)',
-                      }}>
-                        {d.productionTime}
-                      </div>
-                    )}
-                  </div>
-                  <blockquote style={{
-                    fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.85,
-                    borderRight: `2px solid ${i === 0 ? 'rgba(86,86,216,0.35)' : 'rgba(65,211,126,0.35)'}`,
-                    paddingRight: 14, margin: 0,
-                  }}>
-                    {d.quote}
-                  </blockquote>
-                </div>
+              <div key={i} className="reveal-child">
+                <AudioPlayer
+                  name={d.name}
+                  role={d.role}
+                  quote={d.quote}
+                  accent={i as 0 | 1}
+                  src={d.audioUrl ?? ''}
+                />
               </div>
             ))}
           </div>

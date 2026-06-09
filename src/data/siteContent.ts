@@ -45,14 +45,14 @@ export const defaultContent = {
     designer1: {
       name: 'المصمم الأول',
       role: 'مصمم موشن',
-      videoUrl: VIDEOS.designer1,
+      audioUrl: VIDEOS.designer1Audio,
       quote: 'استخدام المكتبة قلّص وقت التنفيذ بشكل ملحوظ وأتاح لي التركيز على الجانب الإبداعي.',
       productionTime: '',
     },
     designer2: {
       name: 'المصممة الثانية',
       role: 'مصممة موشن',
-      videoUrl: VIDEOS.designer2,
+      audioUrl: VIDEOS.designer2Audio,
       quote: 'وجود مرجع بصري موحّد رفع مستوى الاتساق في المشروع بشكل واضح.',
       productionTime: '',
     },

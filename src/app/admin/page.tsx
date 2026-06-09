@@ -183,14 +183,14 @@ export default function AdminPage() {
         <SectionBox title="المصمم الأول">
           <Field label="الاسم" value={s.experiment.designer1.name} onChange={v => update(['experiment','designer1','name'], v)} />
           <Field label="الدور" value={s.experiment.designer1.role} onChange={v => update(['experiment','designer1','role'], v)} />
-          <Field label="رابط الفيديو" value={s.experiment.designer1.videoUrl} onChange={v => update(['experiment','designer1','videoUrl'], v)} placeholder="https://..." />
+          <Field label="رابط الصوت (فويس نوت)" value={s.experiment.designer1.audioUrl} onChange={v => update(['experiment','designer1','audioUrl'], v)} placeholder="/audio/designer1.m4a أو رابط مباشر" />
           <Field label="الاقتباس" value={s.experiment.designer1.quote} onChange={v => update(['experiment','designer1','quote'], v)} multiline />
           <Field label="وقت الإنتاج" value={s.experiment.designer1.productionTime} onChange={v => update(['experiment','designer1','productionTime'], v)} placeholder="مثال: ساعتان" />
         </SectionBox>
         <SectionBox title="المصممة الثانية">
           <Field label="الاسم" value={s.experiment.designer2.name} onChange={v => update(['experiment','designer2','name'], v)} />
           <Field label="الدور" value={s.experiment.designer2.role} onChange={v => update(['experiment','designer2','role'], v)} />
-          <Field label="رابط الفيديو" value={s.experiment.designer2.videoUrl} onChange={v => update(['experiment','designer2','videoUrl'], v)} placeholder="https://..." />
+          <Field label="رابط الصوت (فويس نوت)" value={s.experiment.designer2.audioUrl} onChange={v => update(['experiment','designer2','audioUrl'], v)} placeholder="/audio/designer2.m4a أو رابط مباشر" />
           <Field label="الاقتباس" value={s.experiment.designer2.quote} onChange={v => update(['experiment','designer2','quote'], v)} multiline />
           <Field label="وقت الإنتاج" value={s.experiment.designer2.productionTime} onChange={v => update(['experiment','designer2','productionTime'], v)} placeholder="مثال: ساعة واحدة" />
         </SectionBox>
