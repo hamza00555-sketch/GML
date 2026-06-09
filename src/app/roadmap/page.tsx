@@ -79,7 +79,7 @@ const ROADMAP_CSS = `
 ═══════════════════════════════════════════════════════ */
 function IllustrationLibrary({ active }: { active: boolean }) {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" style={{ overflow: 'visible' }}>
+    <svg viewBox="0 0 400 300" fill="none" style={{ display: 'block', width: '100%', height: '100%', overflow: 'visible' }}>
       <defs>
         <filter id="libGlow">
           <feGaussianBlur stdDeviation="3" result="b"/>
@@ -177,7 +177,7 @@ function IllustrationLibrary({ active }: { active: boolean }) {
 
 function IllustrationWorkshop({ active }: { active: boolean }) {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none">
+    <svg viewBox="0 0 400 300" fill="none" style={{ display: 'block', width: '100%', height: '100%' }}>
       <defs>
         <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="rgba(0,0,40,0.9)"/>
@@ -257,7 +257,7 @@ function IllustrationWorkshop({ active }: { active: boolean }) {
 
 function Illustration3D({ active }: { active: boolean }) {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none">
+    <svg viewBox="0 0 400 300" fill="none" style={{ display: 'block', width: '100%', height: '100%' }}>
       <defs>
         <filter id="tdGlow">
           <feGaussianBlur stdDeviation="4" result="b"/>
@@ -342,7 +342,7 @@ function Illustration3D({ active }: { active: boolean }) {
 
 function IllustrationVR({ active }: { active: boolean }) {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none">
+    <svg viewBox="0 0 400 300" fill="none" style={{ display: 'block', width: '100%', height: '100%' }}>
       <defs>
         <radialGradient id="portalGrad" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="rgba(65,211,126,0.22)"/>
@@ -726,7 +726,7 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
         <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
-          <IllComp active={true} />
+          <IllComp active={isActive} />
         </div>
       </div>
     </div>
@@ -804,10 +804,11 @@ function RoadmapJourneySection() {
         boxShadow: '0 32px 100px rgba(0,0,40,0.5), inset 0 1.5px 0 rgba(255,255,255,0.1)',
         minHeight: isMobile ? 'auto' : 580,
       }}>
-        {/* Sliding track */}
+        {/* Sliding track — direction:ltr forces LTR flex order so translateX(-N%) works correctly */}
         <div style={{
           display: 'flex',
           flexDirection: 'row',
+          direction: 'ltr',
           width: '400%',
           height: isMobile ? 'auto' : 580,
           transform: `translateX(-${trackOffset}%)`,
