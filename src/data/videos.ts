@@ -14,7 +14,7 @@ export const VIDEOS = {
 
   // ─── الفيديو العلوي ────────────────────────────────────────
   // تايم لابس / تسجيل شاشة يُظهر سير العمل
-  timelapse: 'https://youtu.be/rK-po7P9Eqw',
+  timelapse: 'https://youtu.be/WJFNqtJcYZM',
 
   // ─── فويس نوت المصمم الأول ─────────────────────────────────
   // ضع المسار بعد رفع الملف على GitHub: '/audio/designer1.m4a'
