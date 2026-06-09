@@ -130,9 +130,9 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
       setTimeout(() => setPhase(2), 620),   // MOTION
       setTimeout(() => setPhase(3), 1060),  // LIBRARY
       setTimeout(() => setPhase(4), 2000),  // morph + scan
-      setTimeout(() => setPhase(5), 2650),  // GML stamp
-      setTimeout(() => setPhase(6), 3350),  // جمل + camel
-      setTimeout(() => setPhase(7), 4200),  // press to enter
+      setTimeout(() => setPhase(5), 2650),  // GML stamp — يبقى لوحده
+      setTimeout(() => setPhase(6), 4400),  // جمل + camel reveal منفصل
+      setTimeout(() => setPhase(7), 5300),  // press to enter
     ]
     return () => timers.forEach(clearTimeout)
   }, [])
@@ -221,71 +221,69 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         ))}
       </div>
 
-      {/* GML → جمل column */}
+      {/* GML — يظهر لوحده ويبقى ثم يرتفع قليلاً */}
       <div style={{
         position: 'absolute',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0,
-        ...show(phase >= 5),
+        top: '50%', left: '50%',
+        display: 'flex', alignItems: 'center', gap: 20, direction: 'ltr',
+        opacity: phase >= 5 ? 1 : 0,
+        transform: phase >= 6
+          ? 'translate(-50%, calc(-50% - 60px))'
+          : phase >= 5
+            ? 'translate(-50%, -50%)'
+            : 'translate(-50%, calc(-50% + 14px))',
+        transition: 'opacity 550ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1)',
       }}>
-
-        {/* GML row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20, direction: 'ltr' }}>
-          <div style={{
-            width: 58, height: 58, borderRadius: 16, flexShrink: 0,
-            background: 'rgba(65,211,126,0.08)',
-            border: '1.5px solid rgba(65,211,126,0.32)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            animation: phase >= 5 ? 'playBtnPulse 4s ease-in-out infinite' : 'none',
-          }}>
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="3"  y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.95)"/>
-              <rect x="18" y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
-              <rect x="3"  y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
-              <rect x="18" y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.32)"/>
-            </svg>
-          </div>
-          <div style={{
-            fontFamily: 'monospace',
-            fontSize: 'clamp(58px,10vw,96px)',
-            fontWeight: 900, color: '#41D37E',
-            letterSpacing: '-0.025em', lineHeight: 1,
-            animation: phase === 5 ? 'gmlStamp 0.55s cubic-bezier(0.22,1,0.36,1) forwards' : 'none',
-          }}>
-            GML
-          </div>
-        </div>
-
-        {/* Connector line */}
         <div style={{
-          width: 1, height: 36,
-          background: 'linear-gradient(180deg,rgba(65,211,126,0.45),rgba(65,211,126,0.1))',
-          opacity: phase >= 6 ? 1 : 0,
-          transition: 'opacity 400ms ease 100ms',
-          margin: '10px 0',
-        }} />
-
-        {/* جمل + camel logo */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 18,
-          direction: 'ltr',
-          ...show(phase >= 6),
+          width: 58, height: 58, borderRadius: 16, flexShrink: 0,
+          background: 'rgba(65,211,126,0.08)',
+          border: '1.5px solid rgba(65,211,126,0.32)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          animation: phase >= 5 ? 'playBtnPulse 4s ease-in-out infinite' : 'none',
         }}>
-          <img
-            src="/logo-camel.png" alt=""
-            style={{
-              width: 68, height: 68,
-              objectFit: 'contain', opacity: 0.92,
-              filter: 'drop-shadow(0 0 12px rgba(65,211,126,0.3))',
-            }}
-          />
-          <div style={{
-            fontSize: 'clamp(44px,7.5vw,78px)',
-            fontWeight: 900,
-            color: 'rgba(244,251,255,0.88)',
-            letterSpacing: '-0.01em', lineHeight: 1,
-          }}>
-            جمل
-          </div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="3"  y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.95)"/>
+            <rect x="18" y="3"  width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
+            <rect x="3"  y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.65)"/>
+            <rect x="18" y="18" width="11" height="11" rx="3" fill="rgba(65,211,126,0.32)"/>
+          </svg>
+        </div>
+        <div style={{
+          fontFamily: 'monospace',
+          fontSize: 'clamp(58px,10vw,96px)',
+          fontWeight: 900, color: '#41D37E',
+          letterSpacing: '-0.025em', lineHeight: 1,
+          animation: phase === 5 ? 'gmlStamp 0.55s cubic-bezier(0.22,1,0.36,1) forwards' : 'none',
+        }}>
+          GML
+        </div>
+      </div>
+
+      {/* جمل + camel — ريفيل منفصل بعد GML */}
+      <div style={{
+        position: 'absolute',
+        top: '50%', left: '50%',
+        display: 'flex', alignItems: 'center', gap: 18, direction: 'ltr',
+        opacity:   phase >= 6 ? 1 : 0,
+        transform: phase >= 6
+          ? 'translate(-50%, calc(-50% + 55px)) translateY(0px)'
+          : 'translate(-50%, calc(-50% + 55px)) translateY(22px)',
+        transition: 'opacity 650ms cubic-bezier(0.22,1,0.36,1), transform 650ms cubic-bezier(0.22,1,0.36,1)',
+      }}>
+        <img
+          src="/logo-camel.png" alt=""
+          style={{
+            width: 72, height: 72, objectFit: 'contain', opacity: 0.93,
+            filter: 'drop-shadow(0 0 14px rgba(65,211,126,0.28))',
+          }}
+        />
+        <div style={{
+          fontSize: 'clamp(46px,7.5vw,80px)',
+          fontWeight: 900,
+          color: 'rgba(244,251,255,0.88)',
+          letterSpacing: '-0.01em', lineHeight: 1,
+        }}>
+          جمل
         </div>
       </div>
 
