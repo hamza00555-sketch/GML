@@ -113,10 +113,9 @@ function IllustrationLibrary({ active }: { active: boolean }) {
         { x: 146, y: 148, w: 108, h: 74, label: 'Icon Card',   icon: 'icon', c: 'rgba(32,32,168,0.35)',   bc: 'rgba(86,86,216,0.5)' },
         { x: 268, y: 148, w: 108, h: 74, label: 'Background',  icon: 'bg',   c: 'rgba(65,211,126,0.12)',  bc: 'rgba(65,211,126,0.38)' },
       ].map((card, i) => (
-        <g key={i}>
+        <g key={i} style={{ opacity: active ? 1 : 0, transition: active ? `opacity 0.4s ${i * 0.07}s ease-out` : 'none' }}>
           <rect x={card.x} y={card.y} width={card.w} height={card.h} rx="10"
-            fill={card.c} stroke={card.bc} strokeWidth="1"
-            style={active ? { animation: `illEnter 0.5s ${i * 0.07}s both` } : { opacity: 0 }}/>
+            fill={card.c} stroke={card.bc} strokeWidth="1"/>
           {/* Icon area */}
           {card.icon === 'lt' && <>
             <rect x={card.x+8} y={card.y+12} width={card.w-16} height="8" rx="3" fill="rgba(65,211,126,0.85)"/>
@@ -158,16 +157,14 @@ function IllustrationLibrary({ active }: { active: boolean }) {
       ))}
 
       {/* Approval stamp — appears with delay */}
-      {active && (
-        <g style={{ animation: 'approvalStamp 0.5s 0.55s both' }}>
-          <circle cx="200" cy="158" r="52" fill="rgba(0,0,40,0.82)" stroke="rgba(65,211,126,0.55)" strokeWidth="2"/>
-          <circle cx="200" cy="158" r="44" fill="none" stroke="rgba(65,211,126,0.25)" strokeWidth="1" strokeDasharray="6 4"/>
-          <path d="M 180 158 L 196 174 L 224 144" stroke="rgba(65,211,126,0.95)" strokeWidth="4"
-            strokeLinecap="round" strokeLinejoin="round" fill="none" filter="url(#libGlow)"/>
-          <text x="200" y="205" textAnchor="middle" fill="rgba(65,211,126,0.72)"
-            fontSize="8" fontFamily="monospace" letterSpacing="0.14em">APPROVED</text>
-        </g>
-      )}
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.5s ease-out' : 'none' }}>
+        <circle cx="200" cy="158" r="52" fill="rgba(0,0,40,0.82)" stroke="rgba(65,211,126,0.55)" strokeWidth="2"/>
+        <circle cx="200" cy="158" r="44" fill="none" stroke="rgba(65,211,126,0.25)" strokeWidth="1" strokeDasharray="6 4"/>
+        <path d="M 180 158 L 196 174 L 224 144" stroke="rgba(65,211,126,0.95)" strokeWidth="4"
+          strokeLinecap="round" strokeLinejoin="round" fill="none" filter="url(#libGlow)"/>
+        <text x="200" y="205" textAnchor="middle" fill="rgba(65,211,126,0.72)"
+          fontSize="8" fontFamily="monospace" letterSpacing="0.14em">APPROVED</text>
+      </g>
 
       {/* Bottom status bar */}
       <rect x="24" y="236" width="352" height="42" rx="8" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
@@ -202,13 +199,14 @@ function IllustrationWorkshop({ active }: { active: boolean }) {
       <rect x="110" y="68" width="180" height="6" fill="rgba(32,32,168,0.9)"/>
       {/* Screen content — motion assets on grid */}
       <rect x="120" y="82" width="48" height="34" rx="4" fill="rgba(65,211,126,0.22)" stroke="rgba(65,211,126,0.55)" strokeWidth="1"
-        style={active ? { animation: 'illEnter 0.4s 0.2s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.2s ease-out' : 'none' }}/>
       <rect x="176" y="82" width="48" height="34" rx="4" fill="rgba(86,86,216,0.35)" stroke="rgba(86,86,216,0.65)" strokeWidth="1"
-        style={active ? { animation: 'illEnter 0.4s 0.3s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.3s ease-out' : 'none' }}/>
       <rect x="232" y="82" width="48" height="34" rx="4" fill="rgba(86,86,216,0.25)" stroke="rgba(86,86,216,0.5)" strokeWidth="1"
-        style={active ? { animation: 'illEnter 0.4s 0.4s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.4s ease-out' : 'none' }}/>
       <rect x="120" y="124" width="160" height="8" rx="3" fill="rgba(86,86,216,0.25)"/>
-      <rect x="120" y="124" width="90" height="8" rx="3" fill="rgba(65,211,126,0.5)" style={active ? { animation: 'illEnter 0.5s 0.5s both' } : { opacity: 0 }}/>
+      <rect x="120" y="124" width="90" height="8" rx="3" fill="rgba(65,211,126,0.5)"
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.5s ease-out' : 'none' }}/>
       <rect x="120" y="140" width="160" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
       {/* Screen stand */}
       <rect x="192" y="180" width="16" height="24" rx="2" fill="rgba(86,86,216,0.45)"/>
@@ -216,14 +214,13 @@ function IllustrationWorkshop({ active }: { active: boolean }) {
 
       {/* Human silhouettes — left group */}
       {/* Person 1 - left */}
-      <g style={active ? { animation: 'illEnter 0.4s 0.1s both' } : { opacity: 0 }}>
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.1s ease-out' : 'none' }}>
         <circle cx="55" cy="148" r="14" fill="rgba(32,32,168,0.65)" stroke="rgba(86,86,216,0.5)" strokeWidth="1.5"/>
         <rect x="34" y="168" width="42" height="56" rx="10" fill="rgba(32,32,168,0.55)" stroke="rgba(86,86,216,0.4)" strokeWidth="1"/>
-        {/* arm pointing to screen */}
         <path d="M 76 190 L 108 165" stroke="rgba(86,86,216,0.55)" strokeWidth="6" strokeLinecap="round"/>
       </g>
       {/* Person 2 - right */}
-      <g style={active ? { animation: 'illEnter 0.4s 0.15s both' } : { opacity: 0 }}>
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.15s ease-out' : 'none' }}>
         <circle cx="345" cy="148" r="14" fill="rgba(32,32,168,0.55)" stroke="rgba(86,86,216,0.45)" strokeWidth="1.5"/>
         <rect x="324" y="168" width="42" height="56" rx="10" fill="rgba(32,32,168,0.45)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/>
         <path d="M 324 190 L 292 165" stroke="rgba(86,86,216,0.45)" strokeWidth="6" strokeLinecap="round"/>
@@ -237,7 +234,7 @@ function IllustrationWorkshop({ active }: { active: boolean }) {
       ].map((b, i) => (
         <rect key={i} x={b.x} y={b.y} width={b.w} height={b.h} rx="4" fill={b.c}
           stroke="rgba(86,86,216,0.4)" strokeWidth="1"
-          style={active ? { animation: `illEnter 0.4s ${0.3 + i * 0.1}s both` } : { opacity: 0 }}/>
+          style={{ opacity: active ? 1 : 0, transition: active ? `opacity 0.4s ${0.3 + i * 0.1}s ease-out` : 'none' }}/>
       ))}
 
       {/* Connection lines from assets to screen */}
@@ -246,12 +243,14 @@ function IllustrationWorkshop({ active }: { active: boolean }) {
       <line x1="348" y1="118" x2="290" y2="105" stroke="rgba(86,86,216,0.2)" strokeWidth="1" strokeDasharray="4 3"/>
 
       {/* Floating collaboration tags */}
-      <rect x="130" y="26" width="60" height="20" rx="10" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"
-        style={active ? { animation: 'illEnter 0.5s 0.6s both' } : { opacity: 0 }}/>
-      <text x="160" y="40" textAnchor="middle" fill="rgba(65,211,126,0.8)" fontSize="8" fontFamily="monospace">LIVE SESSION</text>
-      <rect x="210" y="26" width="58" height="20" rx="10" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"
-        style={active ? { animation: 'illEnter 0.5s 0.7s both' } : { opacity: 0 }}/>
-      <text x="239" y="40" textAnchor="middle" fill="rgba(86,86,216,0.8)" fontSize="8" fontFamily="monospace">3 MEMBERS</text>
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.6s ease-out' : 'none' }}>
+        <rect x="130" y="26" width="60" height="20" rx="10" fill="rgba(65,211,126,0.1)" stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
+        <text x="160" y="40" textAnchor="middle" fill="rgba(65,211,126,0.8)" fontSize="8" fontFamily="monospace">LIVE SESSION</text>
+      </g>
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.7s ease-out' : 'none' }}>
+        <rect x="210" y="26" width="58" height="20" rx="10" fill="rgba(86,86,216,0.1)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/>
+        <text x="239" y="40" textAnchor="middle" fill="rgba(86,86,216,0.8)" fontSize="8" fontFamily="monospace">3 MEMBERS</text>
+      </g>
     </svg>
   )
 }
@@ -291,7 +290,7 @@ function Illustration3D({ active }: { active: boolean }) {
         const s = cube.s * 30
         const { tx: cx, ty: cy } = cube
         return (
-          <g key={i} style={active ? { animation: `illEnter 0.45s ${cube.delay} both` } : { opacity: 0 }}>
+          <g key={i} style={{ opacity: active ? 1 : 0, transition: active ? `opacity 0.4s ${cube.delay} ease-out` : 'none' }}>
             {/* Top face */}
             <path d={`M ${cx},${cy} L ${cx+s},${cy-s*0.5} L ${cx+s*2},${cy} L ${cx+s},${cy+s*0.5} Z`} fill={cube.c1}/>
             {/* Right face */}
@@ -325,7 +324,7 @@ function Illustration3D({ active }: { active: boolean }) {
         { x: 22, y: 90, label: '3D ASSETS' },
         { x: 316, y: 90, label: 'MODELS' },
       ].map((tag, i) => (
-        <g key={i} style={active ? { animation: `illEnter 0.4s ${0.5+i*0.1}s both` } : { opacity: 0 }}>
+        <g key={i} style={{ opacity: active ? 1 : 0, transition: active ? `opacity 0.4s ${0.5 + i * 0.1}s ease-out` : 'none' }}>
           <rect x={tag.x} y={tag.y-14} width={tag.label.length * 7.5 + 16} height="18" rx="4"
             fill="rgba(86,86,216,0.12)" stroke="rgba(86,86,216,0.35)" strokeWidth="1"/>
           <text x={tag.x+8} y={tag.y} fill="rgba(86,86,216,0.75)" fontSize="8" fontFamily="monospace" letterSpacing="0.08em">{tag.label}</text>
@@ -366,29 +365,36 @@ function IllustrationVR({ active }: { active: boolean }) {
           stroke={i === 0 ? 'rgba(86,86,216,0.12)' : i === 1 ? 'rgba(86,86,216,0.18)' : 'rgba(65,211,126,0.22)'}
           strokeWidth={i === 2 ? '1.5' : '1'} fill={i === 0 ? 'url(#portalGrad)' : 'none'}
           strokeDasharray={i === 0 ? '8 6' : i === 1 ? '5 4' : 'none'}
-          style={active ? { animation: `pathGlowPulse ${3 + i}s ${i*0.3}s ease-in-out infinite` } : { opacity: 0 }}/>
+          style={{
+            opacity: active ? 1 : 0,
+            transition: active ? `opacity 0.5s ${i * 0.3}s ease-out` : 'none',
+            animation: active ? `pathGlowPulse ${3 + i}s ${i * 0.3}s ease-in-out infinite` : 'none',
+          }}/>
       ))}
 
       {/* Portal center */}
       <circle cx="200" cy="148" r="56" fill="rgba(0,0,60,0.75)"
         stroke="rgba(65,211,126,0.65)" strokeWidth="2" filter="url(#vrGlow)"
-        style={active ? { animation: 'illEnter 0.5s 0.1s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.1s ease-out' : 'none' }}/>
       <circle cx="200" cy="148" r="44" fill="rgba(32,32,168,0.35)"
-        stroke="rgba(65,211,126,0.35)" strokeWidth="1"/>
+        stroke="rgba(65,211,126,0.35)" strokeWidth="1"
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.15s ease-out' : 'none' }}/>
 
-      {/* Portal inner glow */}
-      <circle cx="200" cy="148" r="30" fill="rgba(65,211,126,0.06)"
-        style={active ? { animation: 'portalPulse 2.5s ease-in-out infinite' } : {}}/>
-      <text x="200" y="154" textAnchor="middle" fill="rgba(65,211,126,0.6)"
-        fontSize="9" fontFamily="monospace" letterSpacing="0.16em">VR / AR</text>
+      {/* Portal inner glow + label */}
+      <g style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.4s 0.2s ease-out' : 'none' }}>
+        <circle cx="200" cy="148" r="30" fill="rgba(65,211,126,0.06)"
+          style={active ? { animation: 'portalPulse 2.5s ease-in-out infinite' } : {}}/>
+        <text x="200" y="154" textAnchor="middle" fill="rgba(65,211,126,0.6)"
+          fontSize="9" fontFamily="monospace" letterSpacing="0.16em">VR / AR</text>
+      </g>
 
       {/* Green path entering portal — from left */}
       <path d="M 0,148 Q 100,148 144,148" stroke="rgba(65,211,126,0.65)" strokeWidth="2.5"
         fill="none" filter="url(#vrGlow)"
-        style={active ? { animation: 'illEnter 0.6s 0.3s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.5s 0.3s ease-out' : 'none' }}/>
       <path d="M 0,148 Q 100,148 144,148" stroke="rgba(65,211,126,0.3)" strokeWidth="8"
         fill="none" filter="url(#vrGlowSoft)"
-        style={active ? { animation: 'illEnter 0.6s 0.3s both' } : { opacity: 0 }}/>
+        style={{ opacity: active ? 1 : 0, transition: active ? 'opacity 0.5s 0.3s ease-out' : 'none' }}/>
 
       {/* Floating UI panels */}
       {[
@@ -397,7 +403,7 @@ function IllustrationVR({ active }: { active: boolean }) {
         { x: 296, y: 60,  w: 88, h: 56, delay: '0.25s', accent: 'rgba(86,86,216,0.5)' },
         { x: 308, y: 188, w: 76, h: 44, delay: '0.4s', accent: 'rgba(65,211,126,0.45)' },
       ].map((panel, i) => (
-        <g key={i} style={active ? { animation: `illEnter 0.45s ${panel.delay} both` } : { opacity: 0 }}>
+        <g key={i} style={{ opacity: active ? 1 : 0, transition: active ? `opacity 0.4s ${panel.delay} ease-out` : 'none' }}>
           <rect x={panel.x} y={panel.y} width={panel.w} height={panel.h} rx="8"
             fill="rgba(32,32,168,0.35)" stroke={panel.accent} strokeWidth="1"
             style={{ backdropFilter: 'blur(8px)' }}/>
@@ -641,11 +647,6 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
   const s = STATUS_STYLE[step.statusType]
   const isActive = index === activeIndex
 
-  const [illKey, setIllKey] = useState(0)
-  useEffect(() => {
-    if (isActive) setIllKey(k => k + 1)
-  }, [isActive])
-
   const illustrations = [IllustrationLibrary, IllustrationWorkshop, Illustration3D, IllustrationVR]
   const IllComp = illustrations[index]
 
@@ -732,7 +733,7 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
         transition: 'opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)',
         transitionDelay: isActive ? '0.1s' : '0s',
       }}>
-        <div key={illKey} style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
+        <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
           <IllComp active={isActive} />
         </div>
       </div>
