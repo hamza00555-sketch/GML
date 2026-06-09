@@ -131,8 +131,8 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
       setTimeout(() => setPhase(3), 1060),  // LIBRARY
       setTimeout(() => setPhase(4), 2000),  // morph + scan
       setTimeout(() => setPhase(5), 2650),  // GML stamp — يبقى لوحده
-      setTimeout(() => setPhase(6), 4400),  // جمل + camel reveal منفصل
-      setTimeout(() => setPhase(7), 5300),  // press to enter
+      setTimeout(() => setPhase(6), 5600),  // جمل + camel reveal منفصل
+      setTimeout(() => setPhase(7), 6500),  // press to enter
     ]
     return () => timers.forEach(clearTimeout)
   }, [])
