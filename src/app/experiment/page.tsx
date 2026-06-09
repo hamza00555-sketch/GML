@@ -375,10 +375,10 @@ export default function ExperimentPage() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
             {[
-              { label: 'وقت المصمم الأول',        value: experiment.designer1.productionTime || '—', accent: 'rgba(65,211,126,0.7)' },
-              { label: 'وقت المصمم الثاني',       value: experiment.designer2.productionTime || '—', accent: 'rgba(65,211,126,0.7)' },
-              { label: 'وقت الإنتاج الكلي',       value: experiment.renderTime              || '—', accent: 'rgba(86,86,216,0.7)'  },
-              { label: 'نسبة التوفير في الوقت',    value: '—',                                        accent: 'rgba(86,86,216,0.7)'  },
+              { label: 'عهود — مع المكتبة',        value: experiment.designer1.productionTime || '—', accent: 'rgba(65,211,126,0.7)' },
+              { label: 'نوف — مع المكتبة',         value: experiment.designer2.productionTime || '—', accent: 'rgba(65,211,126,0.7)' },
+              { label: 'بدون المكتبة (تقدير)',      value: (experiment as typeof experiment & { baselineTime?: string }).baselineTime || '—', accent: 'rgba(86,86,216,0.7)'  },
+              { label: 'معدل التوفير في الوقت',     value: (experiment as typeof experiment & { timeSaving?: string }).timeSaving    || '—', accent: 'rgba(86,86,216,0.7)'  },
             ].map((m, i) => (
               <div key={i} style={{
                 borderRadius: 16, padding: '20px 24px',
