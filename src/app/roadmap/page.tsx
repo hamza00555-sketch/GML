@@ -669,10 +669,6 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
       {/* Text column — right side in RTL */}
       <div style={{
         padding: isMobile ? '32px 24px 24px' : '48px 52px',
-        opacity: isActive ? 1 : 0,
-        transform: isActive ? 'none' : 'translateY(12px)',
-        transition: 'opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1)',
-        transitionDelay: isActive ? '0.2s' : '0s',
       }}>
         {/* Status row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32, flexWrap: 'wrap' }}>
@@ -728,13 +724,9 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
         padding: isMobile ? '0 24px 32px' : '32px 40px 32px 20px',
         height: isMobile ? 240 : '100%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        opacity: isActive ? 1 : 0,
-        transform: isActive ? 'none' : 'scale(0.95)',
-        transition: 'opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)',
-        transitionDelay: isActive ? '0.1s' : '0s',
       }}>
         <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
-          <IllComp active={isActive} />
+          <IllComp active={true} />
         </div>
       </div>
     </div>
