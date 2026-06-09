@@ -186,6 +186,30 @@ function SupportCard({
         <path d="M15.5 13.5 L15.5 15.5 L17 15.5" stroke={accentColor} strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.9"/>
       </svg>
     ),
+    '04': (
+      /* Library build icon — stacked layers */
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M3 15 L11 19 L19 15" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.55"/>
+        <path d="M3 11 L11 15 L19 11" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.7"/>
+        <path d="M3 7 L11 11 L19 7 L11 3 Z" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.85" fill={`${accentColor}12`}/>
+      </svg>
+    ),
+    '05': (
+      /* Team experiment icon — two people with checkmark */
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="7" cy="7" r="3" stroke={accentColor} strokeWidth="1.5" strokeOpacity="0.7"/>
+        <path d="M1 18 C1 14.8 3.7 12.5 7 12.5 C10.3 12.5 13 14.8 13 18" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.55"/>
+        <path d="M14 10 L16 12 L20 8" stroke={accentColor} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.85"/>
+      </svg>
+    ),
+    '06': (
+      /* Training / technical support icon — graduation cap */
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M11 4 L20 8.5 L11 13 L2 8.5 Z" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.8" fill={`${accentColor}0e`}/>
+        <path d="M5.5 10.5 L5.5 16 C5.5 16 7.5 18 11 18 C14.5 18 16.5 16 16.5 16 L16.5 10.5" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.6"/>
+        <line x1="20" y1="8.5" x2="20" y2="14" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.5"/>
+      </svg>
+    ),
   }
 
   return (
@@ -240,6 +264,9 @@ export default function NextStepPage() {
     'var(--brand-green)',
     'var(--brand-cyan)',
     'var(--brand-green)',
+    'var(--brand-cyan)',
+    'var(--brand-green)',
+    'var(--brand-cyan)',
   ]
 
   const cardsReveal  = useScrollReveal(0.08)

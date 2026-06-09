@@ -520,15 +520,10 @@ function RoadmapConnectedPath({ activeIndex }: { activeIndex: number }) {
 
         {/* Moving particles along path */}
         {[0, 1, 2].map(i => (
-          <circle key={i} cy="50%" r="3" fill="rgba(65,211,126,0.8)"
+          <circle key={i} cx="0" cy="50%" r="3" fill="rgba(65,211,126,0.8)"
             filter="url(#pathGlowFilter)"
-            style={{ animation: `particleRun ${4 + i * 1.5}s ${i * 1.2}s linear infinite` }}>
-            <animateMotion dur={`${4 + i * 1.5}s`} begin={`${i * 1.2}s`} repeatCount="indefinite">
-              <mpath href="#mainRoadPath"/>
-            </animateMotion>
-          </circle>
+            style={{ animation: `particleRun ${4 + i * 1.5}s ${i * 1.2}s linear infinite` }}/>
         ))}
-        <path id="mainRoadPath" d="M 0,50% L 100%,50%" stroke="none" fill="none"/>
       </svg>
     </div>
   )
@@ -646,6 +641,11 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
   const s = STATUS_STYLE[step.statusType]
   const isActive = index === activeIndex
 
+  const [illKey, setIllKey] = useState(0)
+  useEffect(() => {
+    if (isActive) setIllKey(k => k + 1)
+  }, [isActive])
+
   const illustrations = [IllustrationLibrary, IllustrationWorkshop, Illustration3D, IllustrationVR]
   const IllComp = illustrations[index]
 
@@ -732,7 +732,7 @@ function RoadmapStage({ step, index, activeIndex, isMobile }: {
         transition: 'opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)',
         transitionDelay: isActive ? '0.1s' : '0s',
       }}>
-        <div style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
+        <div key={illKey} style={{ width: '100%', maxWidth: 420, aspectRatio: '4/3' }}>
           <IllComp active={isActive} />
         </div>
       </div>
